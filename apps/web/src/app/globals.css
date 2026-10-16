@@ -1,0 +1,4 @@
+@import "tailwindcss";
+/* Design tokens in the base layer, so Tailwind utilities always win over their element defaults. */
+@import "../styles/tokens.css" layer(base);
+@import "../styles/theme.css";

@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><title>Shohojatri — Clickable prototype</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" type="image/png" href="assets/shohojatri-mark.png">
+<link rel="apple-touch-icon" href="assets/shohojatri-mark.png">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/typography.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/radius.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/shadow.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/motion.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/base.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/components/components.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/styles.css">
+<link rel="stylesheet" href="bn-digits.css">
+<link rel="stylesheet" href="sf.css">
+<link rel="stylesheet" href="rs.css">
+<link rel="stylesheet" href="cm.css">
+<link rel="stylesheet" href="ac.css">
+<link rel="stylesheet" href="ob.css">
+<link rel="stylesheet" href="st.css">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#DCE5E4}
+a{color:var(--text-link)}a:hover{color:var(--sj-navy)}
+.pv-stage{position:fixed;inset:0;overflow:auto;display:flex;align-items:center;justify-content:center}
+.pv-stage.desk{display:block}
+.pv-stage.m{background:var(--surface-page)}
+.pv-dev{position:relative;flex:none;width:390px;height:844px}
+.pv-dev>*:first-child{height:844px!important;min-height:0!important}
+.pv-stage.m .pv-dev>*:first-child{border-radius:0!important;box-shadow:none!important}
+.pv-desk{margin:24px auto}.pv-stage.m .pv-desk{margin:0}
+.pv-mapbtn{position:absolute;top:52px;left:14px;z-index:20;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--sj-navy);background:rgba(255,255,255,.55);opacity:.55;cursor:pointer}
+.pv-mapbtn:hover{opacity:1}
+.pv-toast{position:absolute;left:16px;right:16px;top:56px;z-index:200}
+.pv-docscroll{flex:1;min-height:0;overflow-y:auto;background:#E6ECEA}
+.pv-dev *{scrollbar-width:none}.pv-dev *::-webkit-scrollbar{display:none}
+.pv-dev .cm-body,.pv-dev .ac-pad,.pv-dev .ac-empty,.pv-dev .st-body,.pv-dev .rs-speclist{overflow-y:auto!important}
+.pv-dev .rs-body,.pv-dev .cm-tall{flex:1 1 0;min-height:0;overflow-y:auto}
+.pv-dev .rs-body>*,.pv-dev .cm-tall>*,.pv-dev .ac-pad>*,.pv-dev .st-body>*,.pv-dev .rs-speclist>*{flex-shrink:0}
+.pv-dev .ac-thread,.pv-dev .cm-thread,.pv-dev .rs-thread{overflow-y:auto!important;justify-content:flex-start!important}
+.pv-dev .ac-thread>*,.pv-dev .cm-thread>*,.pv-dev .rs-thread>*{flex-shrink:0}
+.pv-dev .ac-phone:not(.tall) .ac-thread>:first-child,.pv-dev .cm-thread>:first-child,.pv-dev .rs-thread>:first-child{margin-top:auto}
+.pv-dev .rs-chiprow,.pv-dev .ac-mtabs{overflow-x:auto!important}
+.pv-dev [role=button],.pv-dev .sf-hero,.pv-dev .sf-row,.pv-dev .sf-add,.pv-dev .cm-mini-act,.pv-dev .cm-li,.pv-dev .ac-hi,.pv-dev .cm-input,.pv-dev .ac-field,.pv-desk .cm-chg,.pv-desk tbody tr{cursor:pointer}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/_ds_bundle.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#EAF2F9"/><circle cx="44" cy="34" r="9" fill="#1586BC"/><circle cx="58" cy="46" r="6" fill="#03B4BA"/><path d="M30 70c6-16 20-22 34-18-8 4-12 10-12 18z" fill="#47AC8D"/><path d="M66 30l2 5 5 .5-4 3.5 1.2 5-4.2-2.7-4.2 2.7 1.2-5-4-3.5 5-.5z" fill="#F8B442"/></svg></template>
+<div id="pv-imgs" hidden><img src="assets/shohojatri-logo.png" alt=""><img src="assets/shohojatri-logo-en.png" alt=""><img src="assets/shohojatri-mark.png" alt=""><img src="assets/shohojatri-wordmark-bn.png" alt=""><img src="assets/shohojatri-wordmark-en.png" alt=""><img src="assets/shohojatri-wordmark.png" alt=""></div>
+<script>
+(function(){var names=['shohojatri-logo','shohojatri-logo-en','shohojatri-mark','shohojatri-wordmark-bn','shohojatri-wordmark-en','shohojatri-wordmark'];var map={};var imgs=document.querySelectorAll('#pv-imgs img');names.forEach(function(n,i){map['assets/'+n+'.png']=imgs[i].src;});
+function fix(el){if(el.tagName==='IMG'){var s=el.getAttribute('src');if(map[s]&&el.src!==map[s])el.src=map[s];}}
+new MutationObserver(function(ms){ms.forEach(function(m){if(m.type==='attributes')fix(m.target);m.addedNodes&&m.addedNodes.forEach(function(n){if(n.nodeType===1){fix(n);n.querySelectorAll&&n.querySelectorAll('img').forEach(fix);}});});}).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['src']});})();
+</script>
+<div id="root"></div>
+<script type="text/babel" src="sf-shell.jsx"></script>
+<script type="text/babel" src="sf-a.jsx"></script>
+<script type="text/babel" src="sf-b.jsx"></script>
+<script type="text/babel" src="rs-data.jsx"></script>
+<script type="text/babel" src="rs-shell.jsx"></script>
+<script type="text/babel" src="rs-result.jsx"></script>
+<script type="text/babel" src="rs-more.jsx"></script>
+<script type="text/babel" src="cm-shell.jsx"></script>
+<script type="text/babel" src="cm-wizard.jsx"></script>
+<script type="text/babel" src="cm-home.jsx"></script>
+<script type="text/babel" src="cm-docs-chat.jsx"></script>
+<script type="text/babel" src="cm-dash.jsx"></script>
+<script type="text/babel" src="cm-dash2.jsx"></script>
+<script type="text/babel">window.CmCareTeam=window.CareTeam;</script>
+<script type="text/babel" src="ac-parts.jsx"></script>
+<script type="text/babel" src="ac-mobile.jsx"></script>
+<script type="text/babel" src="ac-desk.jsx"></script>
+<script type="text/babel" src="ob-screens.jsx"></script>
+<script type="text/babel" src="st-screens.jsx"></script>
+<script type="text/babel" src="proto-routes.jsx"></script>
+<script type="text/babel" src="proto-app.jsx"></script>
+</body></html>

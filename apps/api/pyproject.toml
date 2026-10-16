@@ -1,0 +1,39 @@
+[project]
+name = "shohojatri-api"
+version = "0.1.0"
+description = "Shohojatri (সহযাত্রী) POC API"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "alembic>=1.20",
+    "argon2-cffi>=25.1",
+    "fastapi>=0.143",
+    "pydantic-settings>=2.16",
+    "pyjwt>=2.15",
+    "sqlalchemy>=2.1",
+    "uvicorn[standard]>=0.54",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28",
+    "pytest>=9.1",
+    "ruff>=0.17",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.isort]
+# The local alembic/ migrations folder would otherwise make ruff treat alembic as first-party.
+known-third-party = ["alembic"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

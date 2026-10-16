@@ -1,0 +1,5 @@
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--surface-page);color:var(--text-1);font-family:var(--font-body)}
+a{color:#1373A3;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:var(--sj-navy)}
+:focus-visible{outline:none;box-shadow:var(--ring-focus)}
+button{font-family:inherit}

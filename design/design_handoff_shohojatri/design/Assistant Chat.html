@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><title>Shohojatri — সহযাত্রী AI</title>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/typography.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/radius.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/shadow.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/motion.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/base.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/components/components.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/styles.css">
+<link rel="stylesheet" href="bn-digits.css">
+<link rel="stylesheet" href="rs.css">
+<link rel="stylesheet" href="cm.css">
+<link rel="stylesheet" href="ac.css">
+<style>
+a{color:var(--text-link)}a:hover{color:var(--sj-navy)}
+.sf-dots{display:inline-flex;gap:6px}.sf-dots i{width:10px;height:10px;border-radius:50%;animation:sfbreathe 1.4s ease-in-out infinite}.sf-dots i:nth-child(2){animation-delay:.2s}.sf-dots i:nth-child(3){animation-delay:.4s}
+@keyframes sfbreathe{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1);opacity:1}}
+.cv{position:absolute;left:0;top:0;padding:80px;display:flex;flex-direction:column;gap:150px}
+.cv-row{display:flex;flex-direction:column;gap:56px}.cv-hd{display:flex;flex-direction:column;gap:6px}
+.cv-hd h2{margin:0;white-space:nowrap;font:700 30px/1.3 var(--font-display);color:var(--sj-navy)}.cv-hd p{margin:0;white-space:nowrap;font:400 17px/1.5 var(--font-body);color:var(--text-2)}
+.cv-frames{display:flex;gap:64px;align-items:flex-start}.cv-pair{display:flex;gap:40px;align-items:flex-start;padding-right:40px;border-right:2px dashed var(--border-1)}.cv-pair:last-child{border-right:0}
+.cv-grid{display:grid;grid-template-columns:1280px 1280px;gap:100px 80px;align-items:start}
+.cv-f{display:flex;flex-direction:column;gap:16px}.cv-cap{display:flex;gap:8px;font:600 15px/1.4 var(--font-body);color:var(--text-2);white-space:nowrap}.cv-cap b{color:var(--text-1)}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="sf-shell.jsx"></script>
+<script type="text/babel" src="cm-shell.jsx"></script>
+<script type="text/babel" src="ac-parts.jsx"></script>
+<script type="text/babel" src="ac-mobile.jsx"></script>
+<script type="text/babel" src="ac-desk.jsx"></script>
+<script type="text/babel">
+function P({n,l,C,p}){return <div className="cv-pair">{['bn','en'].map(lang=><div key={lang} className="cv-f" data-screen-label={n+' '+l+' '+lang.toUpperCase()}><div className="cv-cap"><b>{n}</b><span>{l} · {lang==='bn'?'বাংলা':'English'}</span></div><C lang={lang} {...(p||{})}/></div>)}</div>;}
+function Row({t,s,grid,children}){return <section className="cv-row"><div className="cv-hd"><h2>{t}</h2>{s?<p>{s}</p>:null}</div><div className={grid?'cv-grid':'cv-frames'}>{children}</div></section>;}
+function G({n,l,C}){return <>{['bn','en'].map(lang=><div key={lang} className="cv-f" data-screen-label={n+' '+l+' '+lang.toUpperCase()}><div className="cv-cap"><b>{n}</b><span>{l} · {lang==='bn'?'বাংলা':'English'}</span></div><C lang={lang}/></div>)}</>;}
+function App(){return <div className="cv">
+  <Row t="১ · প্রবেশপথ ও শুরু" s="হোম ও ওভারভিউতে ভাসমান “জিজ্ঞেস করুন” · খালি অবস্থা — নাম ধরে শুভেচ্ছা, সীমা, প্রস্তাবিত প্রশ্ন · ভয়েস ইনপুট">
+    <P n="E1" l="অভিভাবকের হোম" C={MHome}/><P n="E2" l="রাফি · ওভারভিউ" C={MOverview}/><P n="C1" l="খালি অবস্থা" C={Empty}/><P n="C1b" l="ভয়েসে বলা" C={Empty} p={{rec:true}}/>
+  </Row>
+  <Row t="২ · কথোপকথন ও সূত্র" s="সূত্র চিপসহ উত্তর → চিপ ট্যাপ করলে এন্ট্রি বটম শিটে · স্ট্রিমিং · ভাবছে">
+    <P n="C2" l="কথোপকথন · স্ট্রিমিং" C={Convo}/><P n="C3" l="সূত্র খোলা" C={Convo} p={{sheet:true}}/><P n="C4" l="রেকর্ড দেখছে" C={Thinking}/>
+  </Row>
+  <Row t="৩ · প্রস্তাবিত কাজ ও ব্যাখ্যা" s="রিমাইন্ডার · অ্যাক্টিভিটি · লগ খসড়া — নিশ্চিত / সম্পাদনা / বাদ · “আমাকে বুঝিয়ে দিন”">
+    <P n="C5" l="প্রস্তাবিত কাজ" C={Actions}/><P n="C6" l="নোট বুঝিয়ে দিন" C={ExplainS}/>
+  </Row>
+  <Row t="৪ · স্ট্যাটাস রিপোর্ট" s="কার জন্য ও কতদিনের → চ্যাটে রিপোর্ট কার্ড → প্রিন্টযোগ্য পাতা, শেয়ার / প্রিন্ট">
+    <P n="R1" l="কার জন্য, কতদিন" C={RepSetupS}/><P n="R2" l="রিপোর্ট কার্ড" C={RepCardS}/>
+  </Row>
+  <Row t="৪খ · প্রিন্টযোগ্য রিপোর্ট পাতা"><P n="R3" l="পুরো পাতা" C={PrintReport}/></Row>
+  <Row t="৫ · সীমা ও নিরাপত্তা" s="জরুরি অবস্থা — শান্ত কার্ড, ট্যাপ করে কল · “জানি না” — কেয়ার টিমের নাম · ওষুধ — প্রেসক্রিপশন হুবহু">
+    <P n="S1" l="জরুরি" C={UrgentS}/><P n="S2" l="তথ্য নেই" C={Idk}/><P n="S3" l="ওষুধের প্রশ্ন" C={Med}/>
+  </Row>
+  <Row t="৬ · ভূমিকা অনুযায়ী" s="শিক্ষকের চ্যাট — শিক্ষা অ্যাক্সেস, সীমার বাইরে ভদ্র না · বিশেষজ্ঞের চ্যাট — সংক্ষিপ্ত, ক্লিনিক্যাল">
+    <P n="V1" l="শিক্ষিকা নাসরিন · খালি" C={Empty} p={{role:'teacher'}}/><P n="V2" l="শিক্ষিকা নাসরিন" C={Teacher}/><P n="V3" l="ডা. তানভীর" C={Specialist}/>
+  </Row>
+  <Row t="৭ · ইতিহাস ও ত্রুটি" s="আগের কথোপকথন · ইন্টারনেট নেই — প্রশ্ন সংরক্ষিত · সহযাত্রী AI অনুপলব্ধ">
+    <P n="H1" l="আগের কথোপকথন" C={History}/><P n="X1" l="ইন্টারনেট নেই" C={Offline}/><P n="X2" l="সহযাত্রী AI অনুপলব্ধ" C={AIDown}/>
+  </Row>
+  <Row grid t="৮ · ডেস্কটপ ১২৮০" s="চ্যাট মাঝে · ডানে “এখন রাফি”, চলমান লক্ষ্য, আসন্ন সময়সূচি · ওভারভিউতে ভাসমান বোতাম">
+    <G n="D1" l="চ্যাট" C={DeskChatA}/><G n="D2" l="চ্যাট · খালি" C={DeskEmptyA}/><G n="D3" l="ওভারভিউ · প্রবেশপথ" C={DeskOverviewA}/>
+  </Row>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

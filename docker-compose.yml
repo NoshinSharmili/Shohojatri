@@ -1,0 +1,26 @@
+# docker compose up --build  →  web on http://localhost:3000, API on http://localhost:8000
+services:
+  api:
+    build: ./apps/api
+    environment:
+      DATABASE_URL: sqlite:////data/shohojatri.db
+      CORS_ORIGINS: http://localhost:3000
+      # Set JWT_SECRET in your shell or a root .env to keep sessions across restarts.
+      JWT_SECRET: ${JWT_SECRET:-}
+    volumes:
+      - api-data:/data
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: ./apps/web
+      args:
+        API_INTERNAL_URL: http://api:8000
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+volumes:
+  api-data:

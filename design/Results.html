@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><title>Shohojatri — Results</title>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/typography.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/radius.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/shadow.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/motion.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/base.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/components/components.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/styles.css">
+<link rel="stylesheet" href="bn-digits.css">
+<link rel="stylesheet" href="rs.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="sf-shell.jsx"></script>
+<script type="text/babel" src="rs-data.jsx"></script>
+<script type="text/babel" src="rs-shell.jsx"></script>
+<script type="text/babel" src="rs-result.jsx"></script>
+<script type="text/babel" src="rs-more.jsx"></script>
+<script type="text/babel">
+const X0=80,STEP=490;
+const LV=['low','moderate','elevated','high'];
+function Row({y,title,sub}){return <><div className="row-title" style={{left:X0,top:y-150}}>{title}</div>{sub?<div className="row-sub" style={{left:X0,top:y-106}}>{sub}</div>:null}</>;}
+function Frame({x,y,n,label,children,extra}){return <><div className="cap" style={{left:x,top:y-46}}><b>{n}</b><span>{label}</span>{extra}</div><div data-screen-label={n+' '+label} style={{position:'absolute',left:x,top:y}}>{children}</div></>;}
+function App(){
+  const y1=200,y2=2720,y3=y2+1080,y4=y3+1100;
+  return <>
+    <Row y={y1} title="১ · ফলাফল — চারটি শ্রেণি" sub="পুরো স্ক্রল দেখানো হয়েছে · উচ্চ ঝুঁকিতেও শান্ত, সহায়ক ভাষা"/>
+    {LV.map((l,i)=><Frame key={l} x={X0+i*STEP} y={y1} n={'R'+(i+1)} label={RS_LABEL[l]+' · '+bn(RS[l].score)+'%'}><ResultScreen level={l}/></Frame>)}
+    <Row y={y2} title="২ · শেয়ার ও প্রশ্ন" sub="মেয়াদসহ লিংক · কপি · WhatsApp · QR · বন্ধ করা — আর ফলাফল নিয়ে AI চ্যাট"/>
+    <Frame x={X0} y={y2} n="S1" label="শেয়ার শিট"><ShareSheet/></Frame>
+    <Frame x={X0+STEP} y={y2} n="S2" label="QR + কপি হয়েছে"><ShareQR/></Frame>
+    <Frame x={X0+STEP*2} y={y2} n="S3" label="লিংক বন্ধ হয়েছে"><ShareRevoked/></Frame>
+    <Frame x={X0+STEP*3} y={y2} n="C1" label="ফলাফল নিয়ে চ্যাট"><ResultsChat/></Frame>
+    <Row y={y3} title="৩ · কাছের বিশেষজ্ঞ" sub="ধরন অনুযায়ী ফিল্টার · ট্যাপে কল · লোকেশন বন্ধ থাকলে বিভাগ বাছাই"/>
+    <Frame x={X0} y={y3} n="N1" label="মানচিত্র + তালিকা"><Specialists/></Frame>
+    <Frame x={X0+STEP} y={y3} n="N2" label="লোকেশন বন্ধ"><LocationOff/></Frame>
+    <Frame x={X0+STEP*2} y={y3} n="N3" label="ডেস্কটপ · ১২৮০"><SpecialistsDesktop/></Frame>
+    <Row y={y4} title="৪ · প্রিন্টযোগ্য রিপোর্ট (A4)" sub="আলাদা ফাইল — খুলে প্রিন্ট বা PDF করুন"/>
+    <Frame x={X0} y={y4} n="P1" label="অভিভাবকের রিপোর্ট" extra={<a href="Parent Report.html" target="_blank">খুলুন ↗</a>}><iframe src="Parent Report.html" title="Parent report" style={{width:900,height:1300,border:0,borderRadius:16,background:'#fff'}}></iframe></Frame>
+    <Frame x={X0+980} y={y4} n="P2" label="ডাক্তারের রিপোর্ট · English / বাংলা" extra={<a href="Doctor Report.html" target="_blank">খুলুন ↗</a>}><iframe src="Doctor Report.html" title="Doctor report" style={{width:900,height:3700,border:0,borderRadius:16,background:'#fff'}}></iframe></Frame>
+  </>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

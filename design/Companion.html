@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><title>Shohojatri — Companion</title>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/typography.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/radius.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/shadow.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/motion.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/base.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/components/components.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/styles.css">
+<link rel="stylesheet" href="bn-digits.css">
+<link rel="stylesheet" href="rs.css">
+<link rel="stylesheet" href="cm.css">
+<style>
+.sf-title{font:700 24px/1.45 var(--font-display);margin:0 0 6px;color:var(--text-1);text-wrap:pretty}
+.sf-dots{display:inline-flex;gap:8px}.sf-dots i{width:12px;height:12px;border-radius:50%;animation:sfbreathe 1.4s ease-in-out infinite}.sf-dots i:nth-child(2){animation-delay:.2s}.sf-dots i:nth-child(3){animation-delay:.4s}
+@keyframes sfbreathe{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1);opacity:1}}
+.cv{position:absolute;left:0;top:0;padding:80px;display:flex;flex-direction:column;gap:150px}
+.cv-row{display:flex;flex-direction:column;gap:56px}.cv-hd{display:flex;flex-direction:column;gap:6px}
+.cv-hd h2{margin:0;white-space:nowrap;font:700 30px/1.3 var(--font-display);color:var(--sj-navy)}.cv-hd p{margin:0;white-space:nowrap;font:400 17px/1.5 var(--font-body);color:var(--text-2)}
+.cv-frames{display:flex;gap:80px;align-items:flex-start}.cv-grid{display:grid;grid-template-columns:1280px 1280px;gap:100px 80px;align-items:start}
+.cv-f{display:flex;flex-direction:column;gap:16px}.cv-cap{display:flex;gap:8px;font:600 15px/1.4 var(--font-body);color:var(--text-2);white-space:nowrap}.cv-cap b{color:var(--text-1)}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="sf-shell.jsx"></script>
+<script type="text/babel" src="rs-shell.jsx"></script>
+<script type="text/babel" src="cm-shell.jsx"></script>
+<script type="text/babel" src="cm-wizard.jsx"></script>
+<script type="text/babel" src="cm-home.jsx"></script>
+<script type="text/babel" src="cm-docs-chat.jsx"></script>
+<script type="text/babel" src="cm-dash.jsx"></script>
+<script type="text/babel" src="cm-dash2.jsx"></script>
+<script type="text/babel">
+function F({n,l,C}){return <div className="cv-f" data-screen-label={n+' '+l}><div className="cv-cap"><b>{n}</b><span>{l}</span></div><C/></div>;}
+function Row({t,s,grid,children}){return <section className="cv-row"><div className="cv-hd"><h2>{t}</h2>{s?<p>{s}</p>:null}</div><div className={grid?'cv-grid':'cv-frames'}>{children}</div></section>;}
+const L1=()=><LogSheet step={1}/>,L2=()=><LogSheet step={2}/>;
+function App(){return <div className="cv">
+  <Row t="১ · প্রোফাইল তৈরি — স্ক্রিনিং ছাড়াই" s="শিশুর তথ্য → রোগনির্ণয় → বৈশিষ্ট্য (১০টি ছোট অংশ, চিপ + “অন্য”) → কেয়ার টিম ও চাইল্ড আইডি → শেষ">
+    <F n="W1" l="শিশুর তথ্য" C={W1}/><F n="W2" l="রোগনির্ণয়" C={W2}/><F n="W3" l="বৈশিষ্ট্য · ১০টি অংশ" C={W3a}/><F n="W3.1" l="অংশ ১ · যোগাযোগ" C={W3b}/><F n="W3.4" l="অংশ ৪ · “অন্য” খোলা" C={W3c}/><F n="W4" l="কেয়ার টিম + আইডি" C={W4}/><F n="W4b" l="QR শিট" C={W4qr}/><F n="W5" l="শেষ" C={W5}/>
+  </Row>
+  <Row t="২ · অভিভাবকের হোম ও দ্রুত লগ" s="চাইল্ড কার্ড · “আজ” · প্রস্তাবিত অ্যাক্টিভিটি · ভাসমান লগ বোতাম → বিষয় → ১–৫ মুখ → নোট → সেভ">
+    <F n="H1" l="হোম" C={Home}/><F n="Q1" l="দ্রুত লগ · বিষয়" C={L1}/><F n="Q2" l="দ্রুত লগ · রেটিং ও নোট" C={L2}/><F n="Q3" l="সেভ হয়েছে" C={LogSaved}/>
+  </Row>
+  <Row t="৩ · রিমাইন্ডার ও অ্যাক্টিভিটি" s="চ্যাট থেকে আসা খসড়া যাচাই · ধাপ, উপকরণ, কেন সাহায্য করে · “করেছি” → টাইমলাইনে লগ">
+    <F n="R1" l="রিমাইন্ডার সেন্টার" C={Reminders}/><F n="A1" l="অ্যাক্টিভিটি বিস্তারিত" C={ActivityDetail}/><F n="A2" l="করেছি" C={ActivityDone}/>
+  </Row>
+  <Row t="৪ · ডকুমেন্ট আপলোড ও এআই পাঠ যাচাই" s="ছবি উপরে, পড়া ঘর নিচে — নম্বর মিলিয়ে দেখা · “পড়া যায়নি” চিহ্ন · ডোজ লেখা অনুযায়ী">
+    <F n="D1" l="ধরন ও উৎস" C={DocPick}/><F n="D2" l="পড়া হচ্ছে" C={DocReading}/><F n="D3" l="মিলিয়ে দেখুন" C={DocReview}/>
+  </Row>
+  <Row t="৫ · সহযাত্রী AI চ্যাট ও স্ট্যাটাস রিপোর্ট" s="সূত্রসহ উত্তর · রিমাইন্ডার খসড়া ও অ্যাক্টিভিটি কার্ড · রিপোর্ট তৈরি → রিপোর্ট পাতা">
+    <F n="C1" l="চ্যাট" C={Chat}/><F n="C2" l="রিপোর্ট তৈরি" C={ReportSheet}/><F n="C3" l="স্ট্যাটাস রিপোর্ট" C={StatusReport}/>
+  </Row>
+  <Row grid t="৬ · শিশুর ড্যাশবোর্ড — ডেস্কটপ ১২৮০" s="ওভারভিউ · টাইমলাইন · অগ্রগতি · কেয়ার প্ল্যান · ডকুমেন্ট · কেয়ার টিম · চ্যাট">
+    <F n="B1" l="ওভারভিউ" C={Overview}/><F n="B2" l="টাইমলাইন" C={Timeline}/><F n="B3" l="অগ্রগতি" C={Progress}/><F n="B4" l="কেয়ার প্ল্যান" C={CarePlan}/><F n="B5" l="ডকুমেন্ট + স্ক্রিনিং রিপোর্ট" C={Documents}/><F n="B6" l="কেয়ার টিম" C={CareTeam}/><F n="B7" l="চ্যাট" C={DeskChat}/>
+  </Row>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

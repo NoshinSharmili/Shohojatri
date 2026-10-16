@@ -1,0 +1,27 @@
+/* Tailwind v4 equivalent: @import this after tokens.css. Maps theme namespaces onto the Shohojatri CSS variables. */
+@import "tailwindcss";
+@theme inline {
+  --color-*: initial;
+  --color-white:#FFFFFF;
+  --color-navy:var(--sj-navy);--color-navy-deep:var(--sj-navy-deep);--color-navy-50:var(--sj-navy-50);--color-navy-100:var(--sj-navy-100);
+  --color-blue:var(--sj-blue);--color-blue-ink:var(--sj-blue-ink);--color-sky:var(--sj-sky);--color-sky-50:var(--sj-sky-50);
+  --color-teal:var(--sj-teal);--color-teal-deep:var(--sj-teal-deep);--color-teal-ink:var(--sj-ink-teal);--color-teal-50:var(--sj-teal-50);--color-teal-100:var(--sj-teal-100);
+  --color-mint:var(--sj-mint);--color-leaf:var(--sj-leaf);--color-leaf-ink:var(--sj-ink-leaf);--color-leaf-50:var(--sj-leaf-50);--color-sprout:var(--sj-sprout);--color-sprout-50:var(--sj-sprout-50);
+  --color-amber:var(--sj-amber);--color-amber-ink:var(--sj-ink-amber);--color-amber-50:var(--sj-amber-50);--color-amber-100:var(--sj-amber-100);
+  --color-n-0:var(--sj-n-0);--color-n-25:var(--sj-n-25);--color-n-50:var(--sj-n-50);--color-n-100:var(--sj-n-100);--color-n-200:var(--sj-n-200);--color-n-300:var(--sj-n-300);--color-n-400:var(--sj-n-400);--color-n-500:var(--sj-n-500);--color-n-600:var(--sj-n-600);--color-n-700:var(--sj-n-700);--color-n-800:var(--sj-n-800);--color-n-900:var(--sj-n-900);
+  --color-risk-low:var(--sj-risk-low);--color-risk-low-ink:var(--sj-risk-low-ink);--color-risk-low-bg:var(--sj-risk-low-bg);
+  --color-risk-moderate:var(--sj-risk-moderate);--color-risk-moderate-ink:var(--sj-risk-moderate-ink);--color-risk-moderate-bg:var(--sj-risk-moderate-bg);
+  --color-risk-elevated:var(--sj-risk-elevated);--color-risk-elevated-ink:var(--sj-risk-elevated-ink);--color-risk-elevated-bg:var(--sj-risk-elevated-bg);
+  --color-risk-high:var(--sj-risk-high);--color-risk-high-ink:var(--sj-risk-high-ink);--color-risk-high-bg:var(--sj-risk-high-bg);
+  --color-success:var(--sj-success);--color-success-bg:var(--sj-success-bg);--color-info:var(--sj-info);--color-info-bg:var(--sj-info-bg);--color-warning:var(--sj-warning);--color-warning-bg:var(--sj-warning-bg);--color-danger:var(--sj-danger);--color-danger-hover:var(--sj-danger-hover);--color-danger-bg:var(--sj-danger-bg);
+  --color-role-parent:var(--sj-role-parent);--color-role-parent-bg:var(--sj-role-parent-bg);--color-role-teacher:var(--sj-role-teacher);--color-role-teacher-bg:var(--sj-role-teacher-bg);--color-role-specialist:var(--sj-role-specialist);--color-role-specialist-bg:var(--sj-role-specialist-bg);
+  --color-text-1:var(--text-1);--color-text-2:var(--text-2);--color-text-3:var(--text-3);--color-text-link:var(--text-link);
+  --color-surface-page:var(--surface-page);--color-surface-card:var(--surface-card);--color-surface-sunken:var(--surface-sunken);--color-surface-muted:var(--surface-muted);--color-surface-calm:var(--surface-calm);--color-surface-sky:var(--surface-sky);--color-surface-warm:var(--surface-warm);--color-surface-overlay:var(--surface-overlay);
+  --color-border-1:var(--border-1);--color-border-2:var(--border-2);--color-border-focus:var(--border-focus);--color-border-selected:var(--border-selected);
+  --font-display:var(--font-display);--font-body:var(--font-body);
+  --text-caption:var(--fs-caption);--text-small:var(--fs-small);--text-body:var(--fs-body);--text-body-lg:var(--fs-body-lg);--text-h3:var(--fs-h3);--text-h2:var(--fs-h2);--text-h1:var(--fs-h1);--text-display:var(--fs-display);--text-h2-lg:var(--fs-h2-lg);--text-h1-lg:var(--fs-h1-lg);--text-display-lg:var(--fs-display-lg);
+  --radius-xs:var(--radius-xs);--radius-sm:var(--radius-sm);--radius-md:var(--radius-md);--radius-lg:var(--radius-lg);--radius-xl:var(--radius-xl);--radius-pill:var(--radius-pill);--radius-leaf:var(--radius-leaf);--radius-leaf-r:var(--radius-leaf-r);--radius-sheet:var(--radius-sheet);
+  --shadow-xs:var(--shadow-xs);--shadow-sm:var(--shadow-sm);--shadow-md:var(--shadow-md);--shadow-lg:var(--shadow-lg);--shadow-nav:var(--shadow-nav);
+  --ease-out:var(--ease-out);--ease-in-out:var(--ease-in-out);--ease-spring:var(--ease-soft-spring);
+  --spacing:4px;
+}

@@ -1,0 +1,6 @@
+:root{
+--radius-xs:6px;--radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:28px;--radius-pill:999px;
+/* Leaf — one tucked corner, echoes the logo's hills; for bubbles & suggestion cards */
+--radius-leaf:22px 22px 22px 6px;--radius-leaf-r:22px 22px 6px 22px;
+--radius-sheet:28px 28px 0 0;
+}

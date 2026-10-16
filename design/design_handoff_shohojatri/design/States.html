@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><title>Shohojatri — States</title>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/typography.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/radius.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/shadow.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/motion.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/base.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/components/components.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/styles.css">
+<link rel="stylesheet" href="bn-digits.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/_ds_bundle.js"></script>
+<style>
+a{color:var(--text-link);font-weight:600;text-decoration:none}a:hover{color:var(--sj-navy);text-decoration:underline}
+.cv{position:absolute;left:0;top:0;padding:80px;display:flex;flex-direction:column;gap:140px}
+.cv-row{display:flex;flex-direction:column;gap:48px}.cv-hd{display:flex;flex-direction:column;gap:6px}
+.cv-hd h2{margin:0;white-space:nowrap;font:700 30px/1.3 var(--font-display);color:var(--sj-navy)}.cv-hd p{margin:0;white-space:nowrap;font:400 17px/1.5 var(--font-body);color:var(--text-2)}
+.cv-frames{display:flex;gap:64px;align-items:flex-start}.cv-pair{display:flex;gap:40px;align-items:flex-start;padding-right:64px;border-right:2px dashed var(--border-1)}.cv-pair:last-child{border-right:0;padding-right:0}
+.cv-f{display:flex;flex-direction:column;gap:16px}.cv-cap{display:flex;gap:8px;font:600 15px/1.4 var(--font-body);color:var(--text-2);white-space:nowrap}.cv-cap b{color:var(--text-1)}
+.st-phone{width:390px;height:844px;background:var(--surface-page);border-radius:44px;overflow:hidden;box-shadow:0 30px 80px rgba(0,60,120,.22),0 0 0 10px #0F2236;display:flex;flex-direction:column;position:relative}
+.st-sbar{height:44px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 28px;font:600 15px var(--font-body);color:var(--text-1)}.st-sbar span:last-child{display:flex;gap:6px}
+.st-head{flex:none;display:flex;align-items:center;gap:4px;padding:0 8px 4px;min-height:56px}.st-head b{flex:1;text-align:center;font:600 17px var(--font-body);color:var(--text-1)}.st-head i{width:48px}
+.st-body{flex:1;min-height:0;overflow:hidden;padding:4px 20px 16px;display:flex;flex-direction:column;gap:12px}
+.st-center{flex:1;display:flex;flex-direction:column;justify-content:center}
+.st-foot{flex:none;padding:12px 20px 28px;display:flex;flex-direction:column;gap:8px}
+.st-sk{background:#fff;border-radius:20px;border:1px solid rgba(0,60,120,.06);box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.st-skr{display:flex;align-items:center;gap:12px}.st-skc{flex:1;display:flex;flex-direction:column;gap:8px}
+.st-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.st-title{font:700 24px/1.45 var(--font-display);margin:0;color:var(--text-1);text-wrap:pretty}:lang(en) .st-title{line-height:1.25}
+.st-sub{margin:0;color:var(--text-2);font-size:16px;text-wrap:pretty}
+.st-li{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--text-1)}
+.st-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.st-num{width:28px;height:28px;border-radius:50%;background:var(--sj-navy-50);color:var(--sj-navy);font:700 14px/28px var(--font-display);text-align:center;flex:none}
+.st-note{display:flex;gap:8px;font-size:14px;color:var(--text-2);line-height:1.6}.st-note svg{flex:none;margin-top:3px}
+.st-tile{width:64px;height:64px;border-radius:20px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.st-bub{display:flex;gap:8px;align-items:flex-end}.st-bub.u{justify-content:flex-end}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {Button,IconButton,Icon,StateView,Skeleton,Card,Tabs}=window.ShohojatriDesignSystem_1ff839;
+const tr=l=>(b,e)=>l==='en'?e:b;
+function Phone({lang,title,children,foot}){const t=tr(lang);return <div lang={lang} className="st-phone">
+  <div className="st-sbar"><span>{t('৯:৪১','9:41')}</span><span><Icon name="signal" size={16}/><Icon name="wifi" size={16}/><Icon name="battery-full" size={16}/></span></div>
+  <header className="st-head"><IconButton icon="arrow-left" label={t('ফিরে যান','Back')}/><b>{title}</b><i></i></header>
+  <div className="st-body">{children}</div>{foot?<div className="st-foot">{foot}</div>:null}</div>;}
+
+/* skeleton shapes */
+function SkLog(){return <div className="st-sk"><div className="st-skr"><Skeleton width={40} height={40} radius={999}/><div className="st-skc"><Skeleton width="45%" height={14}/><Skeleton width="30%" height={12}/></div></div><Skeleton width="90%" height={14}/><Skeleton width="70%" height={14}/></div>;}
+function SkRow(){return <div className="st-sk"><div className="st-skr"><Skeleton width={44} height={44} radius={14}/><div className="st-skc"><Skeleton width="60%" height={14}/><Skeleton width="40%" height={12}/></div></div></div>;}
+function SkCard(){return <div className="st-sk"><div className="st-skr"><Skeleton width={48} height={48} radius={14}/><div className="st-skc"><Skeleton width="55%" height={16}/><Skeleton width="40%" height={12}/></div></div><Skeleton width="80%" height={13}/><div style={{display:'flex',gap:8}}><Skeleton width={110} height={40} radius={999}/><Skeleton width={130} height={40} radius={999}/></div></div>;}
+const SK={log:SkLog,row:SkRow,card:SkCard};
+function Loading({lang,shape,n=4}){const S=SK[shape];return <div aria-busy="true" style={{display:'flex',flexDirection:'column',gap:12}}><span className="st-sr">{tr(lang)('লোড হচ্ছে…','Loading…')}</span>{Array.from({length:n}).map((_,i)=><S key={i}/>)}</div>;}
+
+const LISTS=[
+ {id:'tl',route:'/children/[id]/timeline',name:['টাইমলাইন','Timeline'],shape:'log',
+  empty:[['এখনো কোনো লগ নেই','No log entries yet'],['রাফির দিনের ছোট একটা মুহূর্ত লিখে শুরু করুন — শিক্ষক ও ডাক্তারও এখানে যোগ করবেন।','Start with one small moment from Rafi’s day — teachers and doctors will add here too.'],['প্রথম লগ লিখুন','Write the first log'],'plus','notebook-pen'],
+  error:[['টাইমলাইন খোলা যায়নি','Couldn’t load the timeline'],['সংযোগে সমস্যা — আপনার লেখা সব এন্ট্রি সংরক্ষিত আছে।','Connection problem — every entry you’ve written is safe.']]},
+ {id:'dc',route:'/children/[id]/documents',name:['ডকুমেন্ট','Documents'],shape:'row',
+  empty:[['এখনো কোনো ডকুমেন্ট নেই','No documents yet'],['প্রেসক্রিপশন, থেরাপি নোট বা স্কুলের রিপোর্টের ছবি তুলে রাখুন — সব এক জায়গায় থাকবে।','Snap prescriptions, therapy notes or school reports — everything in one place.'],['ডকুমেন্ট যোগ করুন','Add a document'],'upload','file-text'],
+  error:[['ডকুমেন্টগুলো আনা যায়নি','Couldn’t load documents'],['সংযোগে সমস্যা — আপনার ফাইলগুলো নিরাপদে সংরক্ষিত আছে।','Connection problem — your files are stored safely.']]},
+ {id:'rm',route:'/reminders',name:['রিমাইন্ডার','Reminders'],shape:'row',
+  empty:[['আজ কোনো রিমাইন্ডার নেই','No reminders today'],['থেরাপি, ওষুধ বা অ্যাপয়েন্টমেন্টের সময় যোগ করুন — আমরা মনে করিয়ে দেব।','Add therapy, medicine or appointment times — we’ll remind you.'],['রিমাইন্ডার যোগ করুন','Add a reminder'],'bell-plus','bell'],
+  error:[['রিমাইন্ডার আনা যায়নি','Couldn’t load reminders'],['সংযোগে সমস্যা — আপনার রিমাইন্ডারগুলো সংরক্ষিত আছে।','Connection problem — your reminders are saved.']]},
+ {id:'sp',route:'/specialists',name:['কাছের বিশেষজ্ঞ','Specialists nearby'],shape:'card',
+  empty:[['এই ধরনের কাছাকাছি কাউকে পাইনি','No one of this type nearby'],['অন্য ফিল্টার দেখুন বা পাশের বিভাগ বেছে নিন।','Try another filter or pick a nearby division.'],['ফিল্টার মুছুন','Clear filter'],'x','map-pin'],
+  error:[['তালিকা আনা যায়নি','Couldn’t load the list'],['সংযোগে সমস্যা — একটু পরে আবার চেষ্টা করুন।','Connection problem — please try again in a moment.']]},
+ {id:'sh',route:'/home · /screenings',name:['আগের স্ক্রিনিং','Past screenings'],shape:'row',
+  empty:[['এখনো কোনো স্ক্রিনিং হয়নি','No screenings yet'],['প্রায় ১৫ মিনিটের প্রশ্ন আর খেলা — রাফির বেড়ে ওঠা নিয়ে প্রথম ধারণা পাবেন।','About 15 minutes of questions and play — an early picture of how Rafi is growing.'],['স্ক্রিনিং শুরু করুন','Start screening'],'arrow-right','clipboard-list'],
+  error:[['স্ক্রিনিংগুলো আনা যায়নি','Couldn’t load screenings'],['সংযোগে সমস্যা — আপনার ফলাফল সংরক্ষিত আছে।','Connection problem — your results are saved.']]},
+];
+function ListState({lang,cfg,kind}){const t=tr(lang);const p=a=>lang==='en'?a[1]:a[0];
+  let body;
+  if(kind==='loading')body=<Loading lang={lang} shape={cfg.shape}/>;
+  else if(kind==='empty'){const [ti,ms,ac,aic,ic]=cfg.empty;body=<div className="st-center"><StateView lang={lang} kind="empty" icon={ic} title={p(ti)} message={p(ms)} action={<Button lang={lang} variant={cfg.id==='sp'?'secondary':'primary'} icon={cfg.id==='sh'?undefined:aic} iconRight={cfg.id==='sh'?aic:undefined}>{p(ac)}</Button>}/></div>;}
+  else {const [ti,ms]=cfg.error;body=<div className="st-center"><StateView lang={lang} kind="error" title={p(ti)} message={p(ms)} action={<Button lang={lang} variant="secondary" icon="refresh-cw">{t('আবার চেষ্টা করুন','Try again')}</Button>}/></div>;}
+  return <Phone lang={lang} title={p(cfg.name)}>{body}</Phone>;}
+
+/* camera permission */
+function CamAsk({lang}){const t=tr(lang);return <Phone lang={lang} title={t('প্রস্তুতি','Get ready')} foot={<><Button lang={lang} size="lg" block icon="camera">{t('ক্যামেরা চালু করুন','Turn on camera')}</Button><Button lang={lang} variant="ghost" block>{t('পরে করব','Maybe later')}</Button></>}>
+  <div style={{marginTop:12}}><span className="st-tile" style={{background:'var(--sj-sky-50)',color:'var(--sj-navy)'}}><Icon name="camera" size={30}/></span></div>
+  <h1 className="st-title">{t('খেলার জন্য ক্যামেরা লাগবে','The games need your camera')}</h1>
+  <p className="st-sub">{t('রাফি কীভাবে সাড়া দেয় তা দেখতে ফোনের পেছনের ক্যামেরা ব্যবহার হবে। পরের পর্দায় ফোন অনুমতি চাইবে।','We use the back camera to see how Rafi responds. Your phone will ask for permission on the next screen.')}</p>
+  <Card padding={16}><div style={{display:'flex',flexDirection:'column',gap:14}}>
+    {[['timer','শুধু খেলার সময় চালু থাকে','On only during the games'],['shield-check','ভিডিও শুধু আপনার অনুমতিতে সংরক্ষিত হয়','Videos are saved only with your permission'],['trash-2','যেকোনো সময় মুছে ফেলতে পারবেন','You can delete them any time']].map(([ic,b,e])=><div key={ic} className="st-li"><Icon name={ic} size={20} style={{color:'var(--sj-ink-teal)',flex:'none',marginTop:3}}/><span>{lang==='en'?e:b}</span></div>)}
+  </div></Card>
+</Phone>;}
+function CamDenied({lang}){const t=tr(lang);return <Phone lang={lang} title={t('প্রস্তুতি','Get ready')} foot={<><Button lang={lang} size="lg" block icon="settings">{t('সেটিংস খুলুন','Open settings')}</Button><Button lang={lang} variant="secondary" block icon="refresh-cw">{t('আবার চেষ্টা করুন','Try again')}</Button><Button lang={lang} variant="ghost" block>{t('খেলা ছাড়াই ফলাফল দেখুন','See results without the games')}</Button></>}>
+  <div style={{marginTop:8}}><span className="st-tile" style={{background:'var(--sj-amber-50)',color:'var(--sj-ink-amber)'}}><Icon name="camera-off" size={30}/></span></div>
+  <h1 className="st-title">{t('ক্যামেরার অনুমতি বন্ধ আছে','Camera access is turned off')}</h1>
+  <p className="st-sub">{t('কোনো সমস্যা নেই — প্রশ্নের উত্তরগুলো সংরক্ষিত আছে। খেলাগুলোর জন্য সেটিংসে ক্যামেরা চালু করতে পারেন।','No problem — your answers are saved. To play the games, you can turn the camera on in settings.')}</p>
+  <Card tone="sky" padding={16}><ol className="st-steps">
+    {[['ফোনের সেটিংস খুলুন','Open your phone’s settings'],['সহযাত্রী বা ব্রাউজার → অনুমতি','Shohojatri or your browser → Permissions'],['ক্যামেরা → অনুমতি দিন','Camera → Allow']].map(([b,e],i)=><li key={i} className="st-li" style={{alignItems:'center'}}><span className="st-num">{t(['১','২','৩'][i],String(i+1))}</span><span>{lang==='en'?e:b}</span></li>)}
+  </ol></Card>
+  <div className="st-note"><Icon name="info" size={16}/><span>{t('শুধু প্রশ্নের উত্তর দিয়ে পাওয়া ফলাফল কম নিশ্চিত হবে।','Results from the questions alone are less certain.')}</span></div>
+</Phone>;}
+function CamFail({lang}){const t=tr(lang);return <Phone lang={lang} title={t('প্রস্তুতি','Get ready')} foot={<><Button lang={lang} size="lg" block icon="refresh-cw">{t('আবার চেষ্টা করুন','Try again')}</Button><Button lang={lang} variant="ghost" block>{t('পরে করব','Maybe later')}</Button></>}>
+  <div className="st-center"><StateView lang={lang} kind="error" icon="camera-off" title={t('ক্যামেরা চালু হচ্ছে না','The camera won’t start')} message={t('অন্য কোনো অ্যাপ হয়তো ক্যামেরা ব্যবহার করছে। সেটি বন্ধ করে আবার চেষ্টা করুন — আপনার অগ্রগতি সংরক্ষিত আছে।','Another app may be using the camera. Close it and try again — your progress is saved.')}/></div>
+</Phone>;}
+
+/* chat */
+function ChatLoading({lang}){const t=tr(lang);return <Phone lang={lang} title={t('সহযাত্রী AI','Shohojatri AI')}>
+  <div aria-busy="true" style={{display:'flex',flexDirection:'column',gap:16,paddingTop:8}}><span className="st-sr">{t('কথোপকথন লোড হচ্ছে…','Loading conversation…')}</span>
+    <div className="st-bub u"><Skeleton width={210} height={48} radius="22px 22px 6px 22px"/></div>
+    <div className="st-bub"><Skeleton width={32} height={32} radius={999}/><Skeleton width={260} height={110} radius="22px 22px 22px 6px"/></div>
+    <div className="st-bub u"><Skeleton width={170} height={48} radius="22px 22px 6px 22px"/></div>
+    <div className="st-bub"><Skeleton width={32} height={32} radius={999}/><Skeleton width={240} height={84} radius="22px 22px 22px 6px"/></div>
+  </div></Phone>;}
+function HistEmpty({lang}){const t=tr(lang);return <Phone lang={lang} title={t('আগের কথোপকথন','Past conversations')}>
+  <div className="st-center"><StateView lang={lang} kind="empty" icon="message-circle" title={t('এখনো কোনো কথোপকথন নেই','No conversations yet')} message={t('রাফির বিষয়ে যা জানতে চান জিজ্ঞেস করুন — কথোপকথনগুলো এখানে থাকবে।','Ask anything about Rafi — your conversations will be kept here.')} action={<Button lang={lang} icon="sparkles">{t('জিজ্ঞেস করুন','Ask a question')}</Button>}/></div>
+</Phone>;}
+function HistError({lang}){const t=tr(lang);return <Phone lang={lang} title={t('আগের কথোপকথন','Past conversations')}>
+  <div className="st-center"><StateView lang={lang} kind="error" title={t('কথোপকথনগুলো আনা যায়নি','Couldn’t load conversations')} message={t('সংযোগে সমস্যা — আপনার কথোপকথন সংরক্ষিত আছে।','Connection problem — your conversations are saved.')} action={<Button lang={lang} variant="secondary" icon="refresh-cw">{t('আবার চেষ্টা করুন','Try again')}</Button>}/></div>
+</Phone>;}
+
+function P({n,l,C,p}){return <div className="cv-pair">{['bn','en'].map(lang=><div key={lang} className="cv-f" data-screen-label={n+' '+l+' '+lang.toUpperCase()}><div className="cv-cap"><b>{n}</b><span>{l} · {lang==='bn'?'বাংলা':'English'}</span></div><C lang={lang} {...(p||{})}/></div>)}</div>;}
+function Row({t,s,children}){return <section className="cv-row"><div className="cv-hd"><h2>{t}</h2>{s?<p>{s}</p>:null}</div><div className="cv-frames">{children}</div></section>;}
+const KN={empty:'খালি',loading:'লোড হচ্ছে',error:'ত্রুটি'};
+function App(){return <div className="cv">
+  <Row t="১ · ক্যামেরার অনুমতি" s="/screening/[id]/activities/setup · অনুমতি চাওয়ার আগে ব্যাখ্যা → বন্ধ থাকলে সেটিংসের ধাপ ও খেলা ছাড়া এগোনো → ক্যামেরা চালু না হলে">
+    <P n="K1" l="অনুমতির আগে" C={CamAsk}/><P n="K2" l="অনুমতি বন্ধ" C={CamDenied}/><P n="K3" l="ক্যামেরা চালু হচ্ছে না" C={CamFail}/>
+  </Row>
+  {LISTS.map((c,i)=><Row key={c.id} t={(['২','৩','৪','৫','৬'][i])+' · তালিকা — '+c.name[0]} s={c.route+' · খালি · লোড হচ্ছে (স্কেলেটন) · ত্রুটি — কাজ সংরক্ষিত, আবার চেষ্টা'}>
+    {['empty','loading','error'].map((k,j)=><P key={k} n={c.id.toUpperCase()+(j+1)} l={KN[k]} C={ListState} p={{cfg:c,kind:k}}/>)}
+  </Row>)}
+  <Row t="৭ · চ্যাট — বাকি অবস্থা" s="খালি, ভাবছে, ইন্টারনেট নেই ও AI অনুপলব্ধ — Assistant Chat.html-এ আছে · এখানে: থ্রেড লোড, ইতিহাস খালি, ইতিহাস ত্রুটি">
+    <P n="CH1" l="থ্রেড লোড হচ্ছে" C={ChatLoading}/><P n="CH2" l="ইতিহাস খালি" C={HistEmpty}/><P n="CH3" l="ইতিহাস ত্রুটি" C={HistError}/>
+  </Row>
+</div>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body></html>

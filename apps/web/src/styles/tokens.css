@@ -1,0 +1,110 @@
+/* Shohojatri tokens — copied from design/design_handoff_shohojatri/tokens/tokens.css (the source of truth).
+   Only change: font families point at next/font variables. Re-copy when the design changes.
+   Do not edit values in components; reference var(--*) or the Tailwind theme. */
+
+/* ===== colors ===== */
+:root{
+/* Brand — sampled from the logo */
+--sj-navy:#004E8B;--sj-navy-deep:#003C78;--sj-blue:#1586BC;--sj-sky:#249CC0;--sj-teal:#03B4BA;--sj-mint:#3ABEB1;--sj-leaf:#47AC8D;--sj-sprout:#8CC88A;--sj-teal-deep:#0A7788;--sj-amber:#F8B442;
+/* Tints (backgrounds only) */
+--sj-navy-50:#EAF2F9;--sj-navy-100:#D3E4F2;--sj-sky-50:#E8F4FA;--sj-teal-50:#E3F6F5;--sj-teal-100:#C6ECEA;--sj-leaf-50:#E7F4EE;--sj-sprout-50:#EEF7EC;--sj-amber-50:#FEF4DE;--sj-amber-100:#FDE6B4;
+/* Text-safe inks (≥4.5:1 on white) */
+--sj-blue-ink:#1373A3;/* added in handoff: was referenced but undefined in DS */
+--sj-ink-teal:#0A7788;--sj-ink-leaf:#2C7A62;--sj-ink-amber:#7A4E00;
+/* Neutrals — faintly blue-green, never pure grey */
+--sj-n-0:#FFFFFF;--sj-n-25:#FAFBF8;--sj-n-50:#F4F7F6;--sj-n-100:#EAF0F0;--sj-n-200:#DAE4E6;--sj-n-300:#C2D0D4;--sj-n-400:#94A6AE;--sj-n-500:#5F7082;--sj-n-600:#47596B;--sj-n-700:#2E4256;--sj-n-800:#1B2F44;--sj-n-900:#0F2236;
+/* Risk classes — calm, always paired with label + icon */
+--sj-risk-low:#47AC8D;--sj-risk-low-ink:#246B55;--sj-risk-low-bg:#E5F4EE;
+--sj-risk-moderate:#F8B442;--sj-risk-moderate-ink:#7A4E00;--sj-risk-moderate-bg:#FEF3DC;
+--sj-risk-elevated:#E8833A;--sj-risk-elevated-ink:#8A4210;--sj-risk-elevated-bg:#FCEBDD;
+--sj-risk-high:#C8553D;--sj-risk-high-ink:#8E3322;--sj-risk-high-bg:#F8E4DF;
+/* Feedback */
+--sj-success:#2C7A62;--sj-success-bg:#E5F4EE;--sj-info:#1373A3;--sj-info-bg:#E8F4FA;--sj-warning:#7A4E00;--sj-warning-bg:#FEF3DC;--sj-danger:#B04A33;--sj-danger-hover:#953B27;--sj-danger-bg:#F8E4DF;
+/* Roles */
+--sj-role-parent:#0A7788;--sj-role-parent-bg:#E3F6F5;--sj-role-teacher:#004E8B;--sj-role-teacher-bg:#EAF2F9;--sj-role-specialist:#2C7A62;--sj-role-specialist-bg:#EEF7EC;
+/* Gradients — from the logo; use for hero/brand moments only */
+--sj-gradient-journey:linear-gradient(135deg,#1586BC 0%,#03B4BA 55%,#8CC88A 100%);
+--sj-gradient-sky:linear-gradient(180deg,#E8F4FA 0%,#FAFBF8 100%);
+--sj-gradient-gauge:linear-gradient(90deg,#47AC8D,#F8B442 45%,#E8833A 72%,#C8553D);
+
+/* Semantic aliases */
+--text-1:var(--sj-n-900);--text-2:var(--sj-n-600);--text-3:var(--sj-n-500);--text-brand:var(--sj-navy);--text-link:var(--sj-blue-ink);--text-on-brand:#FFFFFF;--text-on-dark:#FFFFFF;
+--surface-page:var(--sj-n-25);--surface-card:#FFFFFF;--surface-sunken:var(--sj-n-50);--surface-muted:var(--sj-n-100);--surface-brand:var(--sj-navy);--surface-brand-deep:var(--sj-navy-deep);--surface-calm:var(--sj-teal-50);--surface-sky:var(--sj-sky-50);--surface-warm:var(--sj-amber-50);--surface-overlay:rgba(15,34,54,.42);
+--border-1:var(--sj-n-200);--border-2:var(--sj-n-300);--border-focus:var(--sj-blue);--border-selected:var(--sj-navy);
+--action-primary:var(--sj-navy);--action-primary-hover:var(--sj-navy-deep);--action-secondary-bg:#FFFFFF;--action-secondary-fg:var(--sj-navy);--action-ghost-hover:var(--sj-navy-50);--action-selected-bg:var(--sj-navy-50);
+--accent-star:var(--sj-amber);--accent-calm:var(--sj-teal);
+}
+
+/* ===== typography ===== */
+:root{
+/* Families come from next/font (src/app/[locale]/layout.tsx), which sets --font-baloo / --font-hind. */
+--font-display:var(--font-baloo),var(--font-hind),system-ui,sans-serif;
+--font-body:var(--font-hind),system-ui,sans-serif;
+--font-mono:ui-monospace,'SFMono-Regular',Menlo,monospace;
+--fw-regular:400;--fw-medium:500;--fw-semibold:600;--fw-bold:700;
+/* Scale — mobile-first. Body never below 16px. */
+--fs-display:36px;--fs-h1:28px;--fs-h2:22px;--fs-h3:19px;--fs-body-lg:18px;--fs-body:16px;--fs-small:14px;--fs-caption:13px;
+/* Desktop bumps */
+--fs-display-lg:48px;--fs-h1-lg:34px;--fs-h2-lg:26px;
+/* Line-heights — Bangla needs room for matras & conjuncts */
+--lh-bn:1.7;--lh-bn-heading:1.45;--lh-en:1.5;--lh-en-heading:1.2;
+--ls-heading:-0.005em;--ls-caps:0.06em;
+}
+html{font-family:var(--font-body);font-size:16px;color:var(--text-1);line-height:var(--lh-bn);-webkit-font-smoothing:antialiased}
+:lang(en){line-height:var(--lh-en)}
+:lang(bn){line-height:var(--lh-bn)}
+
+/* ===== spacing ===== */
+:root{
+--sp-0:0px;--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-8:32px;--sp-10:40px;--sp-12:48px;--sp-16:64px;--sp-20:80px;
+--tap-min:48px;--gutter-mobile:20px;--gutter-desktop:32px;--content-max:1120px;--reading-max:640px;--sidebar-w:264px;--bottomnav-h:72px;
+}
+
+/* ===== radius ===== */
+:root{
+--radius-xs:6px;--radius-sm:10px;--radius-md:14px;--radius-lg:20px;--radius-xl:28px;--radius-pill:999px;
+/* Leaf — one tucked corner, echoes the logo's hills; for bubbles & suggestion cards */
+--radius-leaf:22px 22px 22px 6px;--radius-leaf-r:22px 22px 6px 22px;
+--radius-sheet:28px 28px 0 0;
+}
+
+/* ===== shadow ===== */
+:root{
+--shadow-xs:0 1px 2px rgba(0,60,120,.06);
+--shadow-sm:0 1px 3px rgba(0,60,120,.07),0 2px 8px rgba(0,60,120,.05);
+--shadow-md:0 4px 14px rgba(0,60,120,.09),0 1px 3px rgba(0,60,120,.05);
+--shadow-lg:0 14px 40px rgba(0,60,120,.14),0 2px 6px rgba(0,60,120,.06);
+--shadow-nav:0 -2px 16px rgba(0,60,120,.08);
+--ring-focus:0 0 0 3px #FFFFFF,0 0 0 5px #1586BC;
+--ring-selected:0 0 0 2px #004E8B;
+}
+
+/* ===== motion ===== */
+:root{
+--ease-out:cubic-bezier(.22,.8,.36,1);
+--ease-in-out:cubic-bezier(.45,0,.25,1);
+--ease-soft-spring:cubic-bezier(.34,1.32,.64,1);
+--dur-fast:120ms;
+--dur-base:200ms;
+--dur-slow:320ms;
+--dur-gentle:480ms;
+}
+@media (prefers-reduced-motion:reduce){:root{
+--dur-fast:0ms;
+--dur-base:0ms;
+--dur-slow:0ms;
+--dur-gentle:0ms;
+}}
+@keyframes sj-spin{to{transform:rotate(360deg)}}
+@keyframes sj-breathe{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1)}}
+@keyframes sj-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes sj-shimmer{0%{background-position:-200px 0}100%{background-position:200px 0}}
+
+/* ===== base ===== */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--surface-page);color:var(--text-1);font-family:var(--font-body)}
+a{color:#1373A3;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:var(--sj-navy)}
+:focus-visible{outline:none;box-shadow:var(--ring-focus)}
+button{font-family:inherit}
+
+/* Bangla digits: render Latin digits as Bangla in bn UI only via toBnDigits() in code — never via font tricks. */

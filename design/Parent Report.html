@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><title>Shohojatri — অভিভাবকের রিপোর্ট</title>
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/typography.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/radius.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/shadow.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/motion.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/tokens/base.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/components/components.css">
+<link rel="stylesheet" href="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/styles.css">
+<link rel="stylesheet" href="bn-digits.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="_ds/shohojatri-design-system-1ff839c9-37f7-4be6-ab24-ae23418ae5ef/_ds_bundle.js"></script><style>
+doc-page:not(:defined){visibility:hidden}
+a{color:var(--text-link)}a:hover{color:var(--sj-navy)}
+.pr{box-sizing:border-box;height:100%;padding:32px 40px 22px;display:flex;flex-direction:column;gap:16px;font:400 16px/1.7 var(--font-body);color:var(--text-1)}
+.pr svg.lucide{width:18px;height:18px;flex:none}
+.pr-head{display:flex;align-items:center;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--sj-navy)}
+.pr-head div{flex:1;text-align:right;display:flex;flex-direction:column}.pr-head b{font:700 20px/1.4 var(--font-display);color:var(--sj-navy)}.pr-head span{font-size:13px;color:var(--text-2)}
+.pr-id{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px;color:var(--text-2)}.pr-id b{color:var(--text-1);font-weight:600}
+.pr-hero{display:grid;grid-template-columns:220px 1fr;gap:22px;align-items:center;background:var(--sj-gradient-sky);border:1px solid var(--sj-navy-100);border-radius:22px 22px 22px 6px;padding:16px 22px}
+.pr-hero h1{margin:0 0 6px;font:700 24px/1.45 var(--font-display);text-wrap:balance}
+.pr-hero p{margin:0;font-size:15.5px;text-wrap:pretty}
+.pr-nodx{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14.5px;font-weight:600;color:#1373A3}
+.pr h2{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:700 18px/1.4 var(--font-display);color:var(--sj-navy)}
+.pr-2{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.pr ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.pr-obs li{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--border-1);font-size:15px;line-height:1.6}.pr-obs li:last-child{border-bottom:0}.pr-obs li svg{color:var(--sj-navy);margin-top:4px}
+.pr-src{display:block;font-size:12.5px;color:var(--text-2)}
+.pr-str{background:var(--sj-leaf-50);border-radius:18px;padding:10px 14px}.pr-str li{display:flex;gap:10px;align-items:center;font-size:15px;line-height:1.55}
+.pr-star{width:26px;height:26px;border-radius:50%;background:var(--sj-amber-100);color:var(--sj-ink-amber);display:inline-flex;align-items:center;justify-content:center;flex:none}.pr-star svg{width:14px;height:14px}
+.pr-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.pr-steps div{border:1px solid var(--border-1);border-radius:16px;padding:10px 14px;font-size:15px;line-height:1.6}
+.pr-num{display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--sj-navy-50);color:var(--sj-navy);font:700 14px/26px var(--font-display);justify-content:center;margin-bottom:4px}
+.pr-bot{display:grid;grid-template-columns:1fr 250px;gap:20px}
+.pr-notes{border:1px dashed var(--border-2);border-radius:16px;padding:10px 16px}.pr-notes i{display:block;height:30px;border-bottom:1px solid var(--border-1)}
+.pr-side{display:flex;flex-direction:column;gap:10px}
+.pr-conf{display:flex;gap:10px;background:var(--sj-n-50);border-radius:14px;padding:10px 12px;font-size:13.5px;line-height:1.55;color:var(--text-2)}.pr-conf svg{color:var(--sj-ink-teal);margin-top:2px}.pr-conf b{color:var(--text-1);display:block}
+.pr-qr{display:flex;gap:12px;align-items:center;font-size:13px;line-height:1.5;color:var(--text-2)}.pr-qr b{display:block;color:var(--text-1);font-size:14px}
+.pr-foot{margin-top:auto;display:flex;justify-content:space-between;gap:16px;padding-top:8px;border-top:1px solid var(--border-1);font-size:12px;color:var(--text-3)}
+</style></head><body>
+<doc-page size="a4"><section class="page" id="p1" data-screen-label="Parent report">
+<div class="pr">
+<header class="pr-head"><img src="assets/shohojatri-wordmark-bn.png" alt="সহযাত্রী" height="38"><div><b>রাফির স্ক্রিনিং রিপোর্ট</b><span>অভিভাবকের কপি</span></div></header>
+<div class="pr-id"><span>শিশু: <b>রাফি হাসান</b></span><span>বয়স: <b>২ বছর ১০ মাস</b></span><span>স্ক্রিনিং: <b>১৫ অক্টোবর ২০২৬</b></span><span>রিপোর্ট নং: <b>SJ-২৬১০-৪৮২১</b></span></div>
+<div class="pr-hero"><div class="isl-gauge" data-value="52" data-level="elevated"></div><div>
+<h1>বেশ কিছু প্রাথমিক লক্ষণ দেখা গেছে</h1>
+<p>রাফির কিছু আচরণ — বিশেষ করে নাম ধরে ডাকলে সাড়া দেওয়া আর কোনো কিছু দেখানো — তার বয়সের অনেক শিশুর চেয়ে আলাদা মনে হয়েছে। একজন বিশেষজ্ঞ ভালো করে দেখলে বোঝা যাবে কোন দিকে বাড়তি সহায়তা রাফির কাজে আসবে।</p>
+<div class="pr-nodx"><i data-lucide="info"></i><span>এটি রোগনির্ণয় নয় — এটি পরবর্তী পদক্ষেপ বোঝার একটা সহায়ক।</span></div></div></div>
+<div class="pr-2">
+<section><h2><i data-lucide="search"></i>যা লক্ষ্য করেছি</h2><ul class="pr-obs">
+<li><i data-lucide="ear"></i><div>নাম ধরে ডাকলে ৪ বারের মধ্যে ১ বার ফিরে তাকিয়েছে<span class="pr-src">খেলা: নাম ধরে ডাকা</span></div></li>
+<li><i data-lucide="hand"></i><div>আঙুল দিয়ে দেখালে বেশিরভাগ সময় আঙুলের দিকেই তাকিয়ে ছিল<span class="pr-src">খেলা: যেখানে দেখাই</span></div></li>
+<li><i data-lucide="eye"></i><div>মানুষের ভিডিওর চেয়ে নকশার ভিডিও বেশি সময় দেখেছে<span class="pr-src">খেলা: দেখো আর তাকাও</span></div></li></ul></section>
+<section><h2><i data-lucide="star"></i>যা ভালো দেখেছি</h2><ul class="pr-str">
+<li><span class="pr-star"><i data-lucide="star"></i></span>তালি ও হাত তোলা নকল করেছে (৪ বারে ৩ বার)</li>
+<li><span class="pr-star"><i data-lucide="star"></i></span>আপনার কোলে বসে শান্তভাবে খেলেছে</li>
+<li><span class="pr-star"><i data-lucide="star"></i></span>রঙিন বল দেখে আগ্রহ দেখিয়েছে</li></ul></section>
+</div>
+<section><h2><i data-lucide="footprints"></i>এখন যা করতে পারেন</h2><div class="pr-steps">
+<div><span class="pr-num">১</span><br>আগামী ২–৪ সপ্তাহের মধ্যে একজন শিশু বিকাশ বিশেষজ্ঞের সাথে দেখা করুন</div>
+<div><span class="pr-num">২</span><br>দেখা করার সময় এই রিপোর্টটি সাথে নিন বা লিংক পাঠান</div>
+<div><span class="pr-num">৩</span><br>অপেক্ষার সময় রোজ মুখোমুখি খেলা চালিয়ে যান</div></div></section>
+<div class="pr-bot">
+<section class="pr-notes"><h2 style="font-size:16px;margin:0"><i data-lucide="notebook-pen"></i>ডাক্তারকে যা জিজ্ঞেস করতে চাই</h2><i></i><i></i><i></i><i></i></section>
+<div class="pr-side">
+<div class="pr-conf"><i data-lucide="shield-check"></i><div><b>নির্ভরযোগ্যতা: ভালো</b>২০টি প্রশ্ন ও ৪টি খেলা সম্পূর্ণ। একবার আলো একটু কম ছিল।</div></div>
+<div class="pr-qr"><div class="qr-isl" data-size="84"></div><div><b>অনলাইনে পুরো রিপোর্ট</b>স্ক্যান করুন · ২২ অক্টোবর পর্যন্ত খোলা</div></div>
+</div></div>
+<footer class="pr-foot"><span>সহযাত্রী — শিশুর বিকাশে পাশে থাকার সঙ্গী</span><span>তৈরি: ১৫ অক্টোবর ২০২৬</span></footer>
+</div></section></doc-page>
+<script src="doc-page.js"></script>
+<script>
+(function(){const DSX=window.ShohojatriDesignSystem_1ff839,h=React.createElement;
+function qr(size){const N=25;let s=11;const r=()=>{s=(s*9301+49297)%233280;return s/233280;};const F=[[0,0],[18,0],[0,18]];const out=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++){const f=F.find(([a,b])=>x>=a&&x<a+7&&y>=b&&y<b+7);let on;if(f){const i=x-f[0],j=y-f[1];on=i===0||j===0||i===6||j===6||(i>=2&&i<=4&&j>=2&&j<=4);}else on=(x===7||y===7||(x===17&&y<8)||(y===17&&x<8))?false:r()>.52;if(on)out.push('<rect x="'+x+'" y="'+y+'" width="1" height="1"/>');}return '<svg viewBox="-1 -1 27 27" width="'+size+'" height="'+size+'" role="img" aria-label="QR কোড"><g fill="#003C78" shape-rendering="crispEdges">'+out.join('')+'</g></svg>';}
+document.querySelectorAll('.qr-isl').forEach(e=>e.innerHTML=qr(+(e.dataset.size||96)));
+document.querySelectorAll('.isl-gauge').forEach(e=>ReactDOM.createRoot(e).render(h(DSX.ScoreGauge,{value:+e.dataset.value,max:100,thresholds:[25,45,65],level:e.dataset.level,maxLabel:'১০০-এর মধ্যে',width:210,lang:'bn'})));
+if(window.lucide)lucide.createIcons();})();
+</script></body></html>

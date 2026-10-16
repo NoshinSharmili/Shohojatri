@@ -1,0 +1,16 @@
+:root{
+--font-display:'Baloo Da 2','Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;
+--font-body:'Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;
+--font-mono:ui-monospace,'SFMono-Regular',Menlo,monospace;
+--fw-regular:400;/* @kind font */--fw-medium:500;/* @kind font */--fw-semibold:600;/* @kind font */--fw-bold:700;/* @kind font */
+/* Scale — mobile-first. Body never below 16px. */
+--fs-display:36px;--fs-h1:28px;--fs-h2:22px;--fs-h3:19px;--fs-body-lg:18px;--fs-body:16px;--fs-small:14px;--fs-caption:13px;
+/* Desktop bumps */
+--fs-display-lg:48px;--fs-h1-lg:34px;--fs-h2-lg:26px;
+/* Line-heights — Bangla needs room for matras & conjuncts */
+--lh-bn:1.7;/* @kind font */--lh-bn-heading:1.45;/* @kind font */--lh-en:1.5;/* @kind font */--lh-en-heading:1.2;/* @kind font */
+--ls-heading:-0.005em;/* @kind font */--ls-caps:0.06em;/* @kind font */
+}
+html{font-family:var(--font-body);font-size:16px;color:var(--text-1);line-height:var(--lh-bn);-webkit-font-smoothing:antialiased}
+:lang(en){line-height:var(--lh-en)}
+:lang(bn){line-height:var(--lh-bn)}

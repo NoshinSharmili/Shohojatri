@@ -1,0 +1,207 @@
+{
+  "meta": {
+    "title": "Shohojatri",
+    "description": "From the first worry to the long journey — always beside your child",
+    "pages": {
+      "login": "Log in",
+      "signup": "Sign up",
+      "setPassword": "New password",
+      "home": "Home",
+      "adminSpecialists": "Specialists",
+      "adminNewSpecialist": "Add specialist"
+    }
+  },
+  "common": {
+    "appName": "Shohojatri",
+    "languageToggle": {
+      "label": "Language / ভাষা",
+      "bn": "বাংলা",
+      "en": "EN"
+    },
+    "roles": {
+      "parent": "Parent",
+      "teacher": "Teacher",
+      "specialist": "Specialist",
+      "admin": "Admin"
+    },
+    "logout": "Log out",
+    "back": "Back",
+    "loading": "Just a moment…",
+    "retry": "Try again",
+    "optional": "(optional)"
+  },
+  "landing": {
+    "promise": "From the first worry to the long journey — always beside your child",
+    "start": "Get started",
+    "haveAccount": "Already have an account?",
+    "login": "Log in"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Log in to your account.",
+      "identifier": "Mobile number or email",
+      "identifierPlaceholder": "01712 345678",
+      "password": "Password",
+      "forgot": "Forgot password?",
+      "forgotHelp": "Contact the Shohojatri team. They'll give you a temporary password, which you then replace with your own.",
+      "specialistNote": "Specialist? Log in with the temporary password Shohojatri sent you.",
+      "submit": "Log in",
+      "newHere": "New here?",
+      "createAccount": "Create account"
+    },
+    "role": {
+      "title": "How are you joining?",
+      "subtitle": "We'll set up the app around your role.",
+      "parent": "Parent",
+      "parentDescription": "Understand and support your own child's growth",
+      "teacher": "Special-school teacher",
+      "teacherDescription": "Share your students' progress with their families",
+      "specialistQuestion": "Are you a specialist?",
+      "specialistAnswer": "Your account is created by Shohojatri.",
+      "specialistLink": "Log in here",
+      "continue": "Continue",
+      "haveAccount": "Already have an account?",
+      "login": "Log in"
+    },
+    "signup": {
+      "roleParent": "Parent",
+      "roleTeacher": "Special-school teacher",
+      "title": "Create your account",
+      "subtitle": "Just three details — under a minute.",
+      "name": "Your name",
+      "namePlaceholderParent": "e.g. Farhana Akter",
+      "namePlaceholderTeacher": "e.g. Rumana Islam",
+      "school": "School name",
+      "schoolPlaceholder": "e.g. Alor Poth Special School",
+      "contactVia": "Log in with",
+      "phone": "Phone",
+      "email": "Email",
+      "phoneLabel": "Mobile number",
+      "phonePlaceholder": "01712 345678",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "e.g. rumana@school.edu.bd",
+      "password": "Password",
+      "passwordHint": "At least 8 characters, including a number",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "login": "Log in"
+    },
+    "setPassword": {
+      "welcome": "Welcome, {name}",
+      "title": "Set a new password",
+      "subtitle": "It's your first login — replace the temporary password with your own.",
+      "newPassword": "New password",
+      "confirm": "Type it again",
+      "rulesLabel": "Password rules",
+      "rules": {
+        "minLength": "At least 8 characters",
+        "digit": "At least one number",
+        "match": "Both passwords match"
+      },
+      "ruleMet": "(done)",
+      "ruleNotMet": "(not yet)",
+      "submit": "Save and continue",
+      "notYou": "Not you? Log out"
+    },
+    "validation": {
+      "required": "Please fill this in.",
+      "email": "That email address doesn't look right.",
+      "phone": "Enter an 11-digit mobile number, e.g. 01712 345678.",
+      "passwordRules": "Use at least 8 characters, including a number.",
+      "mismatch": "The two passwords don't match.",
+      "contactRequired": "Add an email or a mobile number — at least one."
+    }
+  },
+  "homes": {
+    "welcome": "Welcome, {name}",
+    "verified": "Verified specialist",
+    "parent": {
+      "next": "Soon you'll be able to start your child's screening and see their profile here."
+    },
+    "teacher": {
+      "next": "Soon you'll be able to ask a parent for access here, using their child's ID."
+    },
+    "specialist": {
+      "next": "Soon the children you see will be listed here, and you'll be able to request access with a Child ID."
+    }
+  },
+  "admin": {
+    "specialists": {
+      "title": "Specialists",
+      "subtitle": "Doctors and therapists on Shohojatri. Their accounts can only be created here.",
+      "add": "Add specialist",
+      "emptyTitle": "No specialists yet",
+      "emptyMessage": "Add the first specialist — a temporary password will be created for them.",
+      "verified": "Verified",
+      "registration": "Registration no.",
+      "organisation": "Organisation",
+      "contact": "Contact",
+      "added": "Added",
+      "deactivate": "Deactivate",
+      "reactivate": "Reactivate",
+      "reset": "New temporary password",
+      "resetConfirm": "{name}'s current password will stop working, and they'll be logged out on every device.",
+      "resetYes": "Yes, issue a new one",
+      "cancel": "Cancel",
+      "status": {
+        "active": "Active",
+        "pending": "Awaiting first login",
+        "inactive": "Deactivated"
+      }
+    },
+    "reveal": {
+      "title": "Temporary password for {name}",
+      "copy": "Copy",
+      "copied": "Copied",
+      "warning": "This is shown only now — it can't be shown again. Give it to them in person or by phone. They'll set their own password at first login."
+    },
+    "create": {
+      "back": "Back to specialists",
+      "title": "Add a specialist",
+      "subtitle": "The account will show as verified. Only add someone after checking their registration number.",
+      "name": "Full name",
+      "namePlaceholder": "e.g. Dr. Tanvir Ahmed",
+      "specialty": "Specialty",
+      "specialtyPlaceholder": "e.g. Child neurodevelopment",
+      "registration": "Registration number",
+      "registrationHint": "BMDC or relevant professional body number",
+      "organisation": "Hospital / clinic",
+      "organisationPlaceholder": "e.g. Child Development Centre",
+      "contactHint": "An email or mobile number to log in with — at least one.",
+      "email": "Email",
+      "phone": "Mobile number",
+      "submit": "Create account",
+      "done": "Back to the list",
+      "addAnother": "Add another"
+    }
+  },
+  "errors": {
+    "unknown": "Something didn't work. Please try again in a moment.",
+    "network": "Can't reach the server. Check your internet connection and try again.",
+    "bad_request": "We couldn't understand that request. Please try again.",
+    "unauthorized": "Please log in again.",
+    "forbidden": "You don't have permission to see this.",
+    "not_found": "We couldn't find what you were looking for.",
+    "method_not_allowed": "That action isn't available here.",
+    "conflict": "This clashes with another change. Reopen the page and check.",
+    "rate_limited": "Too many tries in a short time. Please wait a little and try again.",
+    "validation_error": "Some details aren't filled in correctly. Check the marked fields.",
+    "internal_error": "Something went wrong on our side. Your information is safe — please try again in a moment.",
+    "database_unavailable": "Our server is having a temporary problem. Please try again in a moment.",
+    "http_error": "Something didn't work. Please try again in a moment.",
+    "not_authenticated": "Please log in again.",
+    "invalid_credentials": "That mobile number/email and password don't match. Please check and try again.",
+    "account_inactive": "This account is turned off right now. Please contact the Shohojatri team.",
+    "password_change_required": "Please set your own new password first.",
+    "identifier_required": "Add a mobile number or email.",
+    "invalid_email": "That email address doesn't look right.",
+    "invalid_phone": "Enter an 11-digit mobile number, e.g. 01712 345678.",
+    "weak_password": "Use at least 8 characters, including a number.",
+    "email_taken": "There's already an account with this email. Try logging in.",
+    "phone_taken": "There's already an account with this number. Try logging in.",
+    "organisation_required": "Add your school's name.",
+    "wrong_password": "Your current password doesn't match.",
+    "password_unchanged": "Choose a password that's different from the current one."
+  }
+}
