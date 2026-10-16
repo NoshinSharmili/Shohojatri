@@ -23,6 +23,8 @@ screening ──(parent: "My child has been assessed")──► companion
 ## 2. Child ID
 
 - Format `SJ-` + 5 characters from Crockford base32 without ambiguous characters (e.g. `SJ-7K3QX`). Unique, not derived from personal data.
+- Typed codes are normalised before matching: case, spaces/dashes, Bangla digits, with or without `SJ`, and Crockford's look-alike rules (O → 0, I/L → 1). Generated codes never have a body starting with `SJ`, so a mistyped `SJ-123` can't read as a whole code.
+- Every child has a Child ID, whatever its status (screening or companion). Only the parent sees it; members never do.
 - The parent can **regenerate** it (old ID stops working for new requests; existing grants unaffected).
 
 ## 3. Roles, requests and access
@@ -30,7 +32,10 @@ screening ──(parent: "My child has been assessed")──► companion
 ### 3.1 Request flow (teachers and specialists)
 
 1. Teacher/specialist home shows a **"Request access to a child"** box: Child ID + optional message ("I'm Rafi's class teacher at …").
-2. API always answers "If this ID is valid, the parent has been notified" — never reveals whether the ID exists or the child's name (prevents enumeration). Limit: 10 requests per user per day.
+2. API always answers "If this ID is valid, the parent has been notified" — never reveals whether the ID exists or the child's name (prevents enumeration). Limit: 10 requests per user per rolling 24 h.
+   - Every request is stored with the code as typed, including codes that match no child (`child_id` NULL). The requester's own list therefore looks the same either way, and unmatched requests simply expire. The limit counts these too. Repeating an open request for the same code sends nothing new and costs nothing. A malformed code gets a field error (the format is public).
+   - A declined requester is told only the code they used, never the child's name.
+   - The requester can withdraw a pending request (`cancelled`).
 3. Parent sees the request (in-app notification + "Care team" tab) with the requester's name, role, school/clinic, BMDC/registration number for specialists, and verified badge for admin-onboarded specialists.
 4. Parent approves (choosing scope options, §3.2) or declines. Requester is notified. The child card appears on their home.
 5. Parent can revoke anytime; revoke takes effect immediately. Requests expire after 14 days.
@@ -49,6 +54,7 @@ Specialists are onboarded only by Admin (name, specialty, registration number, o
 | Medications | ✔ | only if parent ticks "share medications" | ✔ |
 | Uploaded documents | ✔ | only if parent ticks "share documents" | ✔ (parent can untick) |
 | Screening results & reports | ✔ | ✘ | ✔ |
+| Run a screening (start, consent, answer, delete) | ✔ | ✘ | ✘ |
 | Logs with visibility `care_team` | ✔ | ✔ | ✔ |
 | Logs with visibility `clinical` | ✔ | ✘ | ✔ |
 | Logs with visibility `private` | author only (+ parent always) | author only | author only |
@@ -58,6 +64,8 @@ Specialists are onboarded only by Admin (name, specialty, registration number, o
 | Approve/revoke access, regenerate ID, delete child | ✔ | ✘ | ✘ |
 
 Implement as one dependency, e.g. `require_child_access(child_id, need="read:profile")`, backed by a single permission table in code, with tests for every role × permission. Every non-parent read/write is written to `audit_log (actor_id, child_id, action, resource, at)`. The parent can see "Who viewed or changed what" on the Care team tab.
+
+Implemented in `app/core/permissions.py`. Someone with no relationship to the child (other parents, admins, members without an active grant) gets **404**, so ids don't reveal which children exist; a member lacking one permission gets **403**. The parent's own care-team actions (approve, decline, revoke, change options, new Child ID) are audit-logged too, so the activity feed is complete; it folds repeats of the same thing by the same person on the same day and covers the last 180 days. `can_add_logs` stays true for every member in the POC (the design shows logs as "always on").
 
 ## 4. Characteristics questionnaire (post-diagnosis)
 
@@ -233,14 +241,19 @@ users(id, role[parent|teacher|specialist|admin], name, email, phone, password_ha
 refresh_tokens(id, user_id, jti, expires_at, revoked_at, created_at)   -- revocable sessions
 children(id, code[SJ-XXXXX], parent_id, name, dob, sex, status[screening|companion], photo_path,
          diagnosis_json, created_at, deleted_at)
-access_requests(id, child_id, requester_id, message, status[pending|approved|declined|expired|cancelled], created_at, decided_at)
+access_requests(id, child_id?, requester_id, child_code, message, status[pending|approved|declined|expired|cancelled], created_at, decided_at)
+                 -- child_id NULL when the typed code matched no child (§3.1); child_code = the code as typed
 access_grants(id, child_id, user_id, scope[education|clinical], share_medications, share_documents,
               can_add_logs, granted_at, revoked_at)
-screenings(id, child_id, created_by, locale, age_months, consent_version, consent_at, status, is_demo,
-           result_json, scoring_version, created_at, finalized_at)
-screening_answers(id, screening_id, item_id, option, other_text, mapped_by_ai, updated_at)
-screening_tasks(id, screening_id, task, variant, status, payload_json, result_json, created_at)
-report_shares(id, screening_id, token_hash, expires_at, revoked_at, views, last_viewed_at)
+screenings(id, child_id, created_by, locale, age_months, informant[mother|father|other_caregiver],
+           consent_version, consent_at, status[in_progress|finalized], is_demo, parent_note,
+           questionnaire_completed_at, result_json, scoring_version, created_at, finalized_at)
+screening_answers(id, screening_id, item_id, option, other_text, mapped_by_ai, ai_mapping_json, updated_at)
+           -- unique (screening_id, item_id); option "other" = own words awaiting confirmation (SCREENING_SPEC §3.3)
+screening_tasks(id, screening_id, task, variant, status, demo, payload_json, result_json, created_at)
+           -- unique (screening_id, task); task "calibration" or a scored task; payload = features only, NULL when skipped
+report_shares(id, screening_id, token_hash, expires_at, revoked_at, views, last_viewed_at, created_at)
+           -- token_hash = SHA-256 of the link token (SCREENING_SPEC §7)
 characteristics(id, child_id, version, answers_json, created_by, created_at)
 logs(id, child_id, author_id, author_role, type, occurred_at, domains, ratings_json, text, goal_id,
      goal_progress, mood, visibility, corrects_log_id, created_at, edited_at)
@@ -260,7 +273,7 @@ messages(id, conversation_id, role, content, meta_json, created_at)
 status_reports(id, child_id, created_by, audience, period_start, period_end, content_json, created_at)
 specialist_directory(id, user_id?, name, type, address, phone, lat, lng, division, is_sample)
 notifications(id, user_id, kind, payload_json, read_at, created_at)
-audit_log(id, actor_id, child_id, action, resource, at)
+audit_log(id, actor_id, child_id, action, resource, at)   -- resource: a kind ("profile") or kind:id ("grant:12")
 ```
 
 ## 16. API (companion)
@@ -268,11 +281,13 @@ audit_log(id, actor_id, child_id, action, resource, at)
 ```
 POST /auth/signup (parent|teacher) · POST /auth/login · POST /auth/refresh · POST /auth/logout · POST /auth/change-password · GET /me · PATCH /me {preferred_locale}
 POST /children/{id}/activate                 diagnosis details
-GET/PUT /children/{id} · POST /children/{id}/regenerate-code · DELETE /children/{id}
+POST /children (parent) · GET/PUT /children/{id} · POST /children/{id}/regenerate-code · DELETE /children/{id}
 GET/PUT /children/{id}/characteristics
-POST /access-requests {child_code, message} · GET /access-requests (mine / for my children)
+POST /access-requests {child_code, message} · GET /access-requests (mine) · POST /access-requests/{id}/cancel
+GET /children/{id}/access-requests (pending, for the parent)
 POST /access-requests/{id}/approve {scope options} · POST /access-requests/{id}/decline
-GET /children/{id}/grants · DELETE /grants/{id}
+GET /children/{id}/grants · PATCH /grants/{id} {scope options} · DELETE /grants/{id}
+GET /children/{id}/activity (audit feed, parent)
 GET /children (cards visible to me)
 GET/POST /children/{id}/logs · PATCH /logs/{id} · POST /logs/{id}/explain
 POST /children/{id}/documents · GET /documents/{id}/file · POST /documents/{id}/extract · POST /documents/{id}/confirm
@@ -283,6 +298,6 @@ GET /children/{id}/progress?from&to
 POST /children/{id}/chat (SSE) · GET /children/{id}/conversations
 POST /children/{id}/status-reports · GET /status-reports/{id}
 GET /activities?goal&age
-GET /notifications · POST /notifications/{id}/read
+GET /notifications · POST /notifications/{id}/read · POST /notifications/read-all
 Admin: POST /admin/specialists · GET /admin/specialists · PATCH /admin/specialists/{id} {is_active} · POST /admin/users/{id}/temporary-password · GET /admin/audit
 ```

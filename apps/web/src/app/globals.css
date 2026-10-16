@@ -2,3 +2,134 @@
 /* Design tokens in the base layer, so Tailwind utilities always win over their element defaults. */
 @import "../styles/tokens.css" layer(base);
 @import "../styles/theme.css";
+
+/* Screening reports print on A4 (SCREENING_SPEC §7); the app chrome hides itself (print:hidden). */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+}
+
+/* Child-facing games (components/activities): the guide character, toys and the calibration star. */
+.sj-arm {
+  transition: transform 0.3s var(--ease-in-out);
+}
+.sj-head {
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  transition: transform 0.3s var(--ease-in-out);
+}
+.sj-eyes {
+  transition: transform 0.3s var(--ease-in-out);
+}
+.sj-bob {
+  animation: sj-bob 2.4s ease-in-out infinite;
+}
+.sj-arm-wave {
+  animation: sj-arm-wave 0.9s ease-in-out infinite;
+}
+.sj-arm-clap-l {
+  animation: sj-arm-clap-l 0.7s ease-in-out infinite;
+}
+.sj-arm-clap-r {
+  animation: sj-arm-clap-r 0.7s ease-in-out infinite;
+}
+.sj-toy-bounce {
+  animation: sj-toy-bounce 0.5s var(--ease-out) 3 alternate;
+}
+.sj-float {
+  animation: sj-float 3s ease-in-out infinite;
+}
+.sj-spin-slow {
+  animation: sj-spin 6s linear infinite;
+}
+.sj-twinkle {
+  animation: sj-twinkle 1.5s ease-in-out infinite;
+}
+
+/* Name game: "Call now" on phones that can't vibrate (iPhone). */
+@keyframes sj-flash {
+  from {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sj-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes sj-arm-wave {
+  0%,
+  100% {
+    transform: rotate(-150deg);
+  }
+  50% {
+    transform: rotate(-115deg);
+  }
+}
+@keyframes sj-arm-clap-l {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(-58deg);
+  }
+}
+@keyframes sj-arm-clap-r {
+  0%,
+  100% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(58deg);
+  }
+}
+@keyframes sj-toy-bounce {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-36px) scale(1.06);
+  }
+}
+@keyframes sj-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+@keyframes sj-twinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0);
+  }
+  50% {
+    transform: scale(1.08) rotate(8deg);
+  }
+}
+/* The stimuli move by design, but children who need less motion get the calm version. */
+@media (prefers-reduced-motion: reduce) {
+  .sj-bob,
+  .sj-float,
+  .sj-spin-slow,
+  .sj-twinkle {
+    animation: none;
+  }
+}

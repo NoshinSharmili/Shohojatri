@@ -1,0 +1,175 @@
+# Screening questionnaire, SCREENING_SPEC §3.2 (transcribed; change the spec first).
+#
+# Wording is original to Shohojatri. The Bangla needs review by a native-speaking clinician
+# before any pilot (apps/web/messages/_review.md).
+#
+# type:      freq (usually / sometimes / rarely / not_sure) · communication (q13, §3.4)
+#            regression (q19) · hearing (q20, not scored)
+# direction: freq items only. positive = concern when the behaviour is absent ("P"),
+#            concern = concern when it is present ("C").
+# weight:    critical items and q19 = 2, q13 = 1.5, q20 = 0 (feeds recommendations only).
+# min_age:   months; below it the item is not shown.
+version: questionnaire-0.1
+items:
+  - id: q01
+    domain: response_to_name
+    type: freq
+    direction: positive
+    critical: true
+    weight: 2
+    min_age: 12
+    text_en: When you call your child's name, do they look at you or respond?
+    text_bn: আপনি যখন শিশুর নাম ধরে ডাকেন, সে কি আপনার দিকে তাকায় বা সাড়া দেয়?
+  - id: q02
+    domain: eye_contact
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 12
+    text_en: Does your child look at your eyes when you talk or play together?
+    text_bn: কথা বলা বা খেলার সময় শিশু কি আপনার চোখের দিকে তাকায়?
+  - id: q03
+    domain: joint_attention
+    type: freq
+    direction: positive
+    critical: true
+    weight: 2
+    min_age: 12
+    text_en: If you point at a toy across the room, does your child look at it?
+    text_bn: আপনি ঘরের অন্য পাশে কোনো খেলনার দিকে আঙুল দিয়ে দেখালে শিশু কি সেদিকে তাকায়?
+  - id: q04
+    domain: joint_attention
+    type: freq
+    direction: positive
+    critical: true
+    weight: 2
+    min_age: 14
+    text_en: Does your child point with one finger to show you something interesting (like a bird or a plane)?
+    text_bn: মজার কিছু দেখাতে (যেমন পাখি বা উড়োজাহাজ) শিশু কি এক আঙুল দিয়ে আপনাকে দেখায়?
+  - id: q05
+    domain: requesting
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 14
+    text_en: Does your child point to ask for something they want that is out of reach?
+    text_bn: নাগালের বাইরে থাকা কিছু চাইতে শিশু কি আঙুল দিয়ে দেখায়?
+  - id: q06
+    domain: sharing
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 14
+    text_en: Does your child bring things to show you, just to share (not because they need help)?
+    text_bn: শুধু আপনাকে দেখানোর জন্য (সাহায্যের জন্য নয়) শিশু কি জিনিস এনে দেখায়?
+  - id: q07
+    domain: social_smile
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 12
+    text_en: When you smile at your child, do they smile back?
+    text_bn: আপনি হাসলে শিশু কি পাল্টা হাসে?
+  - id: q08
+    domain: imitation
+    type: freq
+    direction: positive
+    critical: true
+    weight: 2
+    min_age: 12
+    text_en: Does your child copy what you do — waving bye-bye, clapping, making a funny sound?
+    text_bn: আপনি যা করেন — টা-টা দেওয়া, হাততালি, মজার শব্দ — শিশু কি তা নকল করে?
+  - id: q09
+    domain: pretend_play
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 20
+    text_en: Does your child play pretend, like feeding a doll or talking on a toy phone?
+    text_bn: শিশু কি "ভান করে" খেলে, যেমন পুতুলকে খাওয়ানো বা খেলনা ফোনে কথা বলা?
+  - id: q10
+    domain: peer_interest
+    type: freq
+    direction: positive
+    critical: true
+    weight: 2
+    min_age: 14
+    text_en: Is your child interested in other children — watching them, smiling at them, going near them?
+    text_bn: অন্য শিশুদের প্রতি কি তার আগ্রহ আছে — তাকিয়ে দেখে, হাসে বা কাছে যায়?
+  - id: q11
+    domain: showing_off
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 16
+    text_en: Does your child try to get you to watch them ("look at me!")?
+    text_bn: শিশু কি চায় আপনি তাকে দেখুন (যেমন "আমাকে দেখো!" বোঝায়)?
+  - id: q12
+    domain: understanding
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 18
+    text_en: Does your child follow a simple instruction without you pointing (like "bring the ball")?
+    text_bn: আঙুল দিয়ে না দেখালেও শিশু কি সহজ কথা বোঝে (যেমন "বলটা নিয়ে এসো")?
+  - id: q13
+    domain: language
+    type: communication
+    weight: 1.5
+    min_age: 12
+    text_en: How does your child mostly communicate?
+    text_bn: শিশু বেশিরভাগ সময় কীভাবে নিজের কথা বোঝায়?
+  - id: q14
+    domain: social_referencing
+    type: freq
+    direction: positive
+    weight: 1
+    min_age: 14
+    text_en: When something new or surprising happens, does your child look at your face to see how you react?
+    text_bn: নতুন বা অবাক করা কিছু ঘটলে শিশু কি আপনার মুখের দিকে তাকিয়ে আপনার প্রতিক্রিয়া দেখে?
+  - id: q15
+    domain: repetitive_movement
+    type: freq
+    direction: concern
+    weight: 1
+    min_age: 12
+    text_en: Does your child flap their hands, rock their body, or move their fingers near their eyes again and again?
+    text_bn: শিশু কি বারবার হাত ঝাপটায়, শরীর দোলায়, বা চোখের কাছে আঙুল নাড়ায়?
+  - id: q16
+    domain: repetitive_play
+    type: freq
+    direction: concern
+    weight: 1
+    min_age: 16
+    text_en: Does your child line up toys or repeat the same action with an object for a long time (like spinning wheels)?
+    text_bn: শিশু কি অনেকক্ষণ ধরে খেলনা সারি করে সাজায় বা একই কাজ বারবার করে (যেমন চাকা ঘোরানো)?
+  - id: q17
+    domain: sensory_sound
+    type: freq
+    direction: concern
+    weight: 1
+    min_age: 12
+    text_en: Does your child get very upset by everyday sounds (pressure cooker, blender, vehicle horn)?
+    text_bn: দৈনন্দিন শব্দে (প্রেশার কুকার, ব্লেন্ডার, গাড়ির হর্ন) শিশু কি খুব অস্থির হয়ে পড়ে?
+  - id: q18
+    domain: sensory_other
+    type: freq
+    direction: concern
+    weight: 1
+    min_age: 12
+    text_en: Does your child stare at lights or spinning things, or smell or lick objects much more than other children?
+    text_bn: শিশু কি অন্য শিশুদের চেয়ে অনেক বেশি আলো বা ঘুরন্ত জিনিসের দিকে তাকিয়ে থাকে, বা জিনিস শোঁকে বা চাটে?
+  - id: q19
+    domain: regression
+    type: regression
+    weight: 2
+    min_age: 12
+    text_en: Has your child stopped using words or skills they used to have?
+    text_bn: শিশু আগে যে শব্দ বা দক্ষতা ব্যবহার করত, তার কোনোটি কি এখন আর করছে না?
+  - id: q20
+    domain: hearing
+    type: hearing
+    weight: 0
+    min_age: 12
+    text_en: Has your child's hearing been checked?
+    text_bn: শিশুর কানে শোনার পরীক্ষা কি করা হয়েছে?

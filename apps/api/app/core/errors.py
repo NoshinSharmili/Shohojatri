@@ -44,7 +44,7 @@ _HTTP_CODES = {
 }
 
 
-def _response(
+def error_response(
     status_code: int, code: str, message_key: str, detail: dict[str, Any] | None = None
 ) -> JSONResponse:
     body = ErrorResponse(error=ErrorBody(code=code, message_key=message_key, detail=detail or {}))
@@ -53,25 +53,25 @@ def _response(
 
 async def _api_error(_: Request, exc: Exception) -> JSONResponse:
     assert isinstance(exc, ApiError)
-    return _response(exc.status_code, exc.code, exc.message_key, exc.detail)
+    return error_response(exc.status_code, exc.code, exc.message_key, exc.detail)
 
 
 async def _http_error(_: Request, exc: Exception) -> JSONResponse:
     assert isinstance(exc, StarletteHTTPException)
     code = _HTTP_CODES.get(exc.status_code, "http_error")
-    return _response(exc.status_code, code, f"errors.{code}")
+    return error_response(exc.status_code, code, f"errors.{code}")
 
 
 async def _validation_error(_: Request, exc: Exception) -> JSONResponse:
     assert isinstance(exc, RequestValidationError)
     # Only field locations and error types: never echo submitted values, which may be child data.
     fields = [{"loc": list(err["loc"]), "type": err["type"]} for err in exc.errors()]
-    return _response(422, "validation_error", "errors.validation_error", {"fields": fields})
+    return error_response(422, "validation_error", "errors.validation_error", {"fields": fields})
 
 
 async def _unhandled_error(request: Request, exc: Exception) -> JSONResponse:
     logger.exception("Unhandled error on %s %s", request.method, request.url.path, exc_info=exc)
-    return _response(500, "internal_error", "errors.internal_error")
+    return error_response(500, "internal_error", "errors.internal_error")
 
 
 def register_error_handlers(app: FastAPI) -> None:

@@ -6,12 +6,17 @@ const AC=(n,x)=>l=>C(n,{lang:l,...(x||{})});
 const inStack=id=>(root,cur,stack)=>stack.includes(id)||stack.length<2?id:'pop';
 const homeFor=(root,cur)=>['scr','entry'].includes(R[cur].g)?'home':'c-home';
 
+const skipBack=(skip,fb)=>(root,cur,stack)=>{for(let j=stack.length-2;j>=0;j--)if(!skip.includes(stack[j]))return stack[j];return fb;};
+const nb=(t,id,sel)=>[{s:sel||'.sj-bnav__item',t},id];
+const TN=[nb('হোম|Home','t-home'),nb('শিশুরা|Children','t-kids'),nb('সহকারী|Assistant','t-ai'),nb('প্রোফাইল|Profile','t-me'),nb('হোম|Home','t-home-d','.sj-side__item'),nb('শিশুরা|Children','t-kids','.sj-side__item'),nb('সহকারী|Assistant','t-ai','.sj-side__item'),nb('প্রোফাইল|Profile','t-me','.sj-side__item'),[{s:'.sj-src'},'t-child']];
+const SN=[nb('হোম|Home','sp-home'),nb('রোগী|Patients','sp-pts'),nb('সহকারী|Assistant','sp-ai'),nb('প্রোফাইল|Profile','sp-me'),[{s:'.sj-src'},'sp-chat']];
+const SND=[nb('হোম|Home','sp-home-d','.sj-side__item'),nb('রোগীরা|Patients','sp-pts-d','.sj-side__item'),nb('অনুরোধ|Requests','sp-req-d','.sj-side__item'),nb('প্রোফাইল|Profile','sp-me-d','.sj-side__item'),[{s:'.sj-src'},'sp-chat-d']];
 const R={
 /* 1 · entry (bn + en) */
 splash:{l:'০১ · স্প্ল্যাশ',g:'entry',en:1,r:OB('ObSplash'),links:[['শুরু করুন|Get started','role'],['লগ ইন করুন|Log in','login']]},
-role:{l:'০২ · ভূমিকা বাছাই',g:'entry',en:1,r:OB('ObRole'),back:'splash',links:[['এখানে লগ ইন করুন|Log in here','login-sp'],['এগিয়ে যান|Continue',root=>/শিক্ষক|teacher/i.test(root.querySelector('.sj-choice--selected')?.textContent||'')?'su-teacher':'login']]},
+role:{l:'০২ · ভূমিকা বাছাই',g:'entry',en:1,r:OB('ObRole'),back:'splash',links:[['এখানে লগ ইন করুন|Log in here','login-sp'],['এগিয়ে যান|Continue',root=>/শিক্ষক|teacher/i.test(root.querySelector('.sj-choice--selected')?.textContent||'')?'login-t':'login']]},
 'su-parent':{l:'০৩ক · সাইন আপ — অভিভাবক',g:'entry',en:1,r:OB('ObSignUp',{role:'parent'}),back:'role',links:[['অ্যাকাউন্ট খুলুন|Create account','home'],['লগ ইন করুন|Log in','login']]},
-'su-teacher':{l:'০৩খ · সাইন আপ — শিক্ষক',g:'entry',en:1,r:OB('ObSignUp',{role:'teacher'}),back:'role',links:[['অ্যাকাউন্ট খুলুন|Create account','t-home'],['লগ ইন করুন|Log in','login']]},
+'su-teacher':{l:'০৩খ · সাইন আপ — শিক্ষক',g:'entry',en:1,r:OB('ObSignUp',{role:'teacher'}),back:'role',links:[['অ্যাকাউন্ট খুলুন|Create account','t-empty'],['লগ ইন করুন|Log in','login-t']]},
 login:{l:'০৪ক · লগ ইন',g:'entry',en:1,r:OB('ObLogIn'),back:'splash',links:[['অ্যাকাউন্ট খুলুন|Create account','su-parent'],['ভুলে গেছেন|Forgot','npw'],[{s:'.sj-card--calm'},'npw'],['লগ ইন করুন|Log in','home']]},
 'login-sp':{l:'০৪ক · লগ ইন — বিশেষজ্ঞ',g:'entry',en:1,r:OB('ObLogIn'),back:'role',links:[['অ্যাকাউন্ট খুলুন|Create account','su-parent'],['ভুলে গেছেন|Forgot','npw'],[{s:'.sj-card--calm'},'npw'],['লগ ইন করুন|Log in','npw']]},
 npw:{l:'০৪খ · নতুন পাসওয়ার্ড',g:'entry',en:1,r:OB('ObNewPassword'),back:'login-sp',links:[['সেভ করে এগিয়ে যান|Save and continue','sp-home']]},
@@ -107,11 +112,40 @@ explain:{l:'C6 · নোট সহজ করে বুঝিয়ে দিন'
 'ac-d2':{l:'D2 · AI চ্যাট খালি — ডেস্কটপ',g:'ai',k:'desk',en:1,r:AC('DeskEmptyA'),links:[[{s:'.ac-sq'},'ac-d1']]},
 'ac-d3':{l:'D3 · ওভারভিউ + AI বোতাম — ডেস্কটপ',g:'ai',k:'desk',en:1,r:AC('DeskOverviewA'),links:[[{s:'.ac-fab'},'ac-d2']]},
 
-/* 5 · teacher & specialist (stand-ins) */
-'t-home':{l:'V1 · শিক্ষিকা নাসরিন — AI (হোমের বদলে)',g:'ai',en:1,r:AC('Empty',{role:'teacher'}),back:'su-teacher',links:[[{s:'.ac-sq'},'t-chat'],['আগের কথোপকথন|Past conversations','t-chat'],['নতুন কথোপকথন|New conversation','t-home']]},
-'t-chat':{l:'V2 · শিক্ষিকা নাসরিন — চ্যাট',g:'ai',en:1,r:AC('Teacher'),back:'t-home',links:[['ক্লাস নোট|class notes','b2'],['বাড়ির লগ|Home logs','b2'],['আগের কথোপকথন|Past conversations','t-home'],['নতুন কথোপকথন|New conversation','t-home']]},
-'sp-home':{l:'V3 · ডা. তানভীর — AI (হোমের বদলে)',g:'ai',en:1,r:AC('Specialist'),back:'login-sp',links:[['ক্লিনিক্যাল রিপোর্ট|Clinical report','dr-report-sp'],['ঘুমের চার্ট|Sleep chart','b3'],['ঘুমের লগ|sleep logs','b2'],['স্কুল লগ|School logs','b2'],['Rx','b5'],['আগের কথোপকথন|Past conversations','sp-home'],['নতুন কথোপকথন|New conversation','sp-home']]},
-'dr-report-sp':{l:'P2 · ডাক্তারের রিপোর্ট (বিশেষজ্ঞ)',g:'ai',k:'doc',src:'Doctor Report.html',title:'রাফি · স্ক্রিনিং রিপোর্ট',back:'sp-home'},
+/* 5 · teacher & specialist dashboards (bn + en) */
+'login-t':{l:'T0 · লগ ইন — শিক্ষক',g:'tch',en:1,r:OB('ObLogIn'),back:'role',links:[['অ্যাকাউন্ট খুলুন|Create account','su-teacher'],['ভুলে গেছেন|Forgot','login-t'],[{s:'.sj-card--calm'},'login-sp'],['লগ ইন করুন|Log in','t-home']]},
+'t-home':{l:'T1 · শিক্ষকের হোম',g:'tch',en:1,r:l=>C('TeacherHome',{l}),links:TN},
+'t-home-d':{l:'T1d · শিক্ষকের হোম — ডেস্কটপ',g:'tch',en:1,rw:['TeacherHomeD','TeacherHome'],links:TN},
+'t-kids':{l:'T2 · আমার শিশুরা',g:'tch',en:1,r:l=>C('KidsM',{role:'teacher',l}),links:TN},
+'t-child':{l:'T3 · শিশুর প্রোফাইল (শিক্ষা)',g:'tch',en:1,r:l=>C('ProfileM',{role:'teacher',l}),back:skipBack(['t-note','t-chat','t-report','t-child'],'t-home'),links:[[{s:'.sj-src'},'t-chat'],...TN]},
+'t-note':{l:'T4 · ক্লাসের নোট যোগ',g:'tch',en:1,r:l=>C('NoteM',{role:'teacher',l}),links:TN},
+'t-chat':{l:'T5 · AI-কে জিজ্ঞেস (শিক্ষক)',g:'tch',en:1,r:l=>C('ChatM',{role:'teacher',l}),links:[['নোট হিসেবে যোগ করুন|Add as note','t-note'],['সম্পাদনা|Edit','t-note'],...TN]},
+'t-report':{l:'T6 · স্ট্যাটাস রিপোর্ট — শিক্ষকের জন্য',g:'tch',en:1,r:l=>C('ReportM',{role:'teacher',l}),links:TN},
+'t-ai':{l:'T7 · সহকারী — শিশু বাছাই',g:'tch',en:1,r:l=>C('AiPick',{role:'teacher',l}),links:TN},
+'t-me':{l:'T8 · শিক্ষকের প্রোফাইল',g:'tch',en:1,r:l=>C('MeM',{role:'teacher',l}),links:TN},
+'t-empty':{l:'T9 · খালি — এখনো শিশু নেই',g:'tch',en:1,r:l=>C('EmptyM',{role:'teacher',l}),links:TN},
+'t-loading':{l:'T10 · প্রোফাইল লোড হচ্ছে',g:'tch',en:1,r:l=>C('LoadingM',{role:'teacher',l}),tap:'t-child'},
+'sp-home':{l:'S1 · বিশেষজ্ঞের হোম',g:'spc',en:1,r:l=>C('SpHomeM',{l}),links:SN},
+'sp-pts':{l:'S2 · আমার রোগী',g:'spc',en:1,r:l=>C('KidsM',{role:'specialist',l}),links:SN},
+'sp-child':{l:'S3 · রোগীর প্রোফাইল (ক্লিনিক্যাল)',g:'spc',en:1,r:l=>C('ProfileM',{role:'specialist',l}),back:skipBack(['sp-note','sp-chat','sp-report','sp-child'],'sp-home'),links:[[{s:'.sj-src'},'sp-chat'],...SN]},
+'sp-note':{l:'S4 · ক্লিনিক্যাল নোট যোগ',g:'spc',en:1,r:l=>C('NoteM',{role:'specialist',l}),links:SN},
+'sp-chat':{l:'S5 · AI-কে জিজ্ঞেস (বিশেষজ্ঞ)',g:'spc',en:1,r:l=>C('ChatM',{role:'specialist',l}),links:SN},
+'sp-report':{l:'S6 · স্ট্যাটাস রিপোর্ট — ডাক্তারের জন্য',g:'spc',en:1,r:l=>C('ReportM',{role:'specialist',l}),links:SN},
+'sp-ai':{l:'S7 · সহকারী — রোগী বাছাই',g:'spc',en:1,r:l=>C('AiPick',{role:'specialist',l}),links:SN},
+'sp-me':{l:'S8 · বিশেষজ্ঞের প্রোফাইল',g:'spc',en:1,r:l=>C('MeM',{role:'specialist',l}),links:SN},
+'sp-empty':{l:'S9 · খালি — এখনো রোগী নেই',g:'spc',en:1,r:l=>C('EmptyM',{role:'specialist',l}),links:SN},
+'sp-loading':{l:'S10 · প্রোফাইল লোড হচ্ছে',g:'spc',en:1,r:l=>C('LoadingM',{role:'specialist',l}),tap:'sp-child'},
+'sp-home-d':{l:'S1d · বিশেষজ্ঞের হোম — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpHomeD',{l}),links:SND},
+'sp-pts-d':{l:'S2d · রোগীর তালিকা — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpHomeD',{l,pts:1}),links:SND},
+'sp-child-d':{l:'S3d · প্রোফাইল — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpChildD',{l}),back:skipBack(['sp-note-d','sp-chat-d','sp-report-d','sp-child-d'],'sp-home-d'),links:[[{s:'.sj-src'},'sp-chat-d'],...SND]},
+'sp-note-d':{l:'S4d · ক্লিনিক্যাল নোট — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpNoteD',{l}),links:SND},
+'sp-chat-d':{l:'S5d · AI চ্যাট — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpChatD',{l}),links:SND},
+'sp-report-d':{l:'S6d · স্ট্যাটাস রিপোর্ট — ডেস্কটপ',g:'spc',en:1,k:'desk',w:900,r:l=>C('SpReportD',{l}),links:SND},
+'sp-req-d':{l:'S7d · অ্যাক্সেসের অনুরোধ — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpReqD',{l}),links:SND},
+'sp-me-d':{l:'S8d · প্রোফাইল — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpMeD',{l}),links:SND},
+'sp-empty-d':{l:'S9d · খালি — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpEmptyD',{l}),links:SND},
+'sp-loading-d':{l:'S10d · লোড হচ্ছে — ডেস্কটপ',g:'spc',en:1,k:'desk',r:l=>C('SpLoadingD',{l}),tap:'sp-home-d'},
+'dr-report-sp':{l:'P2 · স্ক্রিনিং রিপোর্ট (বিশেষজ্ঞ)',g:'spc',k:'doc',src:'Doctor Report.html',title:'স্ক্রিনিং রিপোর্ট',back:'pop'},
 
 /* 6 · states (bn + en) */
 'st-ch1':{l:'CH1 · থ্রেড লোড হচ্ছে',g:'st',en:1,r:AC('StChatLoading'),tap:'ac-convo'},
@@ -119,6 +153,8 @@ explain:{l:'C6 · নোট সহজ করে বুঝিয়ে দিন'
 'st-ch3':{l:'CH3 · ইতিহাস ত্রুটি',g:'st',en:1,r:AC('StHistError'),links:[['আবার চেষ্টা|Try again','ac-history']]},
 map:{l:'ডেমো ম্যাপ',g:'map',r:()=>C('ProtoMap'),back:'splash'}
 };
+const narrow=()=>innerWidth<768;const mk=(x,l)=>Array.isArray(x)?C(x[0],{...x[1],l}):C(x,{l});
+Object.keys(R).forEach(id=>{const S=R[id];if(!S.rw)return;const [d,m]=S.rw;S.r=l=>narrow()?mk(m,l):mk(d,l);Object.defineProperty(S,'k',{get(){return narrow()?undefined:'desk';},configurable:true});});
 ['result','result-low','result-mod','result-high'].forEach(k=>R[k].links=[['ডাক্তারকে রিপোর্ট দিন','dr-report'],['কাছের বিশেষজ্ঞ','specialists'],['ফলাফল নিয়ে প্রশ্ন','r-chat'],['শেয়ার করুন','share'],['আবার করুন','setup'],[{s:'.rs-foot'},'p-report'],[{s:'.rs-body > .sj-card'},'p-report']]);
 const LIST_GO={tl:['q-log1','b2'],dc:['doc-pick','b5'],rm:['reminders','reminders'],sp:['specialists','specialists'],sh:['details','home']};
 const KN={empty:'খালি',loading:'লোড হচ্ছে',error:'ত্রুটি'};
@@ -151,8 +187,8 @@ const FLOWS=[
  {t:'২ · স্ক্রিনিং',e:'Screening',ic:'clipboard-list',start:'home',ids:['home','details','consent','q1','q2','q3','part2','setup','cal','name-wait','name-call','point-how','point-stim','copy-demo','copy-turn','look','freeplay','analysing','result','p-report','dr-report','share','share-qr','share-off','r-chat','specialists','loc-off','spec-desk','result-low','result-mod','result-high','s-comp','s-both','st-k1','st-k2','st-k3']},
  {t:'৩ · সহযাত্রী',e:'Companion',ic:'heart-handshake',start:'home',ids:['w1','w2','w3a','w3b','w3c','w4','w4qr','w5','b1','b2','explain','b3','b4','b5','doc-pick','doc-reading','doc-review','b6','b7','q-log1','q-log2','q-saved','chat','rep-sheet','status-report','rep-page','ac-urgent','c-home','reminders','activity','activity-done']},
  {t:'৪ · সহযাত্রী AI',e:'Assistant',ic:'sparkles',start:'m-home',ids:['m-home','m-overview','ac-empty','ac-voice','ac-convo','ac-source','ac-thinking','ac-actions','explain','ac-repsetup','ac-repcard','ac-urgent','ac-idk','ac-med','ac-history','ac-offline','ac-aidown','ac-d1','ac-d2','ac-d3']},
- {t:'৫ · শিক্ষক',e:'Teacher',ic:'school',start:'role',note:'শিক্ষকের হোম ডিজাইন করা নেই — শিক্ষকের AI চ্যাট দিয়ে চালানো হয়েছে',ids:['role','su-teacher','t-home','t-chat','b2','q-log1'],missing:['শিক্ষকের হোম','অ্যাক্সেসের অনুরোধ (পাঠানো হয়েছে)','শিক্ষকের শিশু ড্যাশবোর্ড','ক্লাসরুম নোট যোগ']},
- {t:'৬ · বিশেষজ্ঞ',e:'Specialist',ic:'stethoscope',start:'login-sp',note:'বিশেষজ্ঞের হোম ও রোগীর ড্যাশবোর্ড নেই — ডা. তানভীরের AI চ্যাট ও ডাক্তারের রিপোর্ট দিয়ে চালানো হয়েছে',ids:['login-sp','npw','sp-home','dr-report-sp'],missing:['বিশেষজ্ঞের হোম','রোগীর ড্যাশবোর্ড','ক্লিনিক্যাল নোট যোগ']},
+ {t:'৫ · শিক্ষক ড্যাশবোর্ড',e:'Teacher dashboard',ic:'school',start:'role',ids:['role','login-t','su-teacher','t-home','t-home-d','t-kids','t-child','t-note','t-chat','t-report','t-ai','t-me','t-empty','t-loading']},
+ {t:'৬ · বিশেষজ্ঞ ড্যাশবোর্ড',e:'Specialist dashboard',ic:'stethoscope',start:'sp-home',ids:['login-sp','npw','sp-home','sp-pts','sp-child','sp-note','sp-chat','sp-report','sp-ai','sp-me','sp-empty','sp-loading','dr-report-sp','sp-home-d','sp-pts-d','sp-child-d','sp-note-d','sp-chat-d','sp-report-d','sp-req-d','sp-me-d','sp-empty-d','sp-loading-d']},
  {t:'৭ · অ্যাডমিন (ডেস্কটপ)',e:'Admin',ic:'shield',start:null,note:'অ্যাডমিনের কোনো স্ক্রিন ডিজাইন করা নেই',ids:[],missing:['বিশেষজ্ঞের তালিকা','বিশেষজ্ঞ যোগ','এককালীন পাসওয়ার্ড']},
  {t:'৮ · অবস্থা (খালি · লোড · ত্রুটি)',e:'States',ic:'layers',start:'st-tl-empty',ids:Object.keys(R).filter(k=>/^st-(tl|dc|rm|sp|sh|ch)/.test(k))}
 ];

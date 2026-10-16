@@ -8,7 +8,23 @@
       "setPassword": "New password",
       "home": "Home",
       "adminSpecialists": "Specialists",
-      "adminNewSpecialist": "Add specialist"
+      "adminNewSpecialist": "Add specialist",
+      "newChild": "Add a child",
+      "careTeam": "Care team",
+      "requestAccess": "Join a care team",
+      "screening": "Screening",
+      "screeningNew": "New screening",
+      "screeningConsent": "Before we start",
+      "screeningQuestion": "Questions",
+      "screeningNote": "Anything else?",
+      "screeningActivities": "Part 2: games",
+      "screeningResult": "Result",
+      "screeningReport": "Parent report",
+      "clinicianReport": "Doctor report",
+      "sharedReport": "Shared report",
+      "screeningDemo": "Demo games",
+      "settings": "Settings",
+      "offline": "Offline"
     }
   },
   "common": {
@@ -28,7 +44,10 @@
     "back": "Back",
     "loading": "Just a moment…",
     "retry": "Try again",
-    "optional": "(optional)"
+    "optional": "(optional)",
+    "settings": "Settings",
+    "close": "Close",
+    "demo": "Demo"
   },
   "landing": {
     "promise": "From the first worry to the long journey — always beside your child",
@@ -117,13 +136,367 @@
     "welcome": "Welcome, {name}",
     "verified": "Verified specialist",
     "parent": {
-      "next": "Soon you'll be able to start your child's screening and see their profile here."
+      "childrenTitle": "Your children",
+      "addChild": "Add a child",
+      "emptyTitle": "Add your child to get started",
+      "emptyMessage": "Once your child is added, you can invite their teacher or doctor with a Child ID."
     },
-    "teacher": {
-      "next": "Soon you'll be able to ask a parent for access here, using their child's ID."
+    "member": {
+      "childrenTitle": "Children you support",
+      "emptyTitle": "No children yet",
+      "emptyMessage": "Ask a parent for their child's Shohojatri ID and send a request. The child appears here once the parent approves."
+    }
+  },
+  "children": {
+    "years": "{count, plural, one {# year} other {# years}}",
+    "months": "{count, plural, one {# month} other {# months}}",
+    "status": {
+      "screening": "Screening",
+      "companion": "Companion"
     },
-    "specialist": {
-      "next": "Soon the children you see will be listed here, and you'll be able to request access with a Child ID."
+    "scope": {
+      "parent": "Parent",
+      "education": "Education",
+      "clinical": "Clinical"
+    },
+    "memberSince": "On the team since {date}",
+    "careTeam": "Care team",
+    "pendingRequests": "{count, plural, one {# request waiting} other {# requests waiting}}",
+    "new": {
+      "back": "Back to home",
+      "title": "Add a child",
+      "subtitle": "We need these to match activities and results to your child's age.",
+      "name": "Child's name",
+      "nameHint": "A nickname is fine — whatever you call them at home.",
+      "namePlaceholder": "e.g. Rafi",
+      "dob": "Date of birth",
+      "sex": "Boy or girl?",
+      "female": "Girl",
+      "male": "Boy",
+      "unsaid": "Prefer not to say",
+      "submit": "Add child"
+    }
+  },
+  "screening": {
+    "steps": {
+      "details": "Details",
+      "consent": "Consent",
+      "questions": "Questions",
+      "games": "Games"
+    },
+    "stepCount": "Step {n, number} of {total, number}",
+    "later": "Continue later",
+    "home": {
+      "heroTitle": "Start a screening",
+      "heroBody": "A few questions and short games give you a picture of your child's development. It is not a diagnosis, and it takes about 15 minutes.",
+      "heroCta": "Start",
+      "continue": "Continue the screening",
+      "progress": "{answered, number} of {total, number} questions answered",
+      "questionsDone": "Questions done · games are next",
+      "start": "Start a screening",
+      "lastResult": "Last screening · {date}",
+      "seeResult": "See the result"
+    },
+    "details": {
+      "title": "Tell us a little about your child",
+      "subtitle": "We need this to match the questions and the result to your child's age.",
+      "whoFor": "Who is this screening for?",
+      "anotherChild": "Another child",
+      "anotherChildHint": "Add their name and date of birth",
+      "ageHint": "Age: {age}",
+      "informant": "Who is answering?",
+      "informantHint": "The person who spends the most time with the child.",
+      "informants": {
+        "mother": "Mother",
+        "father": "Father",
+        "other_caregiver": "Another caregiver"
+      },
+      "submit": "Continue",
+      "ageYounger": "This screening was made for children aged 16 months to 4 years. You can still do it, but for a child this young the result is less certain.",
+      "ageOlder": "This screening was made for children aged 16 months to 4 years. You can still do it, but for an older child the result is less certain.",
+      "ageBlockedTitle": "This screening isn't made for this age",
+      "ageBlockedYoung": "It can be done from 12 months. If anything worries you now, please talk to a child doctor. You don't need to wait.",
+      "ageBlockedOld": "It can be done up to 6 years. If anything worries you, a child doctor or a child development specialist can help.",
+      "openTitle": "{name} has an unfinished screening",
+      "openBody": "Your answers are saved. {answered, number} of {total, number} questions answered.",
+      "openContinue": "Continue",
+      "openRestart": "Start over",
+      "restartTitle": "Start over?",
+      "restartBody": "The unfinished screening and all its answers will be deleted.",
+      "restartConfirm": "Delete and start over",
+      "restartCancel": "Keep it",
+      "close": "Close",
+      "childRequired": "Choose who the screening is for.",
+      "informantRequired": "Choose who is answering."
+    },
+    "consent": {
+      "title": "Four things before we start",
+      "points": {
+        "notDiagnosis": {
+          "title": "This is not a diagnosis",
+          "body": "It helps you understand what to do next. Only a specialist can make a diagnosis."
+        },
+        "onDevice": {
+          "title": "Camera and microphone stay on this device",
+          "body": "Video and sound are never uploaded or saved. Only measurements are kept: numbers like \"turned their head after 1.2 seconds\"."
+        },
+        "delete": {
+          "title": "Delete it any time",
+          "body": "Your answers, the measurements and the report can all be deleted whenever you want."
+        },
+        "sharing": {
+          "title": "You decide who sees the report",
+          "body": "Only people you allow can see it, like a doctor you have added to your child's care team."
+        }
+      },
+      "agree": "I have read this and I agree",
+      "submit": "Agree and continue",
+      "home": "Back to home"
+    },
+    "question": {
+      "count": "Question {n, number} of {total, number}",
+      "back": "Previous question",
+      "noRightAnswer": "There's no right or wrong answer. Choose what you have seen.",
+      "next": "Next question",
+      "last": "Continue",
+      "checkAnswer": "Continue",
+      "otherField": "Write it in your own words",
+      "otherPlaceholder": "e.g. He looks when we play, but not when the TV is on…",
+      "reading": "Reading your answer…",
+      "yourAnswer": "Your answer",
+      "editWords": "Change what I wrote",
+      "aiTitle": "Shohojatri read your answer",
+      "understood": "We understood this as <b>{option}</b>. Is that right?",
+      "keptInReport": "What you wrote will also be in the report.",
+      "confirm": "Yes, that's right",
+      "change": "Choose another",
+      "pickTitle": "Which answer is closest?",
+      "pickUnclear": "We couldn't tell which answer fits best. Please choose the closest one.",
+      "pickUnavailable": "We can't read written answers right now. Please choose the closest one.",
+      "pickHint": "What you wrote is saved and will be in the report.",
+      "cantChoose": "I can't choose",
+      "savedAs": "Saved as: <b>{option}</b>",
+      "changeAnswer": "Change answer"
+    },
+    "options": {
+      "freq": {
+        "usually": "Yes, most of the time",
+        "sometimes": "Sometimes",
+        "rarely": "Rarely or never",
+        "not_sure": "Not sure / haven't noticed"
+      },
+      "communication": {
+        "sentences": "Puts words together",
+        "single_words": "Single words",
+        "sounds_gestures": "Sounds or gestures",
+        "little": "Rarely tries to communicate"
+      },
+      "regression": {
+        "no": "No",
+        "yes": "Yes",
+        "not_sure": "Not sure"
+      },
+      "hearing": {
+        "yes_normal": "Yes, and it was normal",
+        "yes_problem": "Yes, and a problem was found",
+        "no": "No",
+        "not_sure": "Not sure"
+      },
+      "notSure": "Not sure",
+      "other": "Something else (write it)"
+    },
+    "optionHints": {
+      "communication": {
+        "sentences": "2 or more words together, like \"more milk\"",
+        "single_words": "Like \"mama\" or \"ball\"",
+        "sounds_gestures": "Sounds, pointing, or pulling your hand",
+        "little": "Seldom tries to tell you anything"
+      }
+    },
+    "domains": {
+      "response_to_name": "Response to name",
+      "eye_contact": "Eye contact",
+      "joint_attention": "Looking together",
+      "requesting": "Asking for things",
+      "sharing": "Sharing",
+      "social_smile": "Smiling back",
+      "imitation": "Copying",
+      "pretend_play": "Pretend play",
+      "peer_interest": "Other children",
+      "showing_off": "\"Look at me\"",
+      "understanding": "Understanding",
+      "language": "Communication",
+      "social_referencing": "Checking your face",
+      "repetitive_movement": "Repeated movements",
+      "repetitive_play": "Repeated play",
+      "sensory_sound": "Sounds",
+      "sensory_other": "Lights and senses",
+      "regression": "Earlier skills",
+      "hearing": "Hearing"
+    },
+    "note": {
+      "title": "Anything else you've noticed?",
+      "subtitle": "Write anything you'd like a doctor to know. This is optional. It goes into the doctor's report exactly as you write it, and it doesn't change the score.",
+      "label": "Your notes",
+      "placeholder": "e.g. He sleeps very little at night…",
+      "submit": "Finish the questions",
+      "back": "Back to the questions"
+    },
+    "activities": {
+      "title": "Next, a few short games",
+      "subtitle": "You stay beside your child while the camera watches how they play.",
+      "partOneDone": "Questions done. Your answers are saved.",
+      "games": {
+        "nameCall": "Calling their name",
+        "point": "Look where I point",
+        "copy": "Copy me",
+        "look": "Look and watch",
+        "freePlay": "Free play"
+      },
+      "minutes": "{count, plural, one {# minute} other {# minutes}}",
+      "optional": "optional",
+      "needTitle": "What you'll need",
+      "need": {
+        "toy": "A favourite toy",
+        "light": "Good light",
+        "quiet": "A quiet room"
+      },
+      "skipNote": "Every game can be skipped. If your child gets tired, stop. You can continue later.",
+      "cta": "Set up the camera",
+      "home": "Back to home",
+      "answersOnly": "See the result from my answers",
+      "answersOnlyNote": "Without the games the result rests on your answers alone, so it is less certain.",
+      "demoTitle": "Demo mode is on",
+      "demoBody": "The games will be replayed from a recorded sample session ({profile}). No camera is used, and every report will say “Demo”.",
+      "demoCta": "Play the demo games",
+      "demoSettings": "Change in settings",
+      "ctaContinue": "Continue the games",
+      "privacy": "The camera picture and sound stay on this device and are never sent or recorded. Only measurements (numbers) are sent."
+    }
+  },
+  "childId": {
+    "label": "{name}'s Child ID",
+    "copy": "Copy",
+    "copied": "Copied",
+    "share": "Share",
+    "qr": "QR",
+    "shareText": "{name}'s Shohojatri Child ID is {code}. Send a request with it in the Shohojatri app and I'll approve it.",
+    "qrTitle": "Join by QR code",
+    "qrHint": "A teacher or specialist scans this with their phone. Nobody can see anything until you approve them.",
+    "qrDownload": "Save QR",
+    "close": "Close",
+    "regenerate": "Get a new ID",
+    "regenerateTitle": "Get a new Child ID?",
+    "regenerateBody": "The old ID will stop working for new requests. People already on the team keep their access, and requests already sent stay open.",
+    "regenerateConfirm": "Yes, get a new ID",
+    "cancel": "Cancel"
+  },
+  "careTeam": {
+    "back": "Back to home",
+    "title": "{name}'s care team",
+    "subtitle": "Teachers and specialists see {name}'s profile only after you approve them. You can remove anyone at any time.",
+    "pendingTitle": "Waiting for you",
+    "verified": "Verified",
+    "registration": "Reg. no. {number}",
+    "requestedWith": "Asked with ID {code} · {time}",
+    "canSee": "What they can see",
+    "logs": "Logs and progress",
+    "logsHint": "Always on for every team member",
+    "always": "Always",
+    "medications": "Share medicines",
+    "medicationsHint": "Medicine names, doses and times",
+    "medicationsClinical": "Medicines",
+    "medicationsClinicalHint": "Doctors and therapists always see medicines",
+    "documents": "Share documents",
+    "documentsHint": "Prescriptions, reports and school notes",
+    "approve": "Approve",
+    "decline": "Decline",
+    "membersTitle": "Team",
+    "you": "You · {name}",
+    "owner": "Owner — can see and change everything",
+    "joined": "Joined {date}",
+    "tags": {
+      "medications": "Medicines",
+      "documents": "Documents"
+    },
+    "edit": "Change what {name} can see",
+    "save": "Save",
+    "cancel": "Cancel",
+    "remove": "Remove",
+    "removeTitle": "Remove {name} from the team?",
+    "removeBody": "They lose access straight away. They can ask again later with the Child ID.",
+    "removeConfirm": "Yes, remove",
+    "emptyMembers": "No one else yet. Share {name}'s Child ID with their teacher or doctor.",
+    "activityTitle": "Activity",
+    "activityEmpty": "Nothing yet. Every time someone on the team views or changes {name}'s record, it shows here."
+  },
+  "activity": {
+    "you": "You",
+    "times": "{count} times",
+    "read": "{actor} viewed {what}",
+    "write": "{actor} added {what}",
+    "use": "{actor} used {what}",
+    "suggest": "{actor} suggested {what}",
+    "request": "{actor} asked to join the care team",
+    "approve": "{actor} approved {subject}'s request",
+    "decline": "{actor} declined {subject}'s request",
+    "cancel": "{actor} withdrew their request",
+    "revoke": "{actor} removed {subject} from the team",
+    "update": "{actor} changed what {subject} can see",
+    "regenerate": "{actor} made a new Child ID",
+    "other": "{actor} changed the record",
+    "resources": {
+      "profile": "the profile",
+      "diagnosis": "the diagnosis",
+      "care_plan": "the care plan",
+      "medications": "the medicines",
+      "documents": "the documents",
+      "screenings": "the screening results",
+      "logs": "the logs",
+      "clinical_logs": "the clinical notes",
+      "clinical_notes": "a clinical note",
+      "goals": "a goal",
+      "chat": "the assistant",
+      "other": "the record"
+    }
+  },
+  "access": {
+    "requestTitle": "Request access to a child",
+    "requestHint": "Ask the parent for their child's Shohojatri ID. They'll see your name, your school or clinic, and your message.",
+    "code": "Child ID",
+    "codePlaceholder": "SJ-7K3QX",
+    "message": "Message to the parent",
+    "messagePlaceholder": "e.g. I'm Rafi's class teacher at Alor Poth school",
+    "submit": "Send request",
+    "sentTitle": "Request sent",
+    "sent": "If this ID is right, the parent has been told. The child will appear here once they approve.",
+    "requestsTitle": "Your requests",
+    "sentOn": "Sent {date}",
+    "withdraw": "Withdraw",
+    "expiresNote": "A request closes after 14 days if the parent doesn't answer.",
+    "status": {
+      "pending": "Waiting",
+      "approved": "Approved",
+      "declined": "Declined",
+      "expired": "Closed",
+      "cancelled": "Withdrawn"
+    },
+    "qrLanding": {
+      "title": "This QR code is for teachers and specialists",
+      "body": "They scan it to ask to join a child's care team. Parents don't need to do anything here.",
+      "home": "Go to my home"
+    }
+  },
+  "notifications": {
+    "label": "Notifications",
+    "labelUnread": "Notifications, {count} new",
+    "title": "Notifications",
+    "empty": "Nothing new right now.",
+    "markAll": "Mark all as read",
+    "kinds": {
+      "access_request_received": "{requester} ({role}) asked to join {child}'s care team",
+      "access_request_approved": "The parent approved your request — you can now see {child}'s profile",
+      "access_request_declined": "The parent declined your request for {code}"
     }
   },
   "admin": {
@@ -202,6 +575,703 @@
     "phone_taken": "There's already an account with this number. Try logging in.",
     "organisation_required": "Add your school's name.",
     "wrong_password": "Your current password doesn't match.",
-    "password_unchanged": "Choose a password that's different from the current one."
+    "password_unchanged": "Choose a password that's different from the current one.",
+    "invalid_child_code": "That doesn't look like a Child ID. It has SJ- and 5 letters or numbers, like SJ-7K3QX.",
+    "access_request_limit": "You've sent 10 requests in the last 24 hours. Please try again tomorrow.",
+    "request_not_pending": "This request has already been answered or has closed.",
+    "dob_in_future": "The date of birth can't be in the future.",
+    "screening_age_out_of_range": "This screening is for children aged 12 months to 6 years.",
+    "screening_in_progress": "This child already has an unfinished screening. You can continue it from home.",
+    "consent_required": "Please read the four points and agree first.",
+    "consent_outdated": "The consent text has changed. Please reload the page and read it again.",
+    "invalid_option": "That answer isn't one of the choices. Please choose again.",
+    "other_needs_mapping": "Please confirm what your written answer means first.",
+    "other_text_required": "Please write your answer.",
+    "other_not_mapped": "We couldn't save that answer. Please try again.",
+    "questionnaire_incomplete": "Some questions still need an answer.",
+    "screening_finalized": "This screening is finished and can't be changed any more.",
+    "screening_not_finalized": "The result isn't ready yet. Finish the screening first.",
+    "invalid_variant": "That game can't be played that way. Please try again.",
+    "payload_too_large": "This game's recording is too long to send. Please try the game again.",
+    "length_required": "We couldn't send this game's measurements. Please try again.",
+    "share_not_found": "We couldn't find this report. Check the link.",
+    "share_revoked": "This link has been closed by the parent.",
+    "share_expired": "This link has closed."
+  },
+  "demo": {
+    "profiles": {
+      "typical": "child without early signs",
+      "elevated": "child with several early signs",
+      "noisy": "poor light and a noisy room"
+    },
+    "run": {
+      "title": "Looking at the games",
+      "subtitle": "Only measurements are used — no video or sound leaves this device.",
+      "calibration": "Eye check",
+      "result": "Putting the result together",
+      "done": "Done",
+      "error": "Something went wrong while preparing the result. Your answers are saved."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "demo": {
+      "title": "Demo screening mode",
+      "body": "For showing Shohojatri without a camera: the games are replayed from a recorded sample session, and the result and reports are labelled “Demo”. This setting is saved on this device only.",
+      "toggle": "Use demo mode",
+      "profile": "Sample session to replay"
+    }
+  },
+  "results": {
+    "title": "{name}'s result",
+    "meta": "{name} · {age} · {date}",
+    "gaugeLabel": "Early-signs score",
+    "gaugeMax": "out of 100",
+    "gaugeAria": "Score {value} out of 100",
+    "scoreNote": "The score reflects how many early signs we noticed today, not the chance of having autism.",
+    "classes": {
+      "low": "Low",
+      "moderate": "Moderate",
+      "elevated": "Elevated",
+      "high": "High"
+    },
+    "headline": {
+      "low": "Few early signs today",
+      "moderate": "Some early signs",
+      "elevated": "Several early signs",
+      "high": "Many early signs",
+      "incomplete": "Not enough to go on yet"
+    },
+    "support": "The earlier support starts, the more children can grow. We're with you at every step.",
+    "meaning": {
+      "low": "In this screening we noticed few early signs that need extra attention. Every child grows at their own pace, so keep watching and enjoying how {name} grows.",
+      "moderate": "Some of {name}'s responses were a little different from what we usually see at this age. Many children catch up in these areas, but it's good to talk to a doctor.",
+      "elevated": "Several of {name}'s responses were different from what many children this age do. A specialist can look more closely and tell you what support would help {name}.",
+      "high": "Many of {name}'s responses were different from what children this age usually do. This is not because of anything you did. The sooner a specialist sees {name}, the sooner support can start.",
+      "incomplete": "Too many answers were “Not sure”, and no game could be measured, so we can't give a score this time."
+    },
+    "notDiagnosis": "This is not a diagnosis. It helps you decide on the next step.",
+    "sections": {
+      "meaning": "What this means",
+      "noticed": "What we noticed",
+      "wentWell": "What went well",
+      "next": "What you can do now"
+    },
+    "noticedEmpty": "Nothing stood out today that needs extra attention.",
+    "keepPlaying": "Keep playing face to face every day: name things, take turns, and enjoy {name}'s smiles.",
+    "sources": {
+      "task": "Game: {game}",
+      "item": "Your answer · Question {n}"
+    },
+    "confidence": {
+      "title": "How sure is this result: {level}",
+      "levels": {
+        "high": "Good",
+        "medium": "Fair",
+        "low": "Limited"
+      },
+      "body": {
+        "high": "Based on your answers and {games, plural, one {# game} other {# games}} that could be measured well.",
+        "medium": "Based on your answers and {games, plural, one {# game} other {# games}}. Some were hard to measure, so the result is a little less certain.",
+        "low": "This result is based mostly on your answers. For a clearer picture, try the activities again in good light."
+      },
+      "lowCoverage": "Several questions were answered “Not sure”, which also makes it less certain.",
+      "notCounted": "Not counted: {list}",
+      "lowQuality": "Harder to measure: {list}",
+      "taskReason": "{game} ({reason})"
+    },
+    "reasons": {
+      "skipped": "skipped",
+      "no_data": "nothing was recorded",
+      "face_not_visible": "the face wasn't visible",
+      "body_not_visible": "the body wasn't visible",
+      "gaze_not_tracked": "we couldn't follow where the child looked",
+      "not_enough_valid_trials": "not enough clear tries",
+      "low_light": "not enough light"
+    },
+    "actions": {
+      "share": "Share the report with a doctor",
+      "specialists": "Find specialists near me",
+      "chat": "Ask about my results",
+      "soon": "Coming soon",
+      "parentReport": "Open my report (print or PDF)",
+      "doctorReport": "Open the doctor report",
+      "home": "Back to home"
+    },
+    "reportNo": "Shohojatri screening · Report no. {no}",
+    "demoBanner": "Demo: the games were replayed from a recorded sample session, not measured from {name}."
+  },
+  "findings": {
+    "rtn": {
+      "responded": "{name} turned toward their name in {responded, number} of {valid, number} tries (after about {latency_s, number} seconds)",
+      "no_response": "{name} didn't turn toward their name in {valid, number} tries"
+    },
+    "joint_attention": {
+      "followed": "Looked toward the toy that was pointed at in {followed, number} of {valid, number} tries"
+    },
+    "imitation": {
+      "copied": "Copied {copied, number} of {valid, number} actions{attempted, plural, =0 {} other {, and tried # more}}"
+    },
+    "gaze_preference": {
+      "social": "Watched the singing children more than the moving shapes",
+      "geometric": "Watched the moving shapes more than the children ({geometric_pct, number}% of the time)"
+    },
+    "free_play": {
+      "repetitive_movement": "Repeated upper-body movement was seen {episodes, plural, one {once} other {# times}} during play"
+    },
+    "items": {
+      "q01": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} looks or responds when you call {name}'s name",
+        "strength": "Responds when you call {name}'s name"
+      },
+      "q02": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} looks at your eyes when you talk or play",
+        "strength": "Looks at your eyes when you talk or play"
+      },
+      "q03": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} looks where you point",
+        "strength": "Looks where you point"
+      },
+      "q04": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} points to show you something interesting",
+        "strength": "Points to show you interesting things"
+      },
+      "q05": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} points to ask for things out of reach",
+        "strength": "Points to ask for things out of reach"
+      },
+      "q06": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} brings things just to show you",
+        "strength": "Brings things just to show you"
+      },
+      "q07": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} smiles back when you smile",
+        "strength": "Smiles back when you smile"
+      },
+      "q08": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} copies what you do, like waving or clapping",
+        "strength": "Copies what you do, like waving or clapping"
+      },
+      "q09": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} plays pretend, like feeding a doll",
+        "strength": "Plays pretend, like feeding a doll"
+      },
+      "q10": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} shows interest in other children",
+        "strength": "Shows interest in other children"
+      },
+      "q11": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} tries to get you to watch them",
+        "strength": "Wants you to watch what they do"
+      },
+      "q12": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} follows a simple instruction without pointing",
+        "strength": "Follows simple instructions without pointing"
+      },
+      "q13": {
+        "concern": "{option, select, single_words {Mostly communicates with single words} sounds_gestures {Mostly communicates with sounds and gestures} other {Rarely tries to communicate}}",
+        "strength": "{option, select, sentences {Puts two or more words together} other {Uses words to communicate}}"
+      },
+      "q14": {
+        "concern": "{option, select, sometimes {Only sometimes} other {Rarely}} looks at your face when something new happens",
+        "strength": "Looks at your face when something new happens"
+      },
+      "q15": {
+        "concern": "{option, select, usually {Often} other {Sometimes}} flaps hands, rocks, or moves fingers near the eyes"
+      },
+      "q16": {
+        "concern": "{option, select, usually {Often} other {Sometimes}} lines up toys or repeats the same action with an object"
+      },
+      "q17": {
+        "concern": "{option, select, usually {Often} other {Sometimes}} gets very upset by everyday sounds"
+      },
+      "q18": {
+        "concern": "{option, select, usually {Often} other {Sometimes}} stares at lights or spinning things, or smells or licks objects"
+      },
+      "q19": {
+        "concern": "Has stopped using some words or skills they used to have"
+      }
+    }
+  },
+  "recommendations": {
+    "class": {
+      "low": "Keep enjoying everyday play and watching milestones. Screen again in 3–6 months, or any time you are worried.",
+      "moderate": "Talk to a child doctor within about a month and show this report. Screen again in 1–2 months.",
+      "elevated": "We recommend a developmental assessment by a specialist in the next few weeks.",
+      "high": "Please arrange a developmental assessment with a specialist soon. Early support makes a real difference."
+    },
+    "incomplete": "Try the screening again when you can: answer what you've noticed, and do the games in good light.",
+    "regression": "Losing words or skills should be checked by a doctor soon, whatever the score.",
+    "hearing_test": "Get {name}'s hearing checked, so a hearing problem isn't missed."
+  },
+  "share": {
+    "title": "Share the report",
+    "intro": "Anyone with the link can open the doctor report — no app needed. They can only read it, not change it.",
+    "expiry": "How long the link stays open",
+    "days": "{days, plural, =1 {24 hours} other {# days}}",
+    "create": "Make a link",
+    "closesOn": "Closes by itself on {date}",
+    "onceNote": "For safety, a link is shown only now. Copy or send it before you close this. You can make a new one any time.",
+    "linkLabel": "Link to the doctor report",
+    "copy": "Copy",
+    "copied": "Copied",
+    "whatsapp": "Send on WhatsApp",
+    "whatsappText": "Developmental screening report for {name} (Shohojatri): {url}",
+    "showQr": "Show QR",
+    "qrHint": "Scanning this with a phone camera opens {name}'s report.",
+    "links": "Links you've made",
+    "linkMade": "Made {date}",
+    "views": "{views, plural, =0 {Not opened yet} one {Opened once} other {Opened # times}}",
+    "status": {
+      "active": "Open until {date}",
+      "expired": "Closed by itself",
+      "revoked": "Closed by you"
+    },
+    "revoke": "Close this link now",
+    "revokedToast": "The link is closed. Nobody can open the report with it any more."
+  },
+  "report": {
+    "print": "Download PDF",
+    "printHint": "Choose “Save as PDF” in the print window.",
+    "back": "Back to the result",
+    "language": "Report language",
+    "demo": "DEMO — replayed sample data, not a real child's measurements",
+    "footer": "Screening aid, not a diagnosis. Interpret alongside clinical assessment.",
+    "generated": "Generated {date}",
+    "parent": {
+      "title": "{name}'s screening report",
+      "copy": "Parent's copy",
+      "child": "Child",
+      "age": "Age",
+      "date": "Screening",
+      "reportNo": "Report no.",
+      "questions": "What I want to ask the doctor",
+      "tagline": "Shohojatri — beside you as your child grows",
+      "onlineTitle": "Full report online",
+      "onlineBody": "Make a share link from the result page to add a QR code here."
+    },
+    "clinician": {
+      "title": "Developmental screening report",
+      "copy": "Clinician copy · Confidential",
+      "ids": {
+        "child": "Child",
+        "sex": "Sex",
+        "dob": "Date of birth",
+        "age": "Age at screening",
+        "ageValue": "{months} months ({age})",
+        "informant": "Informant",
+        "date": "Screening date",
+        "setting": "Setting",
+        "settingValue": "Home, parent-guided",
+        "device": "Device",
+        "noDevice": "No camera activities",
+        "deviceValue": "{type, select, phone {Phone} laptop {Laptop/tablet} other {Device}} · {camera, select, front {front camera} rear {rear camera} other {camera}}",
+        "version": "Versions",
+        "reportNo": "Report ID"
+      },
+      "sex": {
+        "female": "Female",
+        "male": "Male",
+        "unknown": "Not given"
+      },
+      "score": "Developmental concern score",
+      "scoreValue": "{score} / 100",
+      "noScore": "No score: nothing was scorable",
+      "summary": "Summary",
+      "class": "Class",
+      "confidence": "Confidence",
+      "floor": "Class raised from {from} to {to} because {rule, select, regression {the parent reported loss of words or skills (q19)} other {3 or more critical items were failed}}.",
+      "components": "Score components",
+      "component": "{name}: concern {concern}, weight {share}% → {points} points",
+      "questionnaireName": "Questionnaire",
+      "topConcerns": "Main concerns",
+      "strengths": "Strengths observed",
+      "redFlags": "Red flags & recommendations",
+      "regressionFlag": "Parent reports loss of words or skills (q19). Please clarify the history.",
+      "failedCritical": "Critical items with concern: {items}",
+      "noRedFlags": "No red flags.",
+      "questionnaire": "Questionnaire responses",
+      "questionnaireSub": "Parent-reported · {count} items · {flagged} with concern",
+      "coverage": "{scorable} of {eligible} items scorable",
+      "cols": {
+        "n": "#",
+        "item": "Item",
+        "domain": "Domain",
+        "response": "Response",
+        "concern": "Concern",
+        "flag": "Flag",
+        "activity": "Activity",
+        "trial": "Trial",
+        "target": "Prompt / target",
+        "result": "Response",
+        "latency": "Latency",
+        "valid": "Valid"
+      },
+      "critical": "Critical",
+      "atRisk": "Concern",
+      "failed": "Failed (critical)",
+      "notScored": "not scored",
+      "unanswered": "No answer",
+      "otherText": "Parent's words: “{text}”",
+      "mappedBy": "{ai, select, true {AI suggested this answer; the parent confirmed it} other {Chosen by the parent}}",
+      "itemsNote": "Illustrative item set ({version}), not a validated instrument. “Concern” marks answers scored toward concern. Free-text answers are shown verbatim and were confirmed by the parent.",
+      "note": "Parent's note",
+      "activities": "Activity metrics",
+      "activitiesSub": "Derived on the device from guided camera activities. No video or audio was stored.",
+      "taskStatus": {
+        "ok": "Measured",
+        "low": "Low quality",
+        "inconclusive": "Not counted"
+      },
+      "variant": {
+        "on_screen": "on-screen",
+        "live": "live, with parent"
+      },
+      "metrics": {
+        "rtn": "Oriented {responded}/{valid} valid trials · mean latency {latency}",
+        "joint_attention": "Followed {followed}/{valid} valid trials ({variant})",
+        "imitation": "Imitated {copied}/{valid} actions · attempted {attempted}",
+        "gaze_preference": "Geometric side {geometric}% of tracked gaze · tracked {tracked}% of the time",
+        "free_play": "{episodes} repetitive-movement episodes ({arm} arm/hand, {rocking} rocking), {seconds} s in total · vocalising {vocal} s"
+      },
+      "calibration": {
+        "ok": "fitted",
+        "fallback": "fallback (head turn only)"
+      },
+      "trials": "Trial-level data",
+      "trial": {
+        "rtnTarget": "Name called",
+        "jaTarget": "Point → {side, select, left {left} other {right}}",
+        "oriented": "Oriented",
+        "noOrient": "No orienting",
+        "followed": "Followed",
+        "lookedOther": "Looked to the other side",
+        "noLook": "No look",
+        "outcome": {
+          "detected": "Imitated",
+          "attempt": "Attempted",
+          "none": "No response"
+        },
+        "action": {
+          "arms_up": "Arms up",
+          "clap": "Clap",
+          "wave": "Wave",
+          "touch_head": "Hands on head"
+        },
+        "movement": {
+          "arm": "Arm/hand movement",
+          "rocking": "Rocking"
+        },
+        "episode": "{start}–{end} s",
+        "estimated": "voice onset estimated",
+        "invalid": {
+          "pre_state_facing": "excluded: already facing",
+          "face_not_visible": "excluded: face not visible",
+          "something_wrong": "excluded: parent flagged a problem",
+          "not_attending": "excluded: not attending at start",
+          "no_baseline": "excluded: no baseline",
+          "body_not_visible": "excluded: body not visible"
+        }
+      },
+      "seconds": "{value} s",
+      "method": "Method",
+      "methodBody": "A {items}-item parent questionnaire is combined with up to five guided camera activities, measured on the parent's device. Weights (renormalised over what was completed): questionnaire {q}%, response to name {rtn}%, joint attention {ja}%, imitation {im}%, look & watch {gp}%, free play {fp}%. Classes: Low ≤ {low} · Moderate ≤ {moderate} · Elevated ≤ {elevated} · High ≤ 100. Floors: loss of skills → at least Moderate; 3+ failed critical items → at least Elevated. Scoring version {version}.",
+      "limits": "Heuristic proof of concept: weights, thresholds and items are placeholders, not a validated instrument, with no sensitivity or specificity claims. Not diagnostic. The animated look & watch stimulus is not validated. Lighting, camera angle and the child's mood affect the measurements.",
+      "online": "Open the online report",
+      "onlineUntil": "Link valid until {date}. The parent can close it at any time.",
+      "noLink": "To add a QR code, make a share link from the result page.",
+      "headerChild": "{name} · {months} mo",
+      "excluded": "Not counted: {reason}",
+      "qualityParts": {
+        "face": "Face seen {pct}%",
+        "pose": "Body seen {pct}%",
+        "calibration": "Calibration: {value}",
+        "light": "Light {value}/255",
+        "noise": "Background noise {value} dBFS",
+        "trials": "{count} valid trials"
+      },
+      "gamesCounted": "{games} of {total} activities counted{lowCoverage, select, true {; under 80% of items scorable} other {}}"
+    },
+    "shared": {
+      "intro": "{name}'s parent shared this report with you through Shohojatri. It is read-only.",
+      "validUntil": "Link open until {date}",
+      "expiredTitle": "This link has closed",
+      "expired": "Share links close after a set time. Ask the parent to send a new one.",
+      "revokedTitle": "The parent closed this link",
+      "revoked": "This report can't be opened with this link any more. Ask the parent if you need it.",
+      "notFoundTitle": "We couldn't find this report",
+      "notFound": "Check that the whole link was copied, or ask the parent to send it again."
+    },
+    "qr": {
+      "add": "Add a QR code",
+      "addHint": "Makes a link to the doctor report that stays open for 30 days.",
+      "scan": "Scan to open the online report"
+    }
+  },
+  "activities": {
+    "stage": {
+      "cameraOn": "Camera is on",
+      "stop": "Stop",
+      "skip": "Skip",
+      "wrong": "Something went wrong"
+    },
+    "camera": {
+      "back": "Back",
+      "askTitle": "The games need your camera and microphone",
+      "askBody": "We use the camera and microphone to see how your child responds. Your browser will ask for permission next.",
+      "promise": {
+        "onlyGames": "On only during the games",
+        "staysHere": "Picture and sound never leave this device — only numbers (measurements) are sent",
+        "nothingSaved": "No video or audio is recorded or saved"
+      },
+      "turnOn": "Turn on camera",
+      "later": "Maybe later",
+      "tryAgain": "Try again",
+      "deniedTitle": "Camera or microphone access is turned off",
+      "deniedBody": "No problem — your answers are saved. To play the games, allow access in your browser’s settings and try again.",
+      "deniedSteps": {
+        "one": "Tap the lock next to the address bar",
+        "two": "Open “Permissions” or “Site settings”",
+        "three": "Camera and microphone → Allow, then tap “Try again”"
+      },
+      "failed": {
+        "busy": {
+          "title": "The camera won’t start",
+          "body": "Another app may be using the camera. Close it and try again — your progress is saved."
+        },
+        "not_found": {
+          "title": "No camera or microphone found",
+          "body": "The games need both a camera and a microphone. Try another phone or laptop."
+        },
+        "failed": {
+          "title": "The camera won’t start",
+          "body": "Something went wrong. Try again in a moment — your progress is saved."
+        },
+        "models": {
+          "title": "The games couldn’t load",
+          "body": "The files the games need couldn’t download. Check your internet connection and try again."
+        }
+      },
+      "unsupportedTitle": "The games can’t run in this browser",
+      "unsupportedBody": "Open this page in Chrome on an Android phone, or in Chrome or Edge on a computer.",
+      "unsupportedInsecure": "For safety, browsers only allow the camera on secure (https://) addresses. Open Shohojatri from its https address.",
+      "lessCertain": "A result from the questions alone is less certain.",
+      "answersOnly": "See the result without the games",
+      "loadingTitle": "Getting the games ready…",
+      "loadingBody": "The first time can take a little while. Everything runs on this device."
+    },
+    "setup": {
+      "back": "Back",
+      "title": "Quick setup check",
+      "subtitle": "Sit {name} in front of the camera. Start when everything below is green.",
+      "live": "Live · only on this device",
+      "thisIsMyChild": "This is my child’s face",
+      "twoFaces": "Two faces are in view. Tap {name}’s face once.",
+      "checks": {
+        "devices": {
+          "waiting": "Camera and microphone starting",
+          "ok": "Camera and microphone are on",
+          "fix": "Camera and microphone are off"
+        },
+        "light": {
+          "waiting": "Checking the light…",
+          "ok": "The light is good",
+          "fix": "It’s a bit dark"
+        },
+        "face": {
+          "waiting": "Looking for a face…",
+          "ok": "We can see {name}’s face",
+          "fix": "We can’t see {name}’s face well yet"
+        },
+        "noise": {
+          "waiting": "Listening to the room…",
+          "ok": "The room is quiet",
+          "fix": "It’s a bit noisy"
+        }
+      },
+      "tips": {
+        "light": "Please turn on a light or move near a window.",
+        "closer": "Move a little closer.",
+        "noFace": "Make sure {name}’s face is toward the camera.",
+        "noise": "Turn off the TV or fan if you can."
+      },
+      "deviceQuestion": "What are you using?",
+      "device": {
+        "phone": "A phone (I’ll hold it)",
+        "laptop": "A laptop or tablet (on a table)"
+      },
+      "deviceHint": {
+        "phone": "In the name game you’ll hold the phone with the back camera on your child.",
+        "laptop": "The device stays on a table, facing your child."
+      },
+      "start": "Start the games",
+      "continueAnyway": "Continue anyway"
+    },
+    "task": {
+      "gameCount": "Game {n, number} of {total, number}",
+      "eyeCheck": "Eye check",
+      "start": "Start",
+      "playAgain": "Play again",
+      "skip": "Skip this game",
+      "nextGame": "Next game",
+      "toResult": "See the result",
+      "uploading": "Sending the measurements…",
+      "errorTitle": "The game couldn’t be finished",
+      "errorBody": "Try sending again, or play the game again.",
+      "sendAgain": "Send again",
+      "cameraSwitchFailed": "Couldn’t switch the camera. Please try again."
+    },
+    "outcome": {
+      "good": {
+        "title": "Done!",
+        "body": "We could see {name} well."
+      },
+      "fair": {
+        "title": "Done, but not fully clear",
+        "body": "The camera didn’t always see {name}, so this game counts with less certainty. You can play it again if you like."
+      },
+      "none": {
+        "title": "We couldn’t measure this game",
+        "body": "It won’t count in the score, and never as a concern. Play again if you like, or go on."
+      },
+      "skipped": {
+        "title": "Skipped",
+        "body": "Skipped games don’t count in the score."
+      },
+      "calibration": {
+        "ok": {
+          "title": "Eye check done",
+          "body": "We can now tell where {name} is looking."
+        },
+        "fallback": {
+          "title": "The eye check didn’t fully work",
+          "body": "The games still work, but the looking games will be less certain."
+        },
+        "skipped": {
+          "title": "Eye check skipped",
+          "body": "The looking games will be less certain."
+        }
+      },
+      "reason": "Why: {reason}"
+    },
+    "status": {
+      "good": "Done",
+      "fair": "Less clear",
+      "none": "Not measured",
+      "skipped": "Skipped",
+      "now": "Now",
+      "todo": "To do"
+    },
+    "calibration": {
+      "title": "Follow the star",
+      "subtitle": "A six-second game so we can tell where on the screen {name} is looking.",
+      "how1": "Sit with {name} on your lap, 40–60 cm from the screen (about an arm’s length).",
+      "how2": "A star will move across the screen. Ask {name} to watch it.",
+      "running": "{name} is watching the star"
+    },
+    "nameCall": {
+      "title": "Calling their name",
+      "subtitle": "We’ll see whether {name} looks up when you call during play.",
+      "setupPhone": "Hold the phone yourself, back camera on {name}, 1–1.5 m away and a little to the side of where {name} is looking.",
+      "setupLaptop": "Put the device on a table facing {name}, and stand right behind it.",
+      "setupToy": "Let {name} play with a toy.",
+      "setupCall": "When the screen says so, say “{name}” once in your normal voice. Don’t wave or touch.",
+      "tryCount": "Try {n, number} of {total, number}",
+      "waiting": "{name} is playing…",
+      "waitingHow": "Wait — we’ll tell you when.",
+      "callNow": "Call their name now, once",
+      "callHow": "In your normal voice — “{name}”",
+      "watching": "Watching…",
+      "watchingHow": "Don’t call again — just stay still.",
+      "wrongNoted": "That try won’t count — we’ll do one more."
+    },
+    "point": {
+      "title": "Look where I point",
+      "subtitle": "We’ll see whether {name} looks where someone points.",
+      "variantQuestion": "How would you like to play?",
+      "onScreen": "On the screen",
+      "onScreenHow": "A friendly character points at a toy.",
+      "live": "With me (live)",
+      "liveHow": "You point at a real toy in the room while the phone watches.",
+      "onScreenSetup": "Sit with {name} on your lap, 40–60 cm from the screen.",
+      "onScreenParent": "During the game, look down at {name}’s head, not the screen, so you don’t give away where to look.",
+      "liveSetupPhone": "Hold the phone in one hand, back camera on {name}. Put a favourite toy about 1 m to one side of {name}.",
+      "liveSetupLaptop": "Put the device facing {name}. Put a favourite toy about 1 m to one side of {name}.",
+      "liveSteps": "Each time: put the toy on the side the screen asks for, tap that side of the picture, then say “Look!” and point at it.",
+      "tryCount": "Try {n, number} of {total, number}",
+      "placeLeft": "Place the toy so it shows on the left of the picture, then tap the left",
+      "placeRight": "Place the toy so it shows on the right of the picture, then tap the right",
+      "tapHere": "The toy is here",
+      "tapLeft": "The toy is on the left",
+      "tapRight": "The toy is on the right",
+      "sayLook": "Now say “Look!”",
+      "sayLookHow": "And point at the toy. Then stay still and see what {name} does.",
+      "wrongNoted": "That try won’t count."
+    },
+    "copy": {
+      "title": "Copy me",
+      "subtitle": "We’ll see whether {name} copies simple moves.",
+      "variantQuestion": "Who shows the moves?",
+      "onScreen": "The character on screen",
+      "onScreenHow": "The character shows four moves, then it’s {name}’s turn.",
+      "live": "Me (live)",
+      "liveHow": "You show the moves beside the device, after a 3-2-1 countdown.",
+      "setup": "Stand the device on a table. {name} sits or stands 1.2–1.5 m away, so head, shoulders and both hands are in the picture.",
+      "bodyOk": "We can see {name}’s shoulders and hands",
+      "bodyFix": "Get {name}’s head, shoulders and hands into the picture — move a little further back",
+      "childTurn": "{name}’s turn — watching…",
+      "liveYou": "You show: {move}",
+      "moves": {
+        "arms_up": "Arms up (“So big!”)",
+        "clap": "Clap",
+        "wave": "Wave",
+        "touch_head": "Touch head"
+      },
+      "wrongNoted": "That move won’t count."
+    },
+    "look": {
+      "title": "Look and watch",
+      "subtitle": "A 40-second video — we’ll see which side {name} watches more.",
+      "setup": "Sit with {name} on your lap, 40–60 cm from the screen. Don’t say anything, just let {name} watch.",
+      "optional": "This game is optional — you can skip it."
+    },
+    "freePlay": {
+      "title": "Free play",
+      "subtitle": "Two minutes of ordinary play together.",
+      "setup": "Stand the device on a table so {name} is in the picture.",
+      "play": "Play with {name}’s own toys as you always do, and talk as usual.",
+      "running": "Play the way you always do.",
+      "left": "left",
+      "finishEarly": "Finish early",
+      "skip": "Skip",
+      "wrong": "Something went wrong",
+      "tipTalk": "Talk and sing",
+      "tipShare": "Share toys",
+      "inFrame": "{name} is in the picture",
+      "notInFrame": "Bring {name} into the picture"
+    },
+    "analysing": {
+      "title": "Putting {name}’s answers and games together…",
+      "subtitle": "The camera is off. Only the measurements are used.",
+      "working": "Preparing the result",
+      "retry": "Try again"
+    }
+  },
+  "demoBanner": {
+    "text": "Demo version — please don't enter real children's data",
+    "dismiss": "Dismiss this message"
+  },
+  "offline": {
+    "title": "You're offline",
+    "message": "Check your internet connection, then try again."
+  },
+  "pwa": {
+    "install": {
+      "title": "Add Shohojatri to your phone",
+      "body": "Open it from your home screen in one tap, like any other app.",
+      "button": "Install app",
+      "iosSteps": "In Safari, tap the Share button (a square with an arrow pointing up), then choose “Add to Home Screen”.",
+      "dismiss": "Not now"
+    }
   }
 }

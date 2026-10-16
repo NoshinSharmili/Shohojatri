@@ -21,6 +21,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/client-config": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Client Config */
+        get: operations["getClientConfig"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/auth/signup": {
         parameters: {
             query?: never;
@@ -179,16 +196,787 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/children": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Children
+         * @description The children on the viewer's home: a parent's own, or those a member was approved for.
+         */
+        get: operations["listChildren"];
+        put?: never;
+        /** Create Child */
+        post: operations["createChild"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/children/{child_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Child */
+        get: operations["getChild"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/children/{child_id}/regenerate-code": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Regenerate Code
+         * @description New Child ID. The old one stops working for new requests; current members keep access
+         *     and requests already sent stay open.
+         */
+        post: operations["regenerateChildCode"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/children/{child_id}/access-requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Child Access Requests */
+        get: operations["listChildAccessRequests"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/children/{child_id}/grants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Child Grants
+         * @description Active care-team members (the parent is implied).
+         */
+        get: operations["listChildGrants"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/children/{child_id}/activity": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Child Activity
+         * @description Who viewed or changed what, newest first (COMPANION_SPEC §3.2).
+         */
+        get: operations["listChildActivity"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/access-requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List My Access Requests */
+        get: operations["listMyAccessRequests"];
+        put?: never;
+        /**
+         * Create Access Request
+         * @description Always the same answer, whether or not the code belongs to a child (no enumeration).
+         */
+        post: operations["createAccessRequest"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/access-requests/{request_id}/approve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Approve Access Request */
+        post: operations["approveAccessRequest"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/access-requests/{request_id}/decline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Decline Access Request */
+        post: operations["declineAccessRequest"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/access-requests/{request_id}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Cancel Access Request */
+        post: operations["cancelAccessRequest"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/grants/{grant_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Revoke Grant
+         * @description Takes effect on the member's next request: every access re-checks the grant.
+         */
+        delete: operations["revokeGrant"];
+        options?: never;
+        head?: never;
+        /** Update Grant */
+        patch: operations["updateGrant"];
+        trace?: never;
+    };
+    "/api/v1/notifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Notifications */
+        get: operations["listNotifications"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/{notification_id}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Mark Read */
+        post: operations["markNotificationRead"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/read-all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Mark All Read */
+        post: operations["markAllNotificationsRead"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Screening */
+        post: operations["createScreening"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/children/{child_id}/screenings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Child Screenings */
+        get: operations["listChildScreenings"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Screening */
+        get: operations["getScreening"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete Screening
+         * @description The consent promise: the parent can delete a screening at any time, answers included.
+         */
+        delete: operations["deleteScreening"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/consent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Accept Consent */
+        post: operations["acceptScreeningConsent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/answers/{item_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Save Answer
+         * @description Saves one answer: a card, or (with `other_text`) the card the parent confirmed for their
+         *     own words. Unmapped items (q20) take `option: "other"` with the text as the answer.
+         */
+        put: operations["saveScreeningAnswer"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/answers/{item_id}/map-other": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Map Other
+         * @description Stores the parent's own words as an answer waiting for confirmation, and suggests the
+         *     closest card (SCREENING_SPEC §3.3). Without AI the status is `unavailable`.
+         */
+        post: operations["mapOtherAnswer"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/questionnaire": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Complete Questionnaire
+         * @description Ends Part 1 with the parent's optional free-text note. Every item needs an answer
+         *     ("Not sure" counts).
+         */
+        post: operations["completeQuestionnaire"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/tasks/{task}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Upload Task
+         * @description Stores one activity's features (never media) and scores it now, so the browser can offer
+         *     "Try again" (or retry a calibration that fell back). Uploading again replaces the task.
+         *     Finalize scores every stored task again, with the final calibration.
+         */
+        post: operations["uploadScreeningTask"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/tasks/{task}/skip": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Skip Task
+         * @description Skipped tasks are excluded from the score (and lower confidence), never counted as
+         *     concern (§1). A skipped calibration means gaze tasks use the fallback (§4.3).
+         */
+        post: operations["skipScreeningTask"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/finalize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Finalize Screening
+         * @description Scores the questionnaire and every stored task, combines them (§6) and stores the
+         *     result. Activities are optional: with none, the result rests on the answers (§1).
+         */
+        post: operations["finalizeScreening"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/report": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Report */
+        get: operations["getScreeningReport"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/screenings/{screening_id}/shares": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Shares */
+        get: operations["listReportShares"];
+        put?: never;
+        /**
+         * Create Share
+         * @description A read-only link to the doctor report. The token is returned once; only its hash is kept,
+         *     so a leaked database can't open reports.
+         */
+        post: operations["createReportShare"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/shares/{share_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Revoke Share
+         * @description By id rather than token: the parent's page can't show the token again after creating it.
+         */
+        delete: operations["revokeReportShare"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/share/{token}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Shared Report
+         * @description Public: anyone with the link sees the doctor report, read-only, until it expires or the
+         *     parent revokes it. Every open is counted.
+         */
+        get: operations["getSharedReport"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/demo/screening-tasks/{fixture_task}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Demo Task
+         * @description A sample session for one activity. It holds no child data, so any parent may fetch it;
+         *     the upload marks the screening as a demo. `elevated` by default (OPEN_QUESTIONS #13).
+         */
+        get: operations["getDemoTask"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * AccessRequestSent
+         * @description Same answer whether or not the code matched a child (COMPANION_SPEC §3.1).
+         */
+        AccessRequestSent: {
+            /**
+             * Status
+             * @default sent
+             * @constant
+             */
+            status?: "sent";
+        };
+        /**
+         * AccessRequestStatus
+         * @enum {string}
+         */
+        AccessRequestStatus: "pending" | "approved" | "declined" | "expired" | "cancelled";
+        /** ActivityActor */
+        ActivityActor: {
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            role: components["schemas"]["Role"];
+        };
+        /**
+         * ActivityEntry
+         * @description One line of "who viewed or changed what". Repeats of the same thing by the same person on
+         *     the same day are folded into one entry with a count.
+         */
+        ActivityEntry: {
+            actor: components["schemas"]["ActivityActor"];
+            /** Action */
+            action: string;
+            /** Resource */
+            resource: string;
+            /** Subject Name */
+            subject_name: string | null;
+            /**
+             * At
+             * Format: date-time
+             */
+            at: string;
+            /** Count */
+            count: number;
+        };
+        /** AnswerOut */
+        AnswerOut: {
+            /** Item Id */
+            item_id: string;
+            /** Option */
+            option: string;
+            /** Other Text */
+            other_text: string | null;
+            /** Mapped By Ai */
+            mapped_by_ai: boolean;
+            ai_mapping: components["schemas"]["OtherMappingOut"] | null;
+            /** Final */
+            final: boolean;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** AnswerRequest */
+        AnswerRequest: {
+            /** Option */
+            option: string;
+            /** Other Text */
+            other_text?: string | null;
+        };
+        /**
+         * ApproveAccessRequest
+         * @description Scope options (COMPANION_SPEC §3.2). Left out → the default for the requester's role:
+         *     teachers see neither medications nor documents; specialists see both.
+         */
+        ApproveAccessRequest: {
+            /** Share Medications */
+            share_medications?: boolean | null;
+            /** Share Documents */
+            share_documents?: boolean | null;
+        };
+        /**
+         * AudioEvent
+         * @description A YAMNet class for one 1-s window.
+         */
+        AudioEvent: {
+            /** T */
+            t: number;
+            /** Label */
+            label: string;
+            /** Score */
+            score: number;
+        };
+        /**
+         * CaptureQuality
+         * @description Capture conditions the browser measures and the scorer doesn't (§4.9).
+         */
+        CaptureQuality: {
+            /** Mean Luma */
+            mean_luma?: number | null;
+            /** Noise Db */
+            noise_db?: number | null;
+        };
         /** ChangePasswordRequest */
         ChangePasswordRequest: {
             /** Current Password */
             current_password?: string | null;
             /** New Password */
             new_password: string;
+        };
+        /** ChildCode */
+        ChildCode: {
+            /** Code */
+            code: string;
+        };
+        /**
+         * ChildOut
+         * @description A child as the viewer may see it: a home-screen card and the dashboard header.
+         */
+        ChildOut: {
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            /**
+             * Dob
+             * Format: date
+             */
+            dob: string;
+            /** Age Months */
+            age_months: number;
+            sex: components["schemas"]["Sex"] | null;
+            status: components["schemas"]["ChildStatus"];
+            access: components["schemas"]["Holder"];
+            /** Code */
+            code: string | null;
+            /** Pending Requests */
+            pending_requests: number;
+            /** Member Since */
+            member_since: string | null;
+        };
+        /**
+         * ChildStatus
+         * @enum {string}
+         */
+        ChildStatus: "screening" | "companion";
+        /** ClientConfig */
+        ClientConfig: {
+            /** Public Web Url */
+            public_web_url: string | null;
+        };
+        /** CompleteQuestionnaireRequest */
+        CompleteQuestionnaireRequest: {
+            /** Note */
+            note?: string | null;
+        };
+        /**
+         * Component
+         * @description One part of the score: the questionnaire or a valid task.
+         */
+        Component: {
+            /** Name */
+            name: "questionnaire" | components["schemas"]["TaskName"];
+            /** Weight */
+            weight: number;
+            /** Share */
+            share: number;
+            /** Concern */
+            concern: number;
+            /** Points */
+            points: number;
+        };
+        /**
+         * Confidence
+         * @enum {string}
+         */
+        Confidence: "low" | "medium" | "high";
+        /** ConsentRequest */
+        ConsentRequest: {
+            /** Version */
+            version: string;
+        };
+        /** CreateAccessRequest */
+        CreateAccessRequest: {
+            /** Child Code */
+            child_code: string;
+            /** Message */
+            message?: string | null;
+        };
+        /** CreateChildRequest */
+        CreateChildRequest: {
+            /** Name */
+            name: string;
+            /**
+             * Dob
+             * Format: date
+             */
+            dob: string;
+            sex?: components["schemas"]["Sex"] | null;
+        };
+        /** CreateScreeningRequest */
+        CreateScreeningRequest: {
+            /** Child Id */
+            child_id: number;
+            locale: components["schemas"]["Locale"];
+            informant: components["schemas"]["Informant"];
+        };
+        /** CreateShareRequest */
+        CreateShareRequest: {
+            /**
+             * Expires In Days
+             * @default 30
+             * @enum {integer}
+             */
+            expires_in_days?: 1 | 7 | 30;
         };
         /** CreateSpecialistRequest */
         CreateSpecialistRequest: {
@@ -213,6 +1001,36 @@ export interface components {
             /** Temporary Password */
             temporary_password: string;
         };
+        /**
+         * DemoTask
+         * @description `upload` is posted unchanged to `POST /screenings/{id}/tasks/{task}`.
+         */
+        DemoTask: {
+            /**
+             * Task
+             * @enum {string}
+             */
+            task: "calibration" | "rtn" | "joint_attention" | "imitation" | "gaze_preference" | "free_play";
+            upload: components["schemas"]["TaskUpload"];
+        };
+        /**
+         * DeviceInfo
+         * @description What the browser reports about the capture (shown in the doctor report).
+         */
+        DeviceInfo: {
+            /** Camera */
+            camera?: ("front" | "rear") | null;
+            /** Device Type */
+            device_type?: ("phone" | "laptop") | null;
+            /** Width */
+            width?: number | null;
+            /** Height */
+            height?: number | null;
+            /** Fps */
+            fps?: number | null;
+            /** User Agent */
+            user_agent?: string | null;
+        };
         /** ErrorBody */
         ErrorBody: {
             /** Code */
@@ -231,6 +1049,96 @@ export interface components {
         ErrorResponse: {
             error: components["schemas"]["ErrorBody"];
         };
+        /** ExcludedTask */
+        ExcludedTask: {
+            task: components["schemas"]["TaskName"];
+            reason: components["schemas"]["InconclusiveReason"] | null;
+        };
+        /**
+         * Finding
+         * @description One report sentence: `key` is a web i18n key, `params` fill it in. `source` is the task or
+         *     the questionnaire item it came from. `points` is its share of the 0-100 score (§6.5).
+         */
+        Finding: {
+            /** Key */
+            key: string;
+            /**
+             * Params
+             * @default {}
+             */
+            params?: {
+                [key: string]: number | string | null;
+            };
+            /**
+             * Polarity
+             * @enum {string}
+             */
+            polarity: "concern" | "strength";
+            /** Source */
+            source: string;
+            /** Points */
+            points?: number | null;
+        };
+        /** Floor */
+        Floor: {
+            /**
+             * Rule
+             * @enum {string}
+             */
+            rule: "regression" | "failed_critical";
+            from_class: components["schemas"]["RiskClass"];
+            to_class: components["schemas"]["RiskClass"];
+        };
+        /** Frame */
+        Frame: {
+            /** T */
+            t: number;
+            /**
+             * Face
+             * @default false
+             */
+            face?: boolean;
+            /** Yaw */
+            yaw?: number | null;
+            /** Pitch */
+            pitch?: number | null;
+            /** Nose Dx */
+            nose_dx?: number | null;
+            /** Iris X */
+            iris_x?: number | null;
+            /** Iris Y */
+            iris_y?: number | null;
+            /** Eye Open */
+            eye_open?: number | null;
+            /** Iod */
+            iod?: number | null;
+            pose?: components["schemas"]["Pose"] | null;
+            /** Rms Db */
+            rms_db?: number | null;
+        };
+        /** Grant */
+        Grant: {
+            /** Id */
+            id: number;
+            member: components["schemas"]["Person"];
+            scope: components["schemas"]["GrantScope"];
+            /** Share Medications */
+            share_medications: boolean;
+            /** Share Documents */
+            share_documents: boolean;
+            /** Can Add Logs */
+            can_add_logs: boolean;
+            /**
+             * Granted At
+             * Format: date-time
+             */
+            granted_at: string;
+        };
+        /**
+         * GrantScope
+         * @enum {string}
+         */
+        GrantScope: "education" | "clinical";
         /** HealthResponse */
         HealthResponse: {
             /**
@@ -245,6 +1153,135 @@ export interface components {
             database: "ok";
         };
         /**
+         * Holder
+         * @description How the viewer relates to the child.
+         * @enum {string}
+         */
+        Holder: "parent" | "education" | "clinical";
+        /** ImitationTrial */
+        ImitationTrial: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "imitation";
+            /**
+             * Action
+             * @enum {string}
+             */
+            action: "arms_up" | "clap" | "wave" | "touch_head";
+            /** Windows */
+            windows: number;
+            /** Outcome */
+            outcome: ("detected" | "attempt" | "none") | null;
+            /** Pose Share */
+            pose_share: number;
+            /** Valid */
+            valid: boolean;
+            /** Invalid Reason */
+            invalid_reason: ("body_not_visible" | "something_wrong") | null;
+            /** Concern */
+            concern: number | null;
+        };
+        /**
+         * IncomingAccessRequest
+         * @description A pending request as the child's parent sees it.
+         */
+        IncomingAccessRequest: {
+            /** Id */
+            id: number;
+            requester: components["schemas"]["Person"];
+            /** Message */
+            message: string | null;
+            /** Child Code */
+            child_code: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /**
+         * InconclusiveReason
+         * @enum {string}
+         */
+        InconclusiveReason: "skipped" | "no_data" | "face_not_visible" | "body_not_visible" | "gaze_not_tracked" | "not_enough_valid_trials";
+        /**
+         * Informant
+         * @description Who is answering (SCREENING_SPEC §2).
+         * @enum {string}
+         */
+        Informant: "mother" | "father" | "other_caregiver";
+        /** ItemOut */
+        ItemOut: {
+            /** Id */
+            id: string;
+            /** Domain */
+            domain: string;
+            type: components["schemas"]["ItemType"];
+            /** Text Bn */
+            text_bn: string;
+            /** Text En */
+            text_en: string;
+            /** Options */
+            options: string[];
+            /** Maps Other */
+            maps_other: boolean;
+        };
+        /** ItemResult */
+        ItemResult: {
+            /** Item Id */
+            item_id: string;
+            /** Option */
+            option: string | null;
+            /** Concern */
+            concern: number | null;
+            /** Weight */
+            weight: number;
+            /** Critical */
+            critical: boolean;
+            /** Failed */
+            failed: boolean;
+        };
+        /**
+         * ItemType
+         * @enum {string}
+         */
+        ItemType: "freq" | "communication" | "regression" | "hearing";
+        /** JointAttentionTrial */
+        JointAttentionTrial: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "joint_attention";
+            /** Trial */
+            trial: number;
+            /**
+             * Side
+             * @enum {string}
+             */
+            side: "left" | "right";
+            /** Cue Ms */
+            cue_ms: number;
+            /** First Look */
+            first_look: ("left" | "right") | null;
+            /** First Look Ms */
+            first_look_ms: number | null;
+            /** Followed */
+            followed: boolean;
+            /** Face Share */
+            face_share: number;
+            /** Attended Centre */
+            attended_centre?: boolean | null;
+            /** T0 Estimated */
+            t0_estimated?: boolean | null;
+            /** Valid */
+            valid: boolean;
+            /** Invalid Reason */
+            invalid_reason: ("face_not_visible" | "not_attending" | "no_baseline" | "something_wrong") | null;
+        };
+        /**
          * Locale
          * @enum {string}
          */
@@ -256,6 +1293,101 @@ export interface components {
             /** Password */
             password: string;
         };
+        /** MapOtherRequest */
+        MapOtherRequest: {
+            /** Other Text */
+            other_text: string;
+        };
+        /**
+         * MappingStatus
+         * @enum {string}
+         */
+        MappingStatus: "suggested" | "unclear" | "unavailable";
+        /**
+         * Marker
+         * @description One event in the task's timeline. Which fields are set depends on `type` (above).
+         */
+        Marker: {
+            /** T */
+            t: number;
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "prompt" | "engage" | "cue" | "response_window" | "target" | "stimulus" | "end" | "something_wrong";
+            /** Trial */
+            trial?: number | null;
+            /** Side */
+            side?: ("left" | "right") | null;
+            /** Pre State */
+            pre_state?: ("away" | "facing") | null;
+            /** Action */
+            action?: ("arms_up" | "clap" | "wave" | "touch_head") | null;
+            /** Attempt */
+            attempt?: number | null;
+            /** Position */
+            position?: ("left" | "centre" | "right") | null;
+            /** Social Side */
+            social_side?: ("left" | "right") | null;
+        };
+        /** MovementEpisode */
+        MovementEpisode: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "movement_episode";
+            /**
+             * Movement
+             * @enum {string}
+             */
+            movement: "arm" | "rocking";
+            /** Start Ms */
+            start_ms: number;
+            /** End Ms */
+            end_ms: number;
+        };
+        /**
+         * NotificationKind
+         * @enum {string}
+         */
+        NotificationKind: "access_request_received" | "access_request_approved" | "access_request_declined";
+        /** NotificationList */
+        NotificationList: {
+            /** Items */
+            items: components["schemas"]["NotificationOut"][];
+            /** Unread */
+            unread: number;
+        };
+        /** NotificationOut */
+        NotificationOut: {
+            /** Id */
+            id: number;
+            kind: components["schemas"]["NotificationKind"];
+            payload: components["schemas"]["NotificationPayload"];
+            /** Read At */
+            read_at: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /**
+         * NotificationPayload
+         * @description Parameters for the translated text. Which fields are set depends on `kind`.
+         */
+        NotificationPayload: {
+            /** Child Id */
+            child_id?: number | null;
+            /** Child Name */
+            child_name?: string | null;
+            /** Child Code */
+            child_code?: string | null;
+            /** Requester Name */
+            requester_name?: string | null;
+            requester_role?: components["schemas"]["Role"] | null;
+        };
         /** OkResponse */
         OkResponse: {
             /**
@@ -266,10 +1398,483 @@ export interface components {
             ok?: true;
         };
         /**
+         * OtherMappingOut
+         * @description `suggested`: confirm `option` or pick another card. `unclear` / `unavailable`: the parent
+         *     picks the closest card (or not_sure).
+         */
+        OtherMappingOut: {
+            status: components["schemas"]["MappingStatus"];
+            /** Option */
+            option: string | null;
+            /** Confidence */
+            confidence: number | null;
+            /** Reason */
+            reason: string | null;
+        };
+        /**
+         * OutgoingAccessRequest
+         * @description The requester's own view. Says nothing about the child, not even whether it exists.
+         */
+        OutgoingAccessRequest: {
+            /** Id */
+            id: number;
+            /** Child Code */
+            child_code: string;
+            /** Message */
+            message: string | null;
+            status: components["schemas"]["AccessRequestStatus"];
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Decided At */
+            decided_at: string | null;
+        };
+        /**
+         * Person
+         * @description A teacher or specialist as a parent sees them when deciding who joins the care team.
+         */
+        Person: {
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            role: components["schemas"]["Role"];
+            /** Organisation */
+            organisation: string | null;
+            /** Specialty */
+            specialty: string | null;
+            /** Registration No */
+            registration_no: string | null;
+            /** Verified */
+            verified: boolean;
+        };
+        /** Pose */
+        Pose: {
+            /** Nose */
+            nose?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** L Ear */
+            l_ear?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** R Ear */
+            r_ear?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** L Shoulder */
+            l_shoulder?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** R Shoulder */
+            r_shoulder?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** L Elbow */
+            l_elbow?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** R Elbow */
+            r_elbow?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** L Wrist */
+            l_wrist?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** R Wrist */
+            r_wrist?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** L Hip */
+            l_hip?: [
+                number,
+                number,
+                number
+            ] | null;
+            /** R Hip */
+            r_hip?: [
+                number,
+                number,
+                number
+            ] | null;
+        };
+        /** QuestionnaireSummary */
+        QuestionnaireSummary: {
+            /** Score */
+            score: number | null;
+            /** Eligible */
+            eligible: number;
+            /** Scorable */
+            scorable: number;
+            /** Low Coverage */
+            low_coverage: boolean;
+            /** Failed Critical */
+            failed_critical: string[];
+            /** Regression */
+            regression: boolean;
+            /** Hearing */
+            hearing: string | null;
+            /** Items */
+            items: components["schemas"]["ItemResult"][];
+        };
+        /** ReportChild */
+        ReportChild: {
+            /** Name */
+            name: string;
+            /**
+             * Dob
+             * Format: date
+             */
+            dob: string;
+            sex: components["schemas"]["Sex"] | null;
+        };
+        /**
+         * ReportItem
+         * @description One questionnaire row of the doctor report: the item, the answer and how it scored.
+         */
+        ReportItem: {
+            /** Item Id */
+            item_id: string;
+            /** Number */
+            number: number;
+            /** Domain */
+            domain: string;
+            type: components["schemas"]["ItemType"];
+            /** Critical */
+            critical: boolean;
+            /** Text Bn */
+            text_bn: string;
+            /** Text En */
+            text_en: string;
+            /** Option */
+            option: string | null;
+            /** Other Text */
+            other_text: string | null;
+            /** Mapped By Ai */
+            mapped_by_ai: boolean;
+            /** Concern */
+            concern: number | null;
+            /** Failed */
+            failed: boolean;
+        };
+        /**
+         * ReportOut
+         * @description Everything both reports are rendered from (§7): deterministic, no LLM.
+         *
+         *     The parent audience leaves out what only the doctor report shows (the parent's note, the
+         *     device); the result, answers and capture quality are the same for both.
+         */
+        ReportOut: {
+            /**
+             * Audience
+             * @enum {string}
+             */
+            audience: "parent" | "clinician";
+            /** Screening Id */
+            screening_id: number;
+            /** Report No */
+            report_no: string;
+            /** Is Demo */
+            is_demo: boolean;
+            child: components["schemas"]["ReportChild"];
+            /** Age Months */
+            age_months: number;
+            informant: components["schemas"]["Informant"];
+            locale: components["schemas"]["Locale"];
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Finalized At
+             * Format: date-time
+             */
+            finalized_at: string;
+            /** Questionnaire Version */
+            questionnaire_version: string;
+            /** Parent Note */
+            parent_note: string | null;
+            /** Items */
+            items: components["schemas"]["ReportItem"][];
+            /** Tasks */
+            tasks: components["schemas"]["ReportTask"][];
+            /** Score Bands */
+            score_bands: components["schemas"]["ScoreBand"][];
+            /** Weights */
+            weights: {
+                [key: string]: number;
+            };
+            result: components["schemas"]["RiskResult"];
+        };
+        /**
+         * ReportTask
+         * @description How an activity was captured. Scores and trials are in `result.tasks`.
+         */
+        ReportTask: {
+            /**
+             * Task
+             * @enum {string}
+             */
+            task: "calibration" | "rtn" | "joint_attention" | "imitation" | "gaze_preference" | "free_play";
+            /** Variant */
+            variant: ("on_screen" | "live") | null;
+            /** Demo */
+            demo: boolean;
+            device: components["schemas"]["DeviceInfo"] | null;
+            quality: components["schemas"]["CaptureQuality"] | null;
+        };
+        /**
+         * RiskClass
+         * @description In ascending order: floors compare by position.
+         * @enum {string}
+         */
+        RiskClass: "low" | "moderate" | "elevated" | "high";
+        /** RiskResult */
+        RiskResult: {
+            /** Scoring Version */
+            scoring_version: string;
+            /** Score */
+            score: number | null;
+            score_class: components["schemas"]["RiskClass"] | null;
+            risk_class: components["schemas"]["RiskClass"] | null;
+            /** Floors */
+            floors: components["schemas"]["Floor"][];
+            /** Red Flags */
+            red_flags: "regression"[];
+            /** Recommendations */
+            recommendations: string[];
+            confidence: components["schemas"]["Confidence"];
+            /** Components */
+            components: components["schemas"]["Component"][];
+            /** Excluded Tasks */
+            excluded_tasks: components["schemas"]["ExcludedTask"][];
+            questionnaire: components["schemas"]["QuestionnaireSummary"];
+            /** Tasks */
+            tasks: components["schemas"]["TaskResult"][];
+            /** Top Concerns */
+            top_concerns: components["schemas"]["Finding"][];
+            /** Strengths */
+            strengths: components["schemas"]["Finding"][];
+        };
+        /**
          * Role
          * @enum {string}
          */
         Role: "parent" | "teacher" | "specialist" | "admin";
+        /** RtnTrial */
+        RtnTrial: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "rtn";
+            /** Trial */
+            trial: number;
+            /** Prompt Ms */
+            prompt_ms: number;
+            /** T0 Ms */
+            t0_ms: number;
+            /** T0 Estimated */
+            t0_estimated: boolean;
+            /**
+             * Pre State
+             * @enum {string}
+             */
+            pre_state: "away" | "facing";
+            /** Face Share Before */
+            face_share_before: number;
+            /** Latency Ms */
+            latency_ms: number | null;
+            /** Eye Contact Ms */
+            eye_contact_ms: number | null;
+            /** Valid */
+            valid: boolean;
+            /** Invalid Reason */
+            invalid_reason: ("pre_state_facing" | "face_not_visible" | "something_wrong") | null;
+            /** Concern */
+            concern: number | null;
+        };
+        /** ScoreBand */
+        ScoreBand: {
+            risk_class: components["schemas"]["RiskClass"];
+            /** Max Score */
+            max_score: number;
+        };
+        /** ScreeningOut */
+        ScreeningOut: {
+            /** Id */
+            id: number;
+            /** Child Id */
+            child_id: number;
+            status: components["schemas"]["ScreeningStatus"];
+            /** Is Demo */
+            is_demo: boolean;
+            /** Age Months */
+            age_months: number;
+            /** Consent At */
+            consent_at: string | null;
+            /** Questionnaire Completed At */
+            questionnaire_completed_at: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Finalized At */
+            finalized_at: string | null;
+            /** Answered */
+            answered: number;
+            /** Total */
+            total: number;
+            /** Score */
+            score: number | null;
+            risk_class: components["schemas"]["RiskClass"] | null;
+            /** Child Name */
+            child_name: string;
+            locale: components["schemas"]["Locale"];
+            informant: components["schemas"]["Informant"];
+            /** Age Notice */
+            age_notice: ("younger" | "older") | null;
+            /** Consent Version */
+            consent_version: string | null;
+            /** Parent Note */
+            parent_note: string | null;
+            /** Items */
+            items: components["schemas"]["ItemOut"][];
+            /** Answers */
+            answers: components["schemas"]["AnswerOut"][];
+            /** Tasks */
+            tasks: components["schemas"]["TaskOut"][];
+            result: components["schemas"]["RiskResult"] | null;
+        };
+        /**
+         * ScreeningStatus
+         * @enum {string}
+         */
+        ScreeningStatus: "in_progress" | "finalized";
+        /** ScreeningSummary */
+        ScreeningSummary: {
+            /** Id */
+            id: number;
+            /** Child Id */
+            child_id: number;
+            status: components["schemas"]["ScreeningStatus"];
+            /** Is Demo */
+            is_demo: boolean;
+            /** Age Months */
+            age_months: number;
+            /** Consent At */
+            consent_at: string | null;
+            /** Questionnaire Completed At */
+            questionnaire_completed_at: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Finalized At */
+            finalized_at: string | null;
+            /** Answered */
+            answered: number;
+            /** Total */
+            total: number;
+            /** Score */
+            score: number | null;
+            risk_class: components["schemas"]["RiskClass"] | null;
+        };
+        /**
+         * Sex
+         * @enum {string}
+         */
+        Sex: "female" | "male";
+        /** ShareCreated */
+        ShareCreated: {
+            /** Id */
+            id: number;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /** Revoked At */
+            revoked_at: string | null;
+            /** Views */
+            views: number;
+            /** Last Viewed At */
+            last_viewed_at: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "active" | "expired" | "revoked";
+            /** Token */
+            token: string;
+        };
+        /** ShareOut */
+        ShareOut: {
+            /** Id */
+            id: number;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /** Revoked At */
+            revoked_at: string | null;
+            /** Views */
+            views: number;
+            /** Last Viewed At */
+            last_viewed_at: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "active" | "expired" | "revoked";
+        };
+        /**
+         * SharedReportOut
+         * @description The public view of a share link: the doctor report, read-only.
+         */
+        SharedReportOut: {
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            report: components["schemas"]["ReportOut"];
+        };
         /**
          * SignupRequest
          * @description Self sign-up. Specialists and admins can't sign up (CLAUDE.md §3).
@@ -323,10 +1928,116 @@ export interface components {
              */
             created_at: string;
         };
+        /**
+         * TaskName
+         * @enum {string}
+         */
+        TaskName: "rtn" | "joint_attention" | "imitation" | "gaze_preference" | "free_play";
+        /** TaskOut */
+        TaskOut: {
+            /**
+             * Task
+             * @enum {string}
+             */
+            task: "calibration" | "rtn" | "joint_attention" | "imitation" | "gaze_preference" | "free_play";
+            /** Variant */
+            variant: ("on_screen" | "live") | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "ok" | "low" | "inconclusive" | "fallback";
+            /** Reason */
+            reason: string | null;
+            /** Demo */
+            demo: boolean;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** TaskQuality */
+        TaskQuality: {
+            /** Face Pct */
+            face_pct?: number | null;
+            /** Pose Pct */
+            pose_pct?: number | null;
+            /** Calibration */
+            calibration?: ("ok" | "fallback") | null;
+            /** Valid Trials */
+            valid_trials?: number | null;
+            status: components["schemas"]["TaskStatus"];
+            reason?: components["schemas"]["InconclusiveReason"] | null;
+        };
+        /** TaskResult */
+        TaskResult: {
+            task: components["schemas"]["TaskName"];
+            status: components["schemas"]["TaskStatus"];
+            /** Concern */
+            concern: number | null;
+            /**
+             * Metrics
+             * @default {}
+             */
+            metrics?: {
+                [key: string]: number | string | null;
+            };
+            /**
+             * Trials
+             * @default []
+             */
+            trials?: (components["schemas"]["RtnTrial"] | components["schemas"]["JointAttentionTrial"] | components["schemas"]["ImitationTrial"] | components["schemas"]["MovementEpisode"])[];
+            quality: components["schemas"]["TaskQuality"];
+            /**
+             * Findings
+             * @default []
+             */
+            findings?: components["schemas"]["Finding"][];
+        };
+        /**
+         * TaskStatus
+         * @enum {string}
+         */
+        TaskStatus: "ok" | "low" | "inconclusive";
+        /**
+         * TaskUpload
+         * @description One activity's extracted features (§4.1). Never video or audio.
+         */
+        TaskUpload: {
+            /** Frames */
+            frames: components["schemas"]["Frame"][];
+            /**
+             * Markers
+             * @default []
+             */
+            markers?: components["schemas"]["Marker"][];
+            /**
+             * Audio Events
+             * @default []
+             */
+            audio_events?: components["schemas"]["AudioEvent"][];
+            /** Variant */
+            variant?: ("on_screen" | "live") | null;
+            device?: components["schemas"]["DeviceInfo"] | null;
+            quality?: components["schemas"]["CaptureQuality"] | null;
+            /**
+             * Demo
+             * @default false
+             */
+            demo?: boolean;
+        };
         /** TemporaryPassword */
         TemporaryPassword: {
             /** Temporary Password */
             temporary_password: string;
+        };
+        /** UpdateGrant */
+        UpdateGrant: {
+            /** Share Medications */
+            share_medications?: boolean | null;
+            /** Share Documents */
+            share_documents?: boolean | null;
         };
         /** UpdateMeRequest */
         UpdateMeRequest: {
@@ -385,6 +2096,35 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HealthResponse"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    getClientConfig: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClientConfig"];
                 };
             };
             /** @description Error */
@@ -732,6 +2472,1098 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["TemporaryPassword"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listChildren: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ChildOut"][];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    createChild: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateChildRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ChildOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    getChild: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                child_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ChildOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    regenerateChildCode: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                child_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ChildCode"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listChildAccessRequests: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                child_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IncomingAccessRequest"][];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listChildGrants: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                child_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Grant"][];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listChildActivity: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                child_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ActivityEntry"][];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listMyAccessRequests: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OutgoingAccessRequest"][];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    createAccessRequest: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateAccessRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccessRequestSent"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    approveAccessRequest: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                request_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApproveAccessRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Grant"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    declineAccessRequest: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                request_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OkResponse"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    cancelAccessRequest: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                request_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OutgoingAccessRequest"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    revokeGrant: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                grant_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OkResponse"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    updateGrant: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                grant_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateGrant"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Grant"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listNotifications: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NotificationList"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    markNotificationRead: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                notification_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OkResponse"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    markAllNotificationsRead: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OkResponse"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    createScreening: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateScreeningRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScreeningOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listChildScreenings: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                child_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScreeningSummary"][];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    getScreening: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScreeningOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    deleteScreening: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OkResponse"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    acceptScreeningConsent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ConsentRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScreeningOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    saveScreeningAnswer: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                item_id: string;
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AnswerRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnswerOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    mapOtherAnswer: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                item_id: string;
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MapOtherRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OtherMappingOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    completeQuestionnaire: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CompleteQuestionnaireRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScreeningOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    uploadScreeningTask: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                task: "calibration" | "rtn" | "joint_attention" | "imitation" | "gaze_preference" | "free_play";
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TaskUpload"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TaskOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    skipScreeningTask: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                task: "calibration" | "rtn" | "joint_attention" | "imitation" | "gaze_preference" | "free_play";
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TaskOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    finalizeScreening: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScreeningOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    getScreeningReport: {
+        parameters: {
+            query?: {
+                audience?: "parent" | "clinician";
+            };
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    listReportShares: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ShareOut"][];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    createReportShare: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                screening_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateShareRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ShareCreated"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    revokeReportShare: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                share_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ShareOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    getSharedReport: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                token: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SharedReportOut"];
+                };
+            };
+            /** @description Error */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    getDemoTask: {
+        parameters: {
+            query?: {
+                profile?: "typical" | "elevated" | "noisy";
+            };
+            header?: never;
+            path: {
+                fixture_task: "calibration" | "rtn" | "joint_attention" | "joint_attention_live" | "imitation" | "gaze_preference" | "free_play";
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemoTask"];
                 };
             };
             /** @description Error */

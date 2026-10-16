@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Baloo_Da_2, Hind_Siliguri } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { DemoBanner } from "@/components/app/demo-banner";
 import { Providers } from "@/components/providers";
 import { routing } from "@/lib/i18n/routing";
 
@@ -35,8 +36,16 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   return {
     title: { default: t("title"), template: `%s · ${t("title")}` },
     description: t("description"),
+    // A pitch demo: kept out of search engines (next.config.ts also sends X-Robots-Tag).
+    robots: { index: false, follow: false },
+    icons: { apple: "/icons/apple-touch-icon.png" },
+    appleWebApp: { capable: true, title: t("title"), statusBarStyle: "default" },
+    // Next only emits the standard mobile-web-app-capable tag; older iOS needs Apple's name.
+    other: { "apple-mobile-web-app-capable": "yes" },
   };
 }
+
+export const viewport: Viewport = { themeColor: "#004E8B" };
 
 export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
   const { locale } = await params;
@@ -47,7 +56,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
     <html lang={locale} className={`${hind.variable} ${baloo.variable}`}>
       <body className="min-h-dvh">
         <NextIntlClientProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            <DemoBanner />
+            {children}
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

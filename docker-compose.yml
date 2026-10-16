@@ -7,6 +7,10 @@ services:
       CORS_ORIGINS: http://localhost:3000
       # Set JWT_SECRET in your shell or a root .env to keep sessions across restarts.
       JWT_SECRET: ${JWT_SECRET:-}
+      # Optional: without a key the app runs and AI features fall back.
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # Demo accounts and children (idempotent; scripts/start.sh).
+      SEED_DEMO: "true"
     volumes:
       - api-data:/data
     ports:
@@ -16,7 +20,7 @@ services:
     build:
       context: ./apps/web
       args:
-        API_INTERNAL_URL: http://api:8000
+        API_ORIGIN: http://api:8000
     depends_on:
       - api
     ports:

@@ -2,7 +2,9 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from app.models import User
+from app.core.dates import age_in_months, today_bd
+from app.models import Child, User
+from app.seed.children import RAFI_CODE, seed_children
 from app.seed.users import DEMO_PASSWORD, seed_users
 
 DEMO_LOGINS = {
@@ -40,3 +42,36 @@ def test_demo_specialist_is_verified_and_teachers_have_schools(db: Session) -> N
     for email in ("teacher@demo.bd", "teacher2@demo.bd"):
         teacher = db.scalar(select(User).where(User.email == email))
         assert teacher is not None and teacher.organisation
+
+
+def test_demo_children_and_rafis_care_team(db: Session, client: TestClient) -> None:
+    seed_users(db)
+    assert seed_children(db) == 2
+    assert seed_children(db) == 0
+
+    rafi = db.scalar(select(Child).where(Child.code == RAFI_CODE))
+    assert rafi is not None and rafi.name == "Rafi"
+    assert age_in_months(rafi.dob, today_bd()) == 38
+
+    def login_as(email: str) -> None:
+        client.post("/api/v1/auth/login", json={"identifier": email, "password": DEMO_PASSWORD})
+
+    login_as("parent@demo.bd")
+    cards = {c["name"]: c for c in client.get("/api/v1/children").json()}
+    assert set(cards) == {"Rafi", "Nuha"}
+    assert cards["Rafi"]["pending_requests"] == 1
+    [pending] = client.get(f"/api/v1/children/{rafi.id}/access-requests").json()
+    assert pending["requester"]["name"] == "Rumana Islam"  # teacher2
+    members = client.get(f"/api/v1/children/{rafi.id}/grants").json()
+    assert {(m["member"]["role"], m["scope"]) for m in members} == {
+        ("teacher", "education"),
+        ("specialist", "clinical"),
+    }
+    assert client.get("/api/v1/notifications").json()["unread"] == 1
+
+    for email in ("teacher@demo.bd", "doctor@demo.bd"):
+        login_as(email)
+        assert [c["name"] for c in client.get("/api/v1/children").json()] == ["Rafi"]
+    login_as("teacher2@demo.bd")
+    assert client.get("/api/v1/children").json() == []
+    assert [r["status"] for r in client.get("/api/v1/access-requests").json()] == ["pending"]

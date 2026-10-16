@@ -1,0 +1,59 @@
+# Render Blueprint: the API (Docker) + Postgres, both in Singapore. Steps: docs/DEPLOY.md.
+# The web app is deployed separately on Vercel (root directory apps/web).
+services:
+  - type: web
+    name: shohojatri-api
+    runtime: docker
+    region: singapore
+    # Paid instances don't sleep; on `free` the first request after 15 idle minutes takes ~1 min.
+    plan: 0.5c-512mb
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: ./apps/api
+    healthCheckPath: /api/v1/health
+    autoDeployTrigger: commit
+    # Only API changes redeploy the API.
+    buildFilter:
+      paths:
+        - apps/api/**
+        - render.yaml
+    envVars:
+      - key: ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shohojatri-db
+          property: connectionString
+      # A random 256-bit value, created once and kept across deploys.
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-6-luna
+      - key: OPENAI_REASONING_EFFORT
+        value: low
+      # The Vercel address, e.g. https://shohojatri.vercel.app (no trailing slash).
+      - key: PUBLIC_WEB_URL
+        sync: false
+      - key: SEED_DEMO
+        value: "true"
+      - key: LLM_DAILY_CAP
+        value: "50"
+      - key: LOGIN_ATTEMPTS_PER_IP
+        value: "30"
+      - key: LOGIN_FAILURES_PER_ACCOUNT
+        value: "10"
+      - key: SIGNUPS_PER_IP
+        value: "10"
+      - key: WEB_CONCURRENCY
+        value: "2"
+
+databases:
+  - name: shohojatri-db
+    region: singapore
+    plan: 0.1c-256mb
+    postgresMajorVersion: "17"
+    databaseName: shohojatri
+    user: shohojatri
+    # No public access: only services in this Render account's private network can connect.
+    ipAllowList: []

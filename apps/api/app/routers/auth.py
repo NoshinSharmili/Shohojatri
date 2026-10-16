@@ -1,9 +1,12 @@
+from datetime import timedelta
 from typing import Annotated
 
-from fastapi import APIRouter, Cookie, Response, status
+from fastapi import APIRouter, Cookie, Request, Response, status
 from sqlalchemy import select
 
+from app.core import rate_limit
 from app.core.accounts import check_new_password, validated_contact
+from app.core.config import get_settings
 from app.core.deps import DbSession, UserPendingPasswordChange
 from app.core.errors import ApiError
 from app.core.security import (
@@ -35,8 +38,20 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 RefreshCookie = Annotated[str | None, Cookie(alias=REFRESH_COOKIE, include_in_schema=False)]
 
 
+def _login_limits() -> tuple[rate_limit.Limit, rate_limit.Limit]:
+    settings = get_settings()
+    window = timedelta(minutes=15)
+    return (
+        rate_limit.Limit("login_ip", settings.login_attempts_per_ip, window),
+        # Wrong passwords only: everyone at a pitch logs into the same demo account.
+        rate_limit.Limit("login_fail", settings.login_failures_per_account, window),
+    )
+
+
 @router.post("/signup", operation_id="signup", status_code=status.HTTP_201_CREATED)
-def signup(body: SignupRequest, db: DbSession, response: Response) -> UserOut:
+def signup(body: SignupRequest, request: Request, db: DbSession, response: Response) -> UserOut:
+    limit = rate_limit.Limit("signup_ip", get_settings().signups_per_ip, timedelta(hours=1))
+    rate_limit.hit(db, limit, rate_limit.client_ip(request))
     if body.role == Role.teacher and not body.organisation:
         raise ApiError(422, "organisation_required", detail={"field": "organisation"})
     contact = validated_contact(db, body.email, body.phone)
@@ -58,15 +73,20 @@ def signup(body: SignupRequest, db: DbSession, response: Response) -> UserOut:
 
 
 @router.post("/login", operation_id="login")
-def login(body: LoginRequest, db: DbSession, response: Response) -> UserOut:
+def login(body: LoginRequest, request: Request, db: DbSession, response: Response) -> UserOut:
+    per_ip, failures = _login_limits()
+    rate_limit.hit(db, per_ip, rate_limit.client_ip(request))
     identifier = parse_identifier(body.identifier)
+    # Keyed on what was typed (normalised when it parses), so unknown accounts are limited too.
+    account_key = identifier.value if identifier else body.identifier.strip().lower()
+    rate_limit.check(db, failures, account_key)
     column = User.email if identifier and identifier.kind == "email" else User.phone
     user = db.scalar(select(User).where(column == identifier.value)) if identifier else None
 
     if user is None:
         burn_password_check(body.password)
-        raise ApiError(401, "invalid_credentials")
-    if not verify_password(user.password_hash, body.password):
+    if user is None or not verify_password(user.password_hash, body.password):
+        rate_limit.record(db, failures, account_key)
         raise ApiError(401, "invalid_credentials")
     # Only said after the right password, so it doesn't reveal which accounts exist.
     if not user.is_active:

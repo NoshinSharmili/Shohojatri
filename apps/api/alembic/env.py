@@ -1,7 +1,10 @@
 from logging.config import fileConfig
+from typing import Any
 
 from alembic import context
+from alembic.autogenerate.api import AutogenContext
 from sqlalchemy import engine_from_config, pool
+from sqlalchemy.types import TypeDecorator
 
 from app.core.config import get_settings
 from app.models import Base
@@ -14,6 +17,14 @@ config.set_main_option("sqlalchemy.url", get_settings().database_url)
 target_metadata = Base.metadata
 
 
+def render_item(type_: str, obj: Any, autogen_context: AutogenContext) -> str | bool:
+    """Writes our TypeDecorators (e.g. UtcDateTime) as their plain SQLAlchemy type, so
+    migrations never import app code that may change later."""
+    if type_ == "type" and isinstance(obj, TypeDecorator):
+        return f"sa.{obj.impl!r}"
+    return False
+
+
 def run_migrations_offline() -> None:
     context.configure(
         url=config.get_main_option("sqlalchemy.url"),
@@ -21,6 +32,7 @@ def run_migrations_offline() -> None:
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
         render_as_batch=True,
+        render_item=render_item,
     )
     with context.begin_transaction():
         context.run_migrations()
@@ -35,7 +47,10 @@ def run_migrations_online() -> None:
     with connectable.connect() as connection:
         # Batch mode lets ALTER-style migrations run on SQLite (copy-and-move tables).
         context.configure(
-            connection=connection, target_metadata=target_metadata, render_as_batch=True
+            connection=connection,
+            target_metadata=target_metadata,
+            render_as_batch=True,
+            render_item=render_item,
         )
         with context.begin_transaction():
             context.run_migrations()

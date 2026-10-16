@@ -74,3 +74,27 @@ export function PendingPasswordOnly({ children }: { children: ReactNode }) {
     </Gate>
   );
 }
+
+/** Any logged-in user; `redirectFor` may send them on by role. Logged-out users log in first and
+ *  come back to `returnTo` (default: this path, without its query string). */
+export function RequireUser({
+  redirectFor,
+  returnTo,
+  children,
+}: {
+  redirectFor?: (me: Me) => string | null;
+  returnTo?: string;
+  children: ReactNode;
+}) {
+  return (
+    <Gate
+      redirectFor={(me, pathname) => {
+        if (!me) return `/login?next=${encodeURIComponent(returnTo ?? pathname)}`;
+        if (me.must_change_password) return homePathFor(me);
+        return redirectFor?.(me) ?? null;
+      }}
+    >
+      {children}
+    </Gate>
+  );
+}

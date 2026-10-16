@@ -17,10 +17,14 @@ ALLOWED_PENDING = {
 }
 PUBLIC = {
     ("GET", "/api/v1/health"),
+    # PUBLIC_WEB_URL, for share links and QR codes.
+    ("GET", "/api/v1/client-config"),
     ("POST", "/api/v1/auth/signup"),
     ("POST", "/api/v1/auth/login"),
     ("POST", "/api/v1/auth/refresh"),
     ("POST", "/api/v1/auth/logout"),
+    # A shared report link is opened without an account (SCREENING_SPEC §7).
+    ("GET", "/api/v1/share/{token}"),
 }
 
 

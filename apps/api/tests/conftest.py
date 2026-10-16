@@ -4,22 +4,38 @@ import os
 os.environ["DATABASE_URL"] = "sqlite://"
 os.environ["CORS_ORIGINS"] = "http://localhost:3000"
 os.environ["JWT_SECRET"] = "test-secret-not-for-production-use-32b"
+# Beats a developer's .env, so no test ever calls OpenAI; tests mock app.ai.llm instead.
+os.environ["OPENAI_API_KEY"] = ""
+os.environ["ENV"] = "development"
+os.environ["PUBLIC_WEB_URL"] = ""
+# The permission matrix logs in hundreds of times from one address; test_rate_limits turns the
+# limits back on.
+os.environ["LOGIN_ATTEMPTS_PER_IP"] = "0"
+os.environ["LOGIN_FAILURES_PER_ACCOUNT"] = "0"
+os.environ["SIGNUPS_PER_IP"] = "0"
 
 from collections.abc import Callable, Iterator
+from datetime import date
 
 import pytest
+from argon2 import PasswordHasher
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy import Engine, create_engine
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
+from app.core import security
 from app.core.db import get_db
 from app.core.security import hash_password
 from app.main import create_app
-from app.models import Base, Role, User
+from app.models import Base, Child, Role, User
 
 PASSWORD = "demo1234"
+
+# Production-cost argon2 makes each login ~0.1 s, and the permission matrix logs in ~200 times.
+# Hashes record their own parameters, so verification is unaffected.
+security._hasher = PasswordHasher(time_cost=1, memory_cost=1024, parallelism=1)
 
 
 @pytest.fixture
@@ -95,3 +111,43 @@ def login(client: TestClient) -> Callable[[str], TestClient]:
         return client
 
     return do_login
+
+
+@pytest.fixture
+def client_for(app: FastAPI) -> Iterator[Callable[[str], TestClient]]:
+    """A separate logged-in client per email, for tests where several people act."""
+    clients: list[TestClient] = []
+
+    def make(email: str) -> TestClient:
+        test_client = TestClient(app, raise_server_exceptions=False)
+        test_client.__enter__()
+        clients.append(test_client)
+        response = test_client.post(
+            "/api/v1/auth/login", json={"identifier": email, "password": PASSWORD}
+        )
+        assert response.status_code == 200, response.text
+        return test_client
+
+    yield make
+    for test_client in clients:
+        test_client.__exit__(None, None, None)
+
+
+MakeChild = Callable[..., Child]
+
+
+@pytest.fixture
+def make_child(db: Session) -> MakeChild:
+    """Inserts a child of `parent` (about 3 years old unless `dob` is given)."""
+    counter = iter(range(10_000))
+
+    def make(parent: User, **fields: object) -> Child:
+        fields.setdefault("name", "Test child")
+        fields.setdefault("dob", date(2023, 8, 1))
+        fields.setdefault("code", f"SJ-T{next(counter):04d}")
+        child = Child(parent_id=parent.id, **fields)
+        db.add(child)
+        db.commit()
+        return child
+
+    return make

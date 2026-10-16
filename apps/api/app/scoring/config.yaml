@@ -1,0 +1,173 @@
+# Every number the scoring engine uses (SCREENING_SPEC). Heuristic POC values, not a validated
+# instrument: tune here, never in code. Bump scoring_version whenever a value changes; it is
+# stored with every result.
+scoring_version: screening-0.1
+
+# Ages in months (§2). Outside [min_age, max_age] a screening can't be started; outside the
+# designed range it can, with a "less reliable for this age" notice.
+eligibility:
+  min_age: 12
+  designed_min_age: 16
+  designed_max_age: 48
+  max_age: 72
+
+# Part 1 (§3). Options missing from a table (not_sure, an unconfirmed "other") are excluded.
+questionnaire:
+  # Below this share of eligible items with a scorable answer, confidence drops a level (§3.5).
+  min_scorable_share: 0.8
+  # §3.1: concern per option for frequency items.
+  freq_concern:
+    positive: { usually: 0, sometimes: 0.5, rarely: 1 }
+    concern: { usually: 1, sometimes: 0.5, rarely: 0 }
+  # §3.2 q19. Quoted: YAML 1.1 would read bare yes/no as booleans.
+  regression_concern: { "no": 0, "yes": 1 }
+  # §3.4 q13, by age. Each band applies from its min_age (months) up to the next band.
+  communication_concern:
+    - { min_age: 0, concern: { sentences: 0, single_words: 0, sounds_gestures: 0.25, little: 1 } }
+    - { min_age: 18, concern: { sentences: 0, single_words: 0, sounds_gestures: 0.5, little: 1 } }
+    - { min_age: 24, concern: { sentences: 0, single_words: 0.25, sounds_gestures: 0.75, little: 1 } }
+    - { min_age: 30, concern: { sentences: 0, single_words: 0.5, sounds_gestures: 1, little: 1 } }
+
+# ── Part 2: activities (§4) ──────────────────────────────────────────────────────────────────
+# Times are ms from task start, angles degrees, distances in shoulder widths (sw) unless noted.
+
+# How per-frame features are read. A frame's state holds until the next frame, but never longer
+# than max_hold_ms, so dropped frames count as "not seen".
+signals:
+  max_hold_ms: 250
+  min_visibility: 0.5  # MediaPipe pose visibility at which a keypoint counts as seen
+  smoothing_frames: 3  # centred running median on pose keypoints before the movement rules
+
+# Voice onset (§4.4 step 2), shared by rtn and live joint attention.
+voice_onset:
+  search_ms: 4000  # look for onset this long after the prompt / cue tap
+  baseline_ms: 2000  # median rms_db of this long before each window is the baseline
+  rise_db: 12
+  fallback_ms: 800  # t0 = prompt + this when no onset is found (t0_estimated)
+
+# §4.3. gaze_x = a·yaw + b·iris_x + c, fitted to targets left −1, centre 0, right +1.
+calibration:
+  segment_ms: 1500
+  median_ms: 1000  # medians over the last part of each segment
+  min_face_share: 0.7
+  fallback_yaw_deg: 25  # gaze_x = yaw / 25, clamped to ±1
+
+# A valid task is "low" quality when the face (or pose) was seen for less than this share of
+# the task, or when a gaze task used the calibration fallback (§4.9).
+quality:
+  low_presence_share: 0.8
+
+rtn:
+  facing: { max_yaw: 20, max_pitch: 25, min_ms: 300 }
+  response_window_ms: 5000
+  eye_contact_cap_ms: 3000
+  # Trial concern by latency: the first band whose max_ms the latency fits in.
+  latency_concern:
+    - { max_ms: 2000, concern: 0 }
+    - { max_ms: 3000, concern: 0.25 }
+    - { max_ms: 5000, concern: 0.5 }
+  no_response_concern: 1
+  pre_t0_ms: 2000  # the face must be seen for min_face_share of this long before t0
+  min_face_share: 0.6
+  min_valid_trials: 2
+
+joint_attention:
+  # Concern from follow_rate, linear between these points.
+  follow_concern: { none_at: 0.75, full_at: 0.25 }
+  on_screen:
+    engage_ms: 1500  # engage phase before the cue, when its marker is missing
+    window_ms: 2000  # from the cue
+    look: { min_abs_gaze: 0.35, min_ms: 200 }
+    centre: { max_abs_gaze: 0.3, min_ms: 300 }  # attending during the engage phase
+    min_face_share: 0.7
+    min_valid_trials: 4
+  live:
+    window_ms: 3000  # from voice onset
+    baseline_ms: 1000  # pre-cue yaw / nose_dx baseline, just before voice onset
+    min_turn_deg: 20
+    min_ms: 300
+    min_face_share: 0.7
+    min_valid_trials: 3
+
+imitation:
+  window_ms: 5000
+  arms_up_ms: 400
+  clap: { close: 0.35, open: 0.6, min_cycles: 2 }
+  wave: { min_reversals: 2, min_swing: 0.25, within_ms: 2000 }
+  touch_head: { max_distance: 0.5, min_ms: 300 }
+  attempt_min_move: 0.3
+  concern: { detected: 0, attempt: 0.5, none: 1 }
+  min_pose_share: 0.6
+  min_valid_actions: 3
+
+gaze_preference:
+  # Concern from the share of tracked gaze on the geometric side, linear between these points.
+  geometric_concern: { none_at: 0.5, full_at: 0.8 }
+  min_tracked_share: 0.5
+
+free_play:
+  resample_hz: 15
+  step_ms: 500
+  min_window_visible: 0.8  # a window is analysed only if its keypoints were seen this often
+  arm:
+    window_ms: 3000
+    min_hz: 1.5
+    max_hz: 6
+    min_peak_share: 0.5
+    min_amplitude: 0.15
+  rocking:
+    window_ms: 5000
+    min_hz: 0.4
+    max_hz: 1.5
+    min_peak_share: 0.5
+    min_amplitude: 0.1
+    min_episode_ms: 4000
+  # Concern by episode count: the last band whose min_episodes is reached.
+  episode_concern:
+    - { min_episodes: 0, concern: 0 }
+    - { min_episodes: 1, concern: 0.3 }
+    - { min_episodes: 2, concern: 0.6 }
+    - { min_episodes: 4, concern: 1 }
+  full_concern_seconds: 15
+  vocal_labels: ["Child speech, kid speaking", "Babbling", "Laughter", "Speech", "Singing"]
+  min_pose_share: 0.6
+
+# ── Combining (§6) ───────────────────────────────────────────────────────────────────────────
+# Renormalised over the questionnaire (when it has a score) and the tasks that are not
+# inconclusive.
+weights:
+  questionnaire: 0.45
+  rtn: 0.15
+  joint_attention: 0.15
+  imitation: 0.10
+  gaze_preference: 0.10
+  free_play: 0.05
+
+# A score belongs to the first class whose max_score it fits in.
+classes:
+  - { name: low, max_score: 20 }
+  - { name: moderate, max_score: 45 }
+  - { name: elevated, max_score: 70 }
+  - { name: high, max_score: 100 }
+
+# §6.3, applied after the score.
+floors:
+  regression: moderate  # q19 "yes"
+  failed_critical: { min_items: 3, at_least: elevated }
+
+hearing_test:
+  rtn_concern: 0.75  # or the item below failed
+  item: q01
+  normal_answer: yes_normal  # q20 answer that makes the test unnecessary
+
+# §6.4 (OPEN_QUESTIONS #6): base level from valid tasks, then down one level when the
+# questionnaire's coverage is low.
+confidence:
+  high_min_tasks: 3
+
+# §6.5.
+findings:
+  max_concerns: 3
+  max_strengths: 3
+  # Tasks that measure a critical-item domain (q01, q03, q08): preferred as strengths.
+  critical_tasks: [rtn, joint_attention, imitation]

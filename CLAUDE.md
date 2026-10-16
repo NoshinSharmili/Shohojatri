@@ -87,7 +87,7 @@ Log / upload / questionnaire change → stored append-only → background job ru
 
 **API** — REST, JSON, `/api/v1`. Generate the TypeScript client from FastAPI's OpenAPI schema (`openapi-typescript`); never hand-write request types twice. Errors: `{ "error": { "code": "...", "message_key": "errors.x", "detail": {...} } }` — the frontend translates `message_key`.
 
-**LLM** — all OpenAI calls go through `apps/api/app/ai/llm.py`. Model from env `OPENAI_MODEL` (default a current lightweight model, e.g. `gpt-5-mini`; confirm the name against OpenAI's docs). Embeddings from `OPENAI_EMBED_MODEL` (e.g. `text-embedding-3-small`). Prompts are files in `app/ai/prompts/` with a version header. If `OPENAI_API_KEY` is missing, the app still runs: chat returns a clear "AI not configured" message and context updates queue up.
+**LLM** — all OpenAI calls go through `apps/api/app/ai/llm.py`. Model from env `OPENAI_MODEL` (default `gpt-6-luna`, OpenAI's current lightweight model, confirmed against developers.openai.com in B4; `OPENAI_REASONING_EFFORT` defaults to `low`). Embeddings from `OPENAI_EMBED_MODEL` (e.g. `text-embedding-3-small`). Prompts are files in `app/ai/prompts/` with a version header. If `OPENAI_API_KEY` is missing, the app still runs: chat returns a clear "AI not configured" message and context updates queue up.
 
 **Env** — `apps/api/.env.example` and `apps/web/.env.example` must list every variable. Never commit secrets.
 
@@ -100,10 +100,13 @@ Log / upload / questionnaire change → stored append-only → background job ru
 # api
 cd apps/api && uv sync && uv run alembic upgrade head && uv run python -m app.seed && uv run uvicorn app.main:app --reload
 uv run pytest
+uv run pytest tests/test_scoring_*.py --cov=app/scoring   # scoring engine + coverage
+uv run python -m scripts.make_fixtures   # synthetic screening sessions → fixtures/screening/*.json
 # web
 cd apps/web && pnpm i && pnpm dev
 pnpm gen:api     # regenerate API client from http://localhost:8000/openapi.json
 pnpm lint && pnpm typecheck
+pnpm test:cv     # browser feature maths (lib/cv), Node's test runner
 # both, in containers (web :3000, api :8000)
 docker compose up --build
 ```

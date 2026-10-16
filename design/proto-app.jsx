@@ -65,7 +65,7 @@ function App(){
 
   const onClick=e=>{
     const root=ref.current;const stop=()=>{e.preventDefault();e.stopPropagation();};
-    const dg=e.target.closest('[data-go]');if(dg&&root.contains(dg)){stop();nav(dg.dataset.go,root);return;}
+    const dg=e.target.closest('[data-go]');if(dg&&root.contains(dg)){stop();if(dg.dataset.child&&window.TPS)window.TPS.child=dg.dataset.child;if(dg.dataset.act&&window.TPACT)window.TPACT(dg.dataset.act,dg);nav(dg.dataset.go,root);return;}
     const lo=e.target.closest('.sj-lang__opt');
     if(lo){stop();const l=lo.getAttribute('lang');if(S.en)setSt(s=>({...s,lang:l}));else if(l==='en')setMsg('এই স্ক্রিনের ইংরেজি সংস্করণ এখনো ডিজাইন করা হয়নি');return;}
     if(e.target.classList&&e.target.classList.contains('sj-overlay')){if(S.close===null)return;stop();nav('CLOSE',root);return;}

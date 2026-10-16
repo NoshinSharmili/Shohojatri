@@ -1,15 +1,11 @@
-from datetime import UTC, datetime
+from datetime import datetime
 from enum import StrEnum
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, String
+from sqlalchemy import Boolean, ForeignKey, String
 from sqlalchemy import Enum as SAEnum
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.models.base import Base
-
-
-def utcnow() -> datetime:
-    return datetime.now(UTC)
+from app.models.base import Base, UtcDateTime, utcnow
 
 
 class Role(StrEnum):
@@ -47,7 +43,7 @@ class User(Base):
     # Admin-onboarded specialists are verified; shown as a badge to parents.
     verified: Mapped[bool] = mapped_column(Boolean, default=False)
     must_change_password: Mapped[bool] = mapped_column(Boolean, default=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    created_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
 
 
@@ -61,6 +57,6 @@ class RefreshToken(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
     # The token's `jti` claim. Not secret on its own: the token is also signed.
     jti: Mapped[str] = mapped_column(String(64), unique=True)
-    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
-    revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    expires_at: Mapped[datetime] = mapped_column(UtcDateTime)
+    revoked_at: Mapped[datetime | None] = mapped_column(UtcDateTime)
+    created_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)

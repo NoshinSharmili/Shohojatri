@@ -8,7 +8,15 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Last, so formatting is left to Prettier.
   prettier,
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "src/lib/api/schema.d.ts"]),
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    "src/lib/api/schema.d.ts",
+    // MediaPipe WASM runtimes and models (scripts/prepare-models.mjs).
+    "public/models/**",
+  ]),
 ]);
 
 export default eslintConfig;
